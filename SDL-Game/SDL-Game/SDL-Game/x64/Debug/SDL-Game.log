@@ -1,0 +1,9 @@
+﻿  Scanning sources for module dependencies...
+  CPauseStates.cpp
+  CPauseMenu.cpp
+D:\repos\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(8,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+D:\repos\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
+D:\repos\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
+  SDL-Game.vcxproj -> D:\repos\SDL-Game\SDL-Game\x64\Debug\SDL-Game.exe
+  0 File(s) copied
