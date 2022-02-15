@@ -66,18 +66,6 @@ private:
 		std::cout << __FUNCSIG__ << std::endl;
 	}
 
-	//Implemantation functions 
-
-
-	//Add new objects
-
-	void loadObjects();
-	void allocateObjects();
-	void addObjectsInVector();
-
-
-
-
 	//Private members
 
 	SDL_Window* m_pWindow;
@@ -87,15 +75,7 @@ private:
 	CMouseEvents mouseEvents;
 	CKeyboardEvents m_KeyboardEvents;
 
-	std::unique_ptr<CGameObject> m_Player;
-	std::unique_ptr<CGameObject> m_enemy1;
-	std::unique_ptr<CGameObject> m_enemy2;
-	std::unique_ptr<CGameObject> m_enemy3;
-
-	std::vector<std::unique_ptr<CGameObject>> m_GameObjects;
-
 	std::unique_ptr<CGameStateMachine> m_GameStateMachine;
-
 
 	struct Deleter
 	{
@@ -106,6 +86,5 @@ private:
 	};
 	//Static variable for singleton
 	inline static std::unique_ptr<CGame, Deleter> s_Instance{};
-
 };
 

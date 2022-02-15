@@ -45,22 +45,25 @@
     <ClCompile Include="GameStates\CPlayerStates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameStates\CMenuStates.cpp">
+    <ClCompile Include="Menu\MainMenu\CMenuStates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameStates\CGameStateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu\CMenu.cpp">
+    <ClCompile Include="Menu\MainMenu\CMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Managers\CFontTextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameStates\CPauseStates.cpp">
+    <ClCompile Include="Menu\PauseMenu\CPauseStates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu\CPauseMenu.cpp">
+    <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CGameObjectFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,22 +107,28 @@
     <ClInclude Include="GameStates\CPlayerStates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates\CMenuStates.h">
+    <ClInclude Include="Menu\MainMenu\CMenuStates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameStates\CGameStateMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\CMenu.h">
+    <ClInclude Include="Menu\MainMenu\CMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Managers\CFontTextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates\CPauseStates.h">
+    <ClInclude Include="Menu\PauseMenu\CPauseStates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\CPauseMenu.h">
+    <ClInclude Include="Menu\PauseMenu\CPauseMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CGameObjectFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CBaseCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

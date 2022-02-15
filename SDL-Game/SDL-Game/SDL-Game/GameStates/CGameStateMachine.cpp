@@ -30,6 +30,21 @@ void CGameStateMachine::changeState(std::unique_ptr< IGameStates>&& pState)
 	if (!m_gameStates.empty())
 	{
 		auto prevID = m_gameStates.back()->getStateID(); auto changedId = pState->getStateID();
+		if (prevID == changedId)
+		{
+			return; //Do nothing
+		}
+	}
+	m_gameStates.push_back(std::move(pState));
+
+	m_gameStates.back()->onEnter();
+}
+//Change 
+void CGameStateMachine::changeStateAndPopPrevious(std::unique_ptr< IGameStates>&& pState)
+{
+	if (!m_gameStates.empty())
+	{
+		auto prevID = m_gameStates.back()->getStateID(); auto changedId = pState->getStateID();
 
 		if (prevID == changedId)
 		{
@@ -37,7 +52,6 @@ void CGameStateMachine::changeState(std::unique_ptr< IGameStates>&& pState)
 		}
 		else
 		{
-			std::cout << "Changed" << std::endl;
 			m_gameStates.back()->onExit();
 			m_gameStates.pop_back();
 		}
@@ -46,7 +60,6 @@ void CGameStateMachine::changeState(std::unique_ptr< IGameStates>&& pState)
 
 	m_gameStates.back()->onEnter();
 }
-
 void CGameStateMachine::popState()
 {
 	if (!m_gameStates.empty())

@@ -20,13 +20,15 @@ bool CPlayerStates::onEnter()
     CLoadParams playerParams(250, 100, 48, 48, "mainChar");
 
     //Create a player object
-    m_Player = std::unique_ptr<CPlayer>(new CPlayer(playerParams));
+    m_Player = std::unique_ptr<CPlayer>(new CPlayer());
+    m_Player->load(playerParams);
 
     return false;
 }
 
 bool CPlayerStates::onExit()
 {
+    std::cout << __FUNCSIG__ << std::endl;
     m_Player->clean();
 
     CTextureManager::Instance().clearTextureMap("mainChar");

@@ -34,7 +34,7 @@ void CTextureManager::drawFrame(std::string id, int x, int y, int width, int hei
 {
 	SDL_Rect srcRect{}; SDL_Rect destRect{};
 	srcRect.x = width * currentFrame;
-	srcRect.y = height * (currentRow - 1);
+	srcRect.y = height * (currentRow);
 	srcRect.w = destRect.w = width;
 	srcRect.h = destRect.h = height;
 	destRect.x = x;

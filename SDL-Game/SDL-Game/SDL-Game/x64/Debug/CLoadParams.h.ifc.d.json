@@ -1,7 +1,7 @@
 {
     "Version": "1.1",
     "Data": {
-        "Source": "d:\\repos\\sdl-game\\sdl-game\\sdl-game\\game objects\\cloadparams.h",
+        "Source": "d:\\repos\\sdl_game\\sdl-game\\sdl-game\\sdl-game\\game objects\\cloadparams.h",
         "ProvidedModule": "",
         "Includes": [
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.30.30705\\include\\string",

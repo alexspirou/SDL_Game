@@ -11,12 +11,12 @@
 class CGameObject : public IObject
 {
 public:
-	CGameObject(CLoadParams params);
+	CGameObject();
 	virtual void drawFrame();
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-
+	virtual void load(CLoadParams params);
 protected:
 	std::string m_textureID;
 

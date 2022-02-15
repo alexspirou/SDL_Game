@@ -4,8 +4,8 @@
 
 #include "../Managers/CTextureManager.h"
 #include "../Game Objects/CLoadParams.h"
-#include"../GameStates/CMenuStates.h"
-#include "../GameStates/CPauseStates.h"
+#include"../Menu/MainMenu/CMenuStates.h"
+#include "../Menu/PauseMenu/CPauseStates.h"
 
 #include <typeinfo>
 //Static game variable initilazation
@@ -38,22 +38,8 @@ bool CGame::init(const char* iTitle, int xPos, int yPos, int width, int height, 
 		m_bRunning = true;
 
 
-		//Menu function
-
+		//Start main menu		
 		m_GameStateMachine.reset(new CGameStateMachine);
-
-		//m_GameStateMachine->pushState(std::unique_ptr<CMenuStates>(new CMenuStates));
-
-
-
-		loadObjects();
-		
-		allocateObjects();
-
-		addObjectsInVector();
-
-		std::cout << "\n" << typeid(m_Player).name() << '\n';
-
 		m_GameStateMachine->pushState(std::make_unique<CMenuStates>());
 
 		return true;
@@ -103,34 +89,4 @@ void CGame::clean()
 void CGame::quit()
 {
 	m_bRunning = false;
-}
-
-void CGame::loadObjects()
-{
-	CTextureManager& TextureLoader = CTextureManager::Instance();
-
-	TextureLoader.loadImage("Assets/enemySheet.png", "enemy", CGame::m_pRenderer);
-	TextureLoader.loadImage("Assets/mainCharSheet.png", "mainChar", CGame::m_pRenderer);
-
-}
-
-void CGame::allocateObjects()
-{
-	CLoadParams playerParams(250, 100, 48, 48, "mainChar");
-	CLoadParams enemy1Params(400, 100, 48, 48, "enemy");
-	CLoadParams enemy2Params(300, 100, 48, 48, "enemy");
-	CLoadParams enemy3Params(180, 100, 48, 48, "enemy");
-
-	m_Player.reset(new CPlayer(playerParams));
-	m_enemy1.reset(new CEnemy(enemy1Params));
-	m_enemy2.reset(new CEnemy(enemy2Params));
-	m_enemy3.reset(new CEnemy(enemy3Params));
-}
-
-void CGame::addObjectsInVector()
-{
-	m_GameObjects.push_back(std::move(m_Player));
-	m_GameObjects.push_back(std::move(m_enemy1));
-	m_GameObjects.push_back(std::move(m_enemy2));
-	m_GameObjects.push_back(std::move(m_enemy3));
 }

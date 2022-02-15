@@ -9,7 +9,7 @@ void CPlayer::draw( )
 void CPlayer::update()
 {
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
-
+	
 	/*handleMouseClickEvents();
 
 	handleMouseMotionEvents();*/
@@ -61,11 +61,11 @@ void CPlayer::handleMouseMotionEvents()
 
 void CPlayer::handleKeyBoardEvents()
 {
-	auto moveRight = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_RIGHT);
-	auto moveLeft = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_LEFT);
-	auto moveUp = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_UP);
-	auto moveDown = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_DOWN);
-	auto jump = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_SPACE);
+	bool moveRight = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_RIGHT);
+	bool moveLeft = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_LEFT);
+	bool moveUp = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_UP);
+	bool moveDown = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_DOWN);
+	bool jump = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_SPACE);
 
 	if (moveRight)		m_velocity.m_x =  0.5;		else m_velocity.m_x = 0;
 	if (moveLeft)		m_velocity.m_x = -0.5;

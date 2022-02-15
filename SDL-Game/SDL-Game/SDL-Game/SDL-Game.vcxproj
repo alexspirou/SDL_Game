@@ -146,12 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Menu\CPauseMenu.cpp" />
-    <ClCompile Include="GameStates\CPauseStates.cpp" />
+    <ClCompile Include="Factories\CGameObjectFactory.cpp" />
+    <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp" />
+    <ClCompile Include="Menu\PauseMenu\CPauseStates.cpp" />
     <ClCompile Include="Managers\CFontTextureManager.cpp" />
-    <ClCompile Include="Menu\CMenu.cpp" />
+    <ClCompile Include="Menu\MainMenu\CMenu.cpp" />
     <ClCompile Include="GameStates\CGameStateMachine.cpp" />
-    <ClCompile Include="GameStates\CMenuStates.cpp" />
+    <ClCompile Include="Menu\MainMenu\CMenuStates.cpp" />
     <ClCompile Include="Controllers\CInputHandler.cpp" />
     <ClCompile Include="Controllers\CMouseEvents.cpp" />
     <ClCompile Include="GameStates\CPlayerStates.cpp" />
@@ -164,12 +165,14 @@
     <ClCompile Include="Managers\CTextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Menu\CPauseMenu.h" />
-    <ClInclude Include="GameStates\CPauseStates.h" />
+    <ClInclude Include="Factories\CBaseCreator.h" />
+    <ClInclude Include="Factories\CGameObjectFactory.h" />
+    <ClInclude Include="Menu\PauseMenu\CPauseMenu.h" />
+    <ClInclude Include="Menu\PauseMenu\CPauseStates.h" />
     <ClInclude Include="Managers\CFontTextureManager.h" />
-    <ClInclude Include="Menu\CMenu.h" />
+    <ClInclude Include="Menu\MainMenu\CMenu.h" />
     <ClInclude Include="GameStates\CGameStateMachine.h" />
-    <ClInclude Include="GameStates\CMenuStates.h" />
+    <ClInclude Include="Menu\MainMenu\CMenuStates.h" />
     <ClInclude Include="Controllers\CKeyBoardEvents.h" />
     <ClInclude Include="Controllers\CMouseEvents.h" />
     <ClInclude Include="Controllers\CInputHandler.h" />

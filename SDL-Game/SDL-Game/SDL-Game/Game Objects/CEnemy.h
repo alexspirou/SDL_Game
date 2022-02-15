@@ -4,7 +4,7 @@ class CEnemy : public CGameObject
 {
 public:
 
-	CEnemy(CLoadParams params):CGameObject(params) {}
+	CEnemy() = default;
 
 	virtual void draw();
 	virtual void update();
