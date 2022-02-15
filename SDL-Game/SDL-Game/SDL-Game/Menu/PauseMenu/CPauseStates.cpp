@@ -49,6 +49,7 @@ void CPauseStates::s_PauseCallback(int* oCurrentFram)
         break;
     case CPauseMenu::MAINMENU:
         CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CMenuStates>());
+        SDL_Delay(100);
         break;
     case CPauseMenu::CANCEL:
         CGame::Instance().getStateMachine()->popState();

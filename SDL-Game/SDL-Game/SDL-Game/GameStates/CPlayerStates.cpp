@@ -1,10 +1,16 @@
 #include "CPlayerStates.h"
 #include "../Core/CGame.h"
 #include "../Managers/CTextureManager.h"
-
+#include "../Menu/PauseMenu/CPauseStates.h"
 void CPlayerStates::update()
 {
     m_Player->update();
+    auto isESCpressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_ESCAPE);
+    if (isESCpressed)
+    {
+        //TODO Here change state for pause game
+        CGame::Instance().getStateMachine()->changeState(std::make_unique<CPauseStates>());
+    }
 }
 
 void CPlayerStates::render()

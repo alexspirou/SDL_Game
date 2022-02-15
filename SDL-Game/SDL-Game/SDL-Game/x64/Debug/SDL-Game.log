@@ -1,28 +1,6 @@
 ﻿  Scanning sources for module dependencies...
-  CLoadParams.h
-  Compiling...
-  CLoadParams.h
-  CGameObjectFactory.cpp
-  CPauseMenu.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  CPauseStates.cpp
-  CFontTextureManager.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Managers\CFontTextureManager.cpp(7,9): warning C4551: function call missing argument list
-  CMenu.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  CGameStateMachine.cpp
-  CMenuStates.cpp
   CInputHandler.cpp
-  CMouseEvents.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Controllers\CMouseEvents.cpp(42,37): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Controllers\CMouseEvents.cpp(43,37): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
-  CPlayerStates.cpp
-  CEnemy.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CEnemy.cpp(10,27): warning C4305: '=': truncation from 'double' to 'float'
   CGame.cpp
-  CPlayer.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   CGameObject.cpp
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(12,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -31,15 +9,24 @@ D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(24,79)
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(24,63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(29,74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(29,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CPlayer.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  CPlayerStates.cpp
+  CFontTextureManager.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Managers\CFontTextureManager.cpp(7,9): warning C4551: function call missing argument list
+  CMenu.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  CMenuStates.cpp
+  CPauseMenu.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  CPauseStates.cpp
   main.cpp
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\main.cpp(6,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  CTextureManager.cpp
   Generating Code...
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Controllers\CMouseEvents.cpp(31): warning C4715: 'CMouseEvents::getMouseStates': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(37): warning C4715: 'CGame::Instance': not all control paths return a value

@@ -16,7 +16,6 @@ void CPauseMenu::update()
 
 	if (keyboardEvents.isKeyDown(SDL_SCANCODE_SPACE))
 	{
-
 		m_callback(&m_currentRow);
 	}
 	auto DownArrowIsPressed = keyboardEvents.isKeyDown(SDL_SCANCODE_DOWN);

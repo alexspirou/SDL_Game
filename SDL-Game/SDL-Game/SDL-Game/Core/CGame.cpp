@@ -67,12 +67,7 @@ void CGame::handleEvents()
 
 	m_KeyboardEvents.update();
 
-	if (m_KeyboardEvents.isKeyDown(SDL_SCANCODE_ESCAPE))
-	{
-		//TODO Here change state for pause game
 
-		m_GameStateMachine->changeState(std::make_unique<CPauseStates>());
-	}
 
 }
 
