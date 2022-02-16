@@ -17,7 +17,7 @@ bool CPauseStates::onEnter()
     CLoadParams  pauseMenuParams = { 0, 0, x, y ,"pauseMenusR" };
 
     m_PauseMenu.reset(new CPauseMenu(s_PauseCallback));
-    m_PauseMenu->load(pauseMenuParams);
+    m_PauseMenu->load(&pauseMenuParams);
 
     return true;
 }

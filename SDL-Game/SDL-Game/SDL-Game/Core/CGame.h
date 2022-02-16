@@ -20,6 +20,10 @@
 #include "../GameStates/CPlayerStates.h"
 #include "../GameStates/CGameStateMachine.h"
 
+
+//Factories
+#include "../Factories/CGameObjectFactory.h"
+
 class CGame
 {
 public:
@@ -49,11 +53,12 @@ public:
 
 	void quit();
 
-	inline auto getRenderer()			{ return m_pRenderer; }
+	inline auto getRenderer()					{ return m_pRenderer; }
 	inline const bool isRunning()				{ return m_bRunning; }
 	inline auto &getMouseEvents()				{ return mouseEvents; }
 	inline auto &getKeyboardEvents()			{ return m_KeyboardEvents; }
 	inline auto &getStateMachine()				{ return m_GameStateMachine; }
+	inline auto& getObjectFactory()				{ return m_ObjectFactory; }
 
 private:
 	~CGame()
@@ -74,6 +79,7 @@ private:
 
 	CMouseEvents mouseEvents;
 	CKeyboardEvents m_KeyboardEvents;
+	CGameObjectFactory m_ObjectFactory;
 
 	std::unique_ptr<CGameStateMachine> m_GameStateMachine;
 

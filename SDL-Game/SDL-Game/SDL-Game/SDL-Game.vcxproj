@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Parser\CStateParser.cpp" />
     <ClCompile Include="Factories\CGameObjectFactory.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseStates.cpp" />
@@ -163,8 +164,13 @@
     <ClCompile Include="Game Objects\CGameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\CTextureManager.cpp" />
+    <ClCompile Include="__TinyXML\tinystr.cpp" />
+    <ClCompile Include="__TinyXML\tinyxml.cpp" />
+    <ClCompile Include="__TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="__TinyXML\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Parser\CStateParser.h" />
     <ClInclude Include="Factories\CBaseCreator.h" />
     <ClInclude Include="Factories\CGameObjectFactory.h" />
     <ClInclude Include="Menu\PauseMenu\CPauseMenu.h" />
@@ -186,6 +192,8 @@
     <ClInclude Include="Managers\CTextureManager.h" />
     <ClInclude Include="Physics\Vector2D.h" />
     <ClInclude Include="ScreenDimentions.h" />
+    <ClInclude Include="__TinyXML\tinystr.h" />
+    <ClInclude Include="__TinyXML\tinyxml.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

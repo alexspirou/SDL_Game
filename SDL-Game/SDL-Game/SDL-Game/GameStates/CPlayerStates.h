@@ -13,7 +13,15 @@ public:
 	virtual std::string getStateID() const { return m_playID; }
 
 private:
-	const std::string m_playID{"PLAYER"};
+	const std::string m_playID{"PLAY"};
+
+	std::vector<std::unique_ptr<CGameObject>> m_GameObjects;
+	std::vector<std::string> m_TexturesIDList;
+
 	std::unique_ptr<CPlayer> m_Player;
+	std::unique_ptr<CGameObject> m_Fountain;
+	std::unique_ptr<CGameObject> m_BackGround;
+
+
 };
 

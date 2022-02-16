@@ -16,7 +16,7 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	virtual void load(CLoadParams params);
+	virtual void load(CLoadParams* params) override;
 protected:
 	std::string m_textureID;
 

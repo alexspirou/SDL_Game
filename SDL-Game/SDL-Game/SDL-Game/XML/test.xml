@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<STATES>
+<MENU>
+<TEXTURES>
+ <texture filename="../assets/button.png" ID="mainCharSheet"/>
+<!--<texture filename="../assets/exit.png" ID="exitbutton"/> -->
+</TEXTURES>
+<OBJECTS>
+ <object type="CPlayer" x="250" y="100" width="48"
+ height="48" textureID="mainChar" numFrames="0"
+ callbackID="1"/>
+ <!-- <object type="MenuButton" x="100" y="300" width="400"
+ height="100" textureID="exitbutton" numFrames="0"
+ callbackID="2"/> -->
+</OBJECTS>
+</MENU>
+<PLAY>
+<TEXTURES>
+ <texture filename="Assets/mainCharWalk.png" ID="mainChar"/>
+</TEXTURES>
+<OBJECTS>
+  <object type="CPlayer" x="250" y="100" width="48"
+  height="48" textureID="mainChar" numFrames="0"
+  callbackID="1"/>
+</OBJECTS>
+</PLAY>
+<GAMEOVER>
+</GAMEOVER>
+</STATES>

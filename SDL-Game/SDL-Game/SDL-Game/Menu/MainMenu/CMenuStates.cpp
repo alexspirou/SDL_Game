@@ -17,7 +17,7 @@ bool CMenuStates::onEnter()
 
     CLoadParams enemy1Params(0, 500, 48, 48, "enemy");
     m_PlayerForMenu.reset(new CEnemy());
-    m_PlayerForMenu->load(enemy1Params);
+    m_PlayerForMenu->load(&enemy1Params);
 
 
     return true;
@@ -110,9 +110,9 @@ bool CMenuStates::loadMenuObjects()
     auto startMenu = std::make_unique<CMenu>(s_StarGame);
     auto optionsMenu = std::make_unique<CMenu>( s_Options);
     auto exitMenu = std::make_unique<CMenu>( s_ExitGame);
-    startMenu->load(startMenuParams);
-    optionsMenu->load(optionsMenuParams);
-    exitMenu->load(exietMenuParams);
+    startMenu->load(&startMenuParams);
+    optionsMenu->load(&optionsMenuParams);
+    exitMenu->load(&exietMenuParams);
 
     m_vGameObjects.push_back(std::move(startMenu));
     m_vGameObjects.push_back(std::move(optionsMenu));
@@ -130,6 +130,7 @@ void CMenuStates::s_StarGame()
     std::cout << "Play button clicked\n";
     //In the future will change to LevelStates, where the first stage of the game will load
     CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CPlayerStates>());
+    CGame::Instance().getObjectFactory().registerTypeID("CPlayer", std::make_unique<CPlayerCreator>());
 }
 
 void CMenuStates::s_ExitGame()

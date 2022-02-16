@@ -35,11 +35,11 @@ void CPauseMenu::update()
 		
 	}
 
-	//TODO : Check why doesn't show the other frames 
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 1));
-	SDL_Delay(80);
+	SDL_Delay(75);
 }
 
 void CPauseMenu::clean()
 {
+
 }

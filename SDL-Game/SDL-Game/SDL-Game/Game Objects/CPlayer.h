@@ -1,15 +1,8 @@
 #pragma once
 #include "CGameObject.h"
-//#include "../Factories/CBaseCreator.h"
-//
-//class CPlayerCreator : public CBaseCreator
-//{
-//	// Inherited via CBaseCreator
-//	virtual std::unique_ptr<CGameObject> createGameObject() const override
-//	{
-//		return std::make_unique<CPlayer>();
-//	}
-//};
+#include "../Factories/CBaseCreator.h"
+
+
 class CPlayer : public CGameObject
 {
 public:
@@ -29,3 +22,11 @@ private:
 	void handleKeyBoardEvents();
 };
 
+class CPlayerCreator : public CBaseCreator
+{
+	// Inherited via CBaseCreator
+	virtual std::unique_ptr<CGameObject> createGameObject() const override
+	{
+		return std::make_unique<CPlayer>();
+	}
+};

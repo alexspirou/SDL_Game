@@ -1,1 +1,1 @@
-//#include "CGameObjectFactory.h"
+#include "CGameObjectFactory.h"
