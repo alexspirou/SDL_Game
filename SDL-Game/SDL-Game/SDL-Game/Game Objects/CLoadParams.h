@@ -7,7 +7,7 @@ struct CLoadParams
 
 public:
 
-	CLoadParams(int x, int y, int width, int height, std::string textureID, int TotalFrames,  int callBackID = 0, int animSpeed = 0)
+	CLoadParams(int x, int y, int width, int height, std::string textureID, int TotalFrames =0,  int callBackID = 0, int animSpeed = 0)
 		:m_x(x), m_y(y), m_Width(width), m_Height(height), m_TextureID(textureID), m_TotalFrames(TotalFrames), 
 		m_CallBackID(callBackID), m_AnimeSpeed(animSpeed)
 	{
@@ -17,10 +17,7 @@ public:
 	int getY() { return m_y; }
 	int getWidth() { return m_Width; }
 	int getHeight() { return m_Height; }
-	int getTotalFrames() { return m_TotalFrames; }
 	std::string getTextureID() { return m_TextureID; }
-
-	void setTextureID(std::string changeID) { m_TextureID = changeID; }
 
 private:
 

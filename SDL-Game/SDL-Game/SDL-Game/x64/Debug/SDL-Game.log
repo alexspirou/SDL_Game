@@ -1,5 +1,8 @@
 ﻿  Scanning sources for module dependencies...
   CPlayerStates.cpp
+  CMenuStates.cpp
+  Generating Code...
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(41): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(41): warning C4715: 'CGame::Instance': not all control paths return a value
   SDL-Game.vcxproj -> D:\repos\SDL_Game\SDL-Game\SDL-Game\x64\Debug\SDL-Game.exe
   0 File(s) copied

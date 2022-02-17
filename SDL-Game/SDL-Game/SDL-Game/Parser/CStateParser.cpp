@@ -16,10 +16,10 @@ bool CStateParser::parseState(const char* stateFile, std::string stateID, std::v
 	// pre declare the states root node
 	TiXmlElement* pStateRoot = 0;
 	// get this states root node and assign it to pStateRoot
-	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e =
+		e->NextSiblingElement())
 	{
-		auto xmlID = e->Value();
-		if (xmlID == stateID)
+		if (e->Value() == stateID)
 		{
 			pStateRoot = e;
 		}
@@ -80,6 +80,7 @@ void CStateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::uniqu
 
 		std::string textureID = e->Attribute("textureID");
 		std::unique_ptr<CGameObject> pGameObject = std::move(CGame::Instance().getObjectFactory().createObjectByID(e->Attribute("type")));
+
 		pGameObject->load(new CLoadParams (x, y, width, height, textureID, numFrames, callbackID, animSpeed));
 		//return objects
 		pObjects->push_back(std::move(pGameObject));

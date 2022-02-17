@@ -6,8 +6,7 @@
 #include "../Game Objects/CLoadParams.h"
 #include"../Menu/MainMenu/CMenuStates.h"
 #include "../Menu/PauseMenu/CPauseStates.h"
-#include "../Game Objects/CStableObject.h"
-#include "../Game Objects/CEnemy.h"
+
 #include <typeinfo>
 //Static game variable initilazation
 //CGame* CGame::s_Instance = 0;
@@ -38,10 +37,6 @@ bool CGame::init(const char* iTitle, int xPos, int yPos, int width, int height, 
 		std::cout << "Init success\n";
 		m_bRunning = true;
 
-		//Register objects from xml
-		m_ObjectFactory.registerTypeID("CPlayer", std::make_unique<CPlayerCreator>());
-		m_ObjectFactory.registerTypeID("CStableObject", std::make_unique<CStableObjectsCreator>());
-		m_ObjectFactory.registerTypeID("CEnemy", std::make_unique<CEnemyCreator>());
 
 		//Start main menu		
 		m_GameStateMachine.reset(new CGameStateMachine);

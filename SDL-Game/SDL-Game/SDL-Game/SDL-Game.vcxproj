@@ -146,7 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game Objects\CStableObject.cpp" />
     <ClCompile Include="Parser\CStateParser.cpp" />
     <ClCompile Include="Factories\CGameObjectFactory.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp" />
@@ -171,7 +170,6 @@
     <ClCompile Include="__TinyXML\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game Objects\CStableObject.h" />
     <ClInclude Include="Parser\CStateParser.h" />
     <ClInclude Include="Factories\CBaseCreator.h" />
     <ClInclude Include="Factories\CGameObjectFactory.h" />

@@ -14,48 +14,16 @@
  callbackID="2"/> -->
 </OBJECTS>
 </MENU>
-
 <PLAY>
 <TEXTURES>
- <texture filename="Assets/MainChar/mainCharIdle.png" ID="mainCharIdle"/>
- <texture filename="Assets/MainChar/mainCharWalkRight.png" ID="mainCharWalkRight"/>
- <texture filename="Assets/MainChar/mainCharWalkLeft.png" ID="mainCharWalkLeft"/>
+ <texture filename="Assets/mainCharWalk.png" ID="mainChar"/>
 </TEXTURES>
 <OBJECTS>
-  <object type="CPlayer" x="10" y="500" width="48"
-  height="48" textureID="mainCharIdle" numFrames="6"
+  <object type="CPlayer" x="250" y="100" width="48"
+  height="48" textureID="mainChar" numFrames="0"
   callbackID="1"/>
 </OBJECTS>
 </PLAY>
-
-<ENEMY>
-<TEXTURES>
- <texture filename="Assets/Enemies/enemyMonster.png" ID="enemyMonster"/>
-</TEXTURES>
-<OBJECTS>
-  <object type="CEnemy" x="250" y="100" width="45"
-  height="66" textureID="enemyMonster" numFrames="3"
-  callbackID="1"/>
-</OBJECTS>
-</ENEMY>
-
-<!--Game Assets -->
-<STABLEOBJECTS>
-<TEXTURES>
- <texture filename="Assets/Fountain.png" ID="Fountain"/>
- <texture filename="Assets/Background.png" ID="Background"/>
-</TEXTURES>
-<OBJECTS>
-  <object type="CStableObject" x="250" y="500" width="72"
-  height="72" textureID="Fountain" numFrames="4"
-  callbackID="1"/>
-  <object type="CStableObject" x="0" y="0" width="750"
-  height="580" textureID="Background" numFrames="1"
-  callbackID="2"/>
-</OBJECTS>
-</STABLEOBJECTS>
-
-
 <GAMEOVER>
 </GAMEOVER>
 </STATES>

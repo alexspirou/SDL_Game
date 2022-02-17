@@ -17,14 +17,11 @@ void CGameObject::load(CLoadParams* params)
 	m_height = params->getHeight();
 	m_textureID = params->getTextureID();
 
-	m_TotalFrames = params->getTotalFrames();
-
-	m_FlipSiderRender = SDL_FLIP_NONE;
 	m_currentRow = 0;
 }
 void CGameObject::drawFrame()
 {
-	CTextureManager::Instance().drawFrame(m_textureID, m_position.m_x, m_position.m_y, m_width, m_height, m_currentRow, m_currentFrame, CGame::Instance().getRenderer(), m_FlipSiderRender);
+	CTextureManager::Instance().drawFrame(m_textureID, m_position.m_x, m_position.m_y, m_width, m_height, m_currentRow, m_currentFrame, CGame::Instance().getRenderer());
 }
 
 void CGameObject::draw()
@@ -35,7 +32,7 @@ void CGameObject::draw()
 
 void CGameObject::update()
 {
-	 //Change 100 to variable
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 4)); //Change 100 and 4 to variabless to load function
 
 	//Adding accelaration to velocity because we dont want to have the max speed instantaneously
 	m_velocity += m_acceleration;

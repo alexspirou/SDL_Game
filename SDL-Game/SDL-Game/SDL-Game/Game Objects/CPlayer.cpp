@@ -8,7 +8,11 @@ void CPlayer::draw( )
 
 void CPlayer::update()
 {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	
+	/*handleMouseClickEvents();
+
+	handleMouseMotionEvents();*/
 
 	handleKeyBoardEvents();
 
@@ -21,6 +25,32 @@ void CPlayer::clean()
 
 }
 
+void CPlayer::handleMouseClickEvents()
+{
+	auto mouseEvents = CGame::Instance().getMouseEvents();
+
+	auto leftClickPressed = mouseEvents.getMouseStates(mouseEvents.LEFTCLICK);
+	auto rightClickPressed = mouseEvents.getMouseStates(mouseEvents.RIGHTCLICK);
+	auto middleClickPressed = mouseEvents.getMouseStates(mouseEvents.MIDDLECLICK);
+
+	if (rightClickPressed)
+	{
+		isPlayerMovingRightInScreen = true;
+		m_velocity.m_x = 2;
+	}
+
+	if (leftClickPressed)
+	{
+		isPlayerMovingRightInScreen = false;
+		m_velocity.m_x = -2;
+	}
+
+	if (middleClickPressed)
+	{
+		isPlayerMovingRightInScreen = false;
+		m_velocity.m_x = 0;
+	}
+}
 
 void CPlayer::handleMouseMotionEvents()
 {
@@ -33,20 +63,16 @@ void CPlayer::handleKeyBoardEvents()
 {
 	bool moveRight = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_RIGHT);
 	bool moveLeft = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_LEFT);
+	bool moveUp = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_UP);
+	bool moveDown = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_DOWN);
 	bool jump = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_SPACE);
 
-	if		(moveRight) { m_velocity.m_x = 0.5; m_textureID = "mainCharWalkRight"; }
-	else if (moveLeft)  { m_velocity.m_x = -0.5; m_textureID = "mainCharWalkLeft";}
-	else if (moveLeft) { m_velocity.m_y = 1; m_textureID = "mainCharWalkLeft"; }
+	if (moveRight)		m_velocity.m_x =  0.5;		else m_velocity.m_x = 0;
+	if (moveLeft)		m_velocity.m_x = -0.5;
+	if (moveUp)			m_velocity.m_y = -0.5;		else m_velocity.m_y = 0;
+	if (moveDown)		m_velocity.m_y =  0.5;
 
-	else
-	{
-		m_textureID = "mainCharIdle";
-		m_velocity.m_x = 0;
-		m_velocity.m_y = 0;
-	}
-
-
+	int prevPos{};
 
 	//if (jump)
 	//{

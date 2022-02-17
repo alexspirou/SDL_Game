@@ -15,17 +15,26 @@ bool CMenuStates::onEnter()
     auto render = CGame::Instance().getRenderer();
     auto loadAnimatePlayer = CTextureManager::Instance().loadImage("Assets/enemySheet.png", "enemy", render);
 
+    CLoadParams enemy1Params(0, 500, 48, 48, "enemy");
+    m_PlayerForMenu.reset(new CEnemy());
+    m_PlayerForMenu->load(&enemy1Params);
+
+
     return true;
 }
 
 void CMenuStates::update()
 {
+    m_PlayerForMenu->update();
+
     MoveMenuPosition();
 
     updateMenuDependTheMenuPosition();
 }
 void CMenuStates::render()
 {
+    m_PlayerForMenu->drawFrame();
+
     renderMenuDependTheMenuPosition();
 
 }
@@ -94,9 +103,9 @@ bool CMenuStates::loadMenuObjects()
     if (!loadStartMenu || !loadOptionMenu || !loadExitMenu) { return false; }
 
     int x = SCREEN_WIDTH; int y = SCREEN_HEIGHT;
-    CLoadParams  startMenuParams =  { 0, 0, x, y ,m_LoadIDMenuStart,0 };
-    CLoadParams  optionsMenuParams = { 0, 0, x, y ,m_LoadIDMenuOptions,0 };
-    CLoadParams  exietMenuParams = { 0, 0, x, y ,m_LoadIDMenuExit,0 };
+    CLoadParams  startMenuParams =  { 0, 0, x, y ,m_LoadIDMenuStart };
+    CLoadParams  optionsMenuParams = { 0, 0, x, y ,m_LoadIDMenuOptions };
+    CLoadParams  exietMenuParams = { 0, 0, x, y ,m_LoadIDMenuExit };
 
     auto startMenu = std::make_unique<CMenu>(s_StarGame);
     auto optionsMenu = std::make_unique<CMenu>( s_Options);
@@ -120,8 +129,8 @@ void CMenuStates::s_StarGame()
 {
     std::cout << "Play button clicked\n";
     //In the future will change to LevelStates, where the first stage of the game will load
-
     CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CPlayerStates>());
+    CGame::Instance().getObjectFactory().registerTypeID("CPlayer", std::make_unique<CPlayerCreator>());
 }
 
 void CMenuStates::s_ExitGame()
