@@ -7,7 +7,6 @@
 class CBaseCreator
 {
 public:
-
 	virtual std::unique_ptr<CGameObject> createGameObject() const = 0;
 	virtual ~CBaseCreator() = default;
 };

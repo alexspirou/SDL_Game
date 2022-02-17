@@ -26,9 +26,11 @@ protected:
 	Vector2D m_position;
 	Vector2D m_velocity;
 	Vector2D m_acceleration;
+	int m_TotalFrames;
 
 	CMouseEvents m_mouseEvents;
 	int m_width; int m_height;
-
+	SDL_RendererFlip m_FlipSiderRender;
 	bool isPlayerMovingRightInScreen = true;
 };
+

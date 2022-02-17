@@ -14,7 +14,7 @@ bool CPauseStates::onEnter()
     if (!pauseMenu) { return false; }
 
     int x = SCREEN_WIDTH; int y = SCREEN_HEIGHT;
-    CLoadParams  pauseMenuParams = { 0, 0, x, y ,"pauseMenusR" };
+    CLoadParams  pauseMenuParams = { 0, 0, x, y ,"pauseMenusR" , 0};
 
     m_PauseMenu.reset(new CPauseMenu(s_PauseCallback));
     m_PauseMenu->load(&pauseMenuParams);
