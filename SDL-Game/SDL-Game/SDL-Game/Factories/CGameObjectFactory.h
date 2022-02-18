@@ -12,6 +12,7 @@ public :
 		// if the type is already registered, do nothing
 		if (it != m_creators.end())
 		{
+			std::cout << "SAME OBJECT " << std::endl;
 			return false;
 		}
 		//Assign object to its id
@@ -28,7 +29,7 @@ public :
 			std::cout << "could not find type: " << typeID << "\n";
 			return NULL;
 		}
-		std::unique_ptr<CBaseCreator> pCreator(std::move((*it).second));
+		std::unique_ptr<CBaseCreator> pCreator(std::move(it->second));
 		
 		return pCreator->createGameObject();
 	}

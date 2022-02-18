@@ -6,13 +6,13 @@
 class CPlayer : public CGameObject
 {
 public:
-	CPlayer() {}
+	CPlayer() = default;
 	virtual ~CPlayer() = default;
 
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	
+	enum playerStand { IDLE = 0, WALKING = 1 };
 private:
 
 	void handleMouseClickEvents();
@@ -21,6 +21,7 @@ private:
 
 	void handleKeyBoardEvents();
 };
+
 
 class CPlayerCreator : public CBaseCreator
 {
