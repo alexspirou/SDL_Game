@@ -10,6 +10,7 @@ void CEnemy::update()
 
 	move();
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
+	m_currentRow = 0;
 	CGameObject::update();
 
 }

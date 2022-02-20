@@ -48,7 +48,7 @@ bool CStateParser::parseState(const char* stateFile, std::string stateID, std::v
 		}
 	}
 	// Return vector with objects
-	parseObjects(pObjectRoot, pObjects);
+	parseObjects(pObjectRoot, std::move(pObjects));
 	return true;
 }
 void CStateParser::parseTextures(TiXmlElement* pStateRoot, std::vector<std::string>* pTextureIDs)
@@ -63,11 +63,11 @@ void CStateParser::parseTextures(TiXmlElement* pStateRoot, std::vector<std::stri
 	}
 }
 
-void CStateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<CGameObject>>* pObjects)
+void CStateParser::parseObjects(TiXmlElement* pStateRoot,  std::vector<std::unique_ptr<CGameObject>>* pObjects)
 {
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e !=NULL; e = e->NextSiblingElement())
 	{
-		int x{}, y{}, width{}, height{}, numFrames{}, callbackID{}, animSpeed{};
+		int x{}, y{}, width{}, height{}, currentRow{}, numFrames{}, spawnTime, callbackID{}, animSpeed{};
 		
 		e->Attribute("x", &x);
 		e->Attribute("y", &y);
@@ -76,12 +76,23 @@ void CStateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::uniqu
 		e->Attribute("numFrames", &numFrames);
 		e->Attribute("callbackID", &callbackID);
 		e->Attribute("animSpeed", &animSpeed);
+		e->Attribute("currentRow", &currentRow);
+
+		if (e->Attribute("spawnTime", &spawnTime));
 
 
 		std::string textureID = e->Attribute("textureID");
-		std::unique_ptr<CGameObject> pGameObject = std::move(CGame::Instance().getObjectFactory().createObjectByID(e->Attribute("type")));
-		pGameObject->load(new CLoadParams (x, y, width, height, textureID, numFrames, callbackID, animSpeed));
+		std::string s = e->Attribute("type");
+		if ( s== "CEnemy")
+		{
+			std::cout << "CEnemy " << std::endl;
+		}
+		CGameObject* pGameObject = CGame::Instance().getObjectFactory().createObjectByID(e->Attribute("type"));
+		pGameObject->load(new CLoadParams (x, y, width, height, textureID, numFrames, currentRow, spawnTime, callbackID, animSpeed));
+
+		auto takewOwnershipPtr = std::unique_ptr<CGameObject>{ std::exchange(pGameObject, nullptr) };
+
 		//return objects
-		pObjects->push_back(std::move(pGameObject));
+		pObjects->push_back(std::move(takewOwnershipPtr));
 	}
 }

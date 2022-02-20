@@ -9,6 +9,7 @@
 #include "../Game Objects/CStableObject.h"
 #include "../Game Objects/CEnemy.h"
 #include <typeinfo>
+#include "../Parser/CMapParser.h"
 //Static game variable initilazation
 //CGame* CGame::s_Instance = 0;
 
@@ -38,10 +39,14 @@ bool CGame::init(const char* iTitle, int xPos, int yPos, int width, int height, 
 		std::cout << "Init success\n";
 		m_bRunning = true;
 
-		//Register objects from xml
-		m_ObjectFactory.registerTypeID("CPlayer", std::make_unique<CPlayerCreator>());
-		m_ObjectFactory.registerTypeID("CStableObject", std::make_unique<CStableObjectsCreator>());
-		m_ObjectFactory.registerTypeID("CEnemy", std::make_unique<CEnemyCreator>());
+		//Register objects types from xml
+		m_ObjectFactory.registerTypeID("CPlayer", new CPlayerCreator());
+		m_ObjectFactory.registerTypeID("CStableObject", new CStableObjectsCreator());
+		m_ObjectFactory.registerTypeID("CEnemy", new CEnemyCreator ());
+
+		CMapParser map;
+		std::vector<std::vector<int>> vec;
+		map.parseMap("Assets/Map/gameMap.tmx", &vec);
 
 		//Start main menu		
 		m_GameStateMachine.reset(new CGameStateMachine);
@@ -55,7 +60,6 @@ void CGame::update()
 	//Update all states
 	m_GameStateMachine->update();
 }
-
 void CGame::render()
 {
 	//Render all states
@@ -65,17 +69,13 @@ void CGame::render()
 
 	SDL_RenderPresent(m_pRenderer);
 }
-
 void CGame::handleEvents()
 {
 	mouseEvents.update();
 
 	m_KeyboardEvents.update();
 
-
-
 }
-
 //Clean game
 void CGame::clean()
 {

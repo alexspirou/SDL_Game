@@ -20,7 +20,7 @@ void CGameObject::load(CLoadParams* params)
 	m_TotalFrames = params->getTotalFrames();
 
 	m_FlipSiderRender = SDL_FLIP_NONE;
-	m_currentRow = 0;
+	m_currentRow = params->getCurrentRow();
 }
 void CGameObject::drawFrame()
 {

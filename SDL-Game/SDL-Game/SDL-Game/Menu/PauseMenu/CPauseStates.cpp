@@ -33,6 +33,8 @@ void CPauseStates::render()
 }
 bool CPauseStates::onExit()
 {
+    CTextureManager::Instance().clearTextureMap("pauseMenusR");
+
     return true;
 }
 
@@ -41,14 +43,17 @@ void CPauseStates::s_PauseCallback(int* oCurrentFram)
     switch (*oCurrentFram)
     {
     case CPauseMenu::RESTART:
-        CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CPlayerStates>());
+        CGame::Instance().getStateMachine()->popState();
+        CGame::Instance().getStateMachine()->changeState(std::make_unique<CPlayerStates>());
         break;
     case CPauseMenu::OPTIONS:
         //Create options, like sound etc..
         std::cout << "OPTIONS PAUSE" << std::endl;
         break;
     case CPauseMenu::MAINMENU:
+        CGame::Instance().getStateMachine()->popState();
         CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CMenuStates>());
+
         SDL_Delay(100);
         break;
     case CPauseMenu::CANCEL:

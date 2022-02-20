@@ -12,11 +12,13 @@ void CPlayerStates::update()
     {
         //TODO Here change state for pause game
         CGame::Instance().getStateMachine()->changeState(std::make_unique<CPauseStates>());
+        std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
     }
     for (auto& object : m_vGameObjects)
     {
         object->update();
     }
+   
 }
 
 void CPlayerStates::render()
@@ -30,11 +32,14 @@ void CPlayerStates::render()
 
 bool CPlayerStates::onEnter()
 {
+    std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
 
+    std::cout << __FUNCSIG__ << std::endl;
     CStateParser stateParser;
+
     stateParser.parseState("XML/test.xml", "STABLEOBJECTS", &m_vGameObjects, &m_TexturesIDs);
-     stateParser.parseState("XML/test.xml", "PLAY", &m_vGameObjects , &m_TexturesIDs);
-     stateParser.parseState("XML/test.xml", "ENEMY", &m_vGameObjects, &m_TexturesIDs);
+    stateParser.parseState("XML/test.xml", "PLAY", &m_vGameObjects , &m_TexturesIDs);
+    stateParser.parseState("XML/test.xml", "ENEMY", &m_vGameObjects, &m_TexturesIDs);
 
     return false;
 }
@@ -43,7 +48,8 @@ bool CPlayerStates::onExit()
 {
     std::cout << __FUNCSIG__ << std::endl;
 
-    CTextureManager::Instance().clearTextureMap("mainChar");
-
+    for(auto& textures: m_TexturesIDs)
+        CTextureManager::Instance().clearTextureMap(textures);
+    std::cout << "CLEANED SUCCESFULL" << std::endl;
     return false;
 }

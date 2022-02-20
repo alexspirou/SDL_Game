@@ -1,6 +1,7 @@
 #pragma once
 #include "IGameStates.h"
 #include "../Game Objects/CPlayer.h"
+#
 #include <memory>
 class CPlayerStates : public IGameStates
 {
@@ -16,7 +17,6 @@ private:
 	const std::string m_playID{"PLAY"};
 
 	std::vector<std::unique_ptr<CGameObject>> m_vGameObjects;
-	std::vector < std::unique_ptr<CGameObject>> m_StableObjects;
 
 	std::vector<std::string> m_TexturesIDs;
 

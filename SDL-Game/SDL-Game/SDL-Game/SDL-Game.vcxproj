@@ -146,7 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Parser\CMapParser.cpp" />
+    <ClCompile Include="Map\CTileLayer.cpp" />
     <ClCompile Include="Game Objects\CStableObject.cpp" />
+    <ClCompile Include="Map\CGameMap.cpp" />
     <ClCompile Include="Parser\CStateParser.cpp" />
     <ClCompile Include="Factories\CGameObjectFactory.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp" />
@@ -171,7 +174,11 @@
     <ClCompile Include="__TinyXML\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Parser\CMapParser.h" />
+    <ClInclude Include="Map\CTileLayer.h" />
     <ClInclude Include="Game Objects\CStableObject.h" />
+    <ClInclude Include="Map\CGameMap.h" />
+    <ClInclude Include="Map\ILayer.h" />
     <ClInclude Include="Parser\CStateParser.h" />
     <ClInclude Include="Factories\CBaseCreator.h" />
     <ClInclude Include="Factories\CGameObjectFactory.h" />

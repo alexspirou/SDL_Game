@@ -7,7 +7,7 @@
 </TEXTURES>
 <OBJECTS>
  <object type="CPlayer" x="250" y="100" width="48"
- height="48" textureID="mainChar" numFrames="0"
+ height="48" textureID="mainChar" numFrames="0"currentRow = "0"
  callbackID="1"/>
  <!-- <object type="MenuButton" x="100" y="300" width="400"
  height="100" textureID="exitbutton" numFrames="0"
@@ -23,7 +23,7 @@
 </TEXTURES>
 <OBJECTS>
   <object type="CPlayer" x="10" y="500" width="48"
-  height="48" textureID="mainCharIdle" numFrames="6"
+  height="48" textureID="mainCharIdle" numFrames="6"currentRow = "0"
   callbackID="1"/>
 </OBJECTS>
 </PLAY>
@@ -34,7 +34,7 @@
 </TEXTURES>
 <OBJECTS>
   <object type="CEnemy" x="250" y="100" width="45"
-  height="66" textureID="enemyMonster" numFrames="3"
+  height="66" textureID="enemyMonster" numFrames="3" currentRow = "0"
   callbackID="1"/>
 </OBJECTS>
 </ENEMY>
@@ -42,16 +42,34 @@
 <!--Game Assets -->
 <STABLEOBJECTS>
 <TEXTURES>
- <texture filename="Assets/Fountain.png" ID="Fountain"/>
- <texture filename="Assets/Background.png" ID="Background"/>
+  <texture filename="Assets/Background.png" ID="Background"/>
+ <!-- <texture filename="Assets/Fountain.png" ID="Fountain1"/>
+ <texture filename="Assets/Fountain.png" ID="Fountain2"/>
+ <texture filename="Assets/Fountain.png" ID="Fountain3"/>
+ <texture filename="Assets/Fountain.png" ID="Fountain4"/> -->
+
 </TEXTURES>
 <OBJECTS>
-  <object type="CStableObject" x="250" y="500" width="72"
-  height="72" textureID="Fountain" numFrames="4"
-  callbackID="1"/>
   <object type="CStableObject" x="0" y="0" width="750"
-  height="580" textureID="Background" numFrames="1"
+  height="580" textureID="Background" numFrames="1" currentRow = "0"
+  spawnTime = "0"
+  callbackID="1"/>
+  <object type="CStableObject" x="250" y="500" width="72"
+  height="72" textureID="Fountain1" numFrames="4"
+  spawnTime = "1"
   callbackID="2"/>
+  <object type="CStableObject" x="400" y="500" width="72"
+  height="72" textureID="Fountain2" numFrames="4" currentRow = "0"
+  spawnTime = "2"
+  callbackID="2"/>
+  <object type="CStableObject" x="500" y="500" width="72"
+  height="72" textureID="Fountain3" numFrames="4" currentRow = "0"
+  spawnTime = "8"
+  callbackID="2"/>
+  <object type="CStableObject" x="600" y="500" width="72"
+  height="72" textureID="Fountain4" numFrames="4" currentRow = "0"
+  spawnTime = "12"
+  callbackID="1"/>
 </OBJECTS>
 </STABLEOBJECTS>
 

@@ -120,7 +120,6 @@ void CMenuStates::s_StarGame()
 {
     std::cout << "Play button clicked\n";
     //In the future will change to LevelStates, where the first stage of the game will load
-
     CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CPlayerStates>());
 }
 

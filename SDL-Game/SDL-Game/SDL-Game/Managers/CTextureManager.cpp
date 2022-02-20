@@ -6,8 +6,8 @@
 bool CTextureManager::loadImage(const char* filename, std::string id, SDL_Renderer* pRenderer)
 {
 	SDL_Surface* pTempSurface = IMG_Load(filename);
-	if (pTempSurface) { std::cout << "Image Load : "; std::cout << filename << std::endl; }
-	else { std::cout << "Image not load\n"; }
+	if (!pTempSurface)
+	 std::cout << "[E]: IMG NOT LOAD!! [PATH]: " << filename << std::endl; 
 
 	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
 	SDL_FreeSurface(pTempSurface);

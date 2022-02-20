@@ -8,9 +8,7 @@ CMenu::CMenu(void(*callbackFunction)())
 
 void CMenu::draw()
 {
-
-	CGameObject::draw(); // use the base class drawing
-
+	CGameObject::draw();
 }
 void CMenu::update()
 {
@@ -22,7 +20,6 @@ void CMenu::update()
 	}
 
 }
-
 void CMenu::clean()
 {
 	CGameObject::clean();

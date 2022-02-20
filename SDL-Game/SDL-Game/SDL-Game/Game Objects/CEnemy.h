@@ -10,7 +10,7 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	
+	void test() {}
 private:
 	void move();
 	bool moveRight = true;
@@ -18,9 +18,9 @@ private:
 
 class CEnemyCreator : public CBaseCreator
 {
-	// Inherited via CBaseCreator
-	virtual std::unique_ptr<CGameObject> createGameObject() const override
+	// Factory for enemy objects
+	virtual CGameObject* createGameObject() const override
 	{
-		return std::make_unique<CEnemy>();
+		return new CEnemy();
 	}
 };

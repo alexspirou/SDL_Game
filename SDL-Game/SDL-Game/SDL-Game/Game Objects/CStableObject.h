@@ -8,13 +8,18 @@ public:
 	virtual void drawFrame();
 	virtual void update();
 	virtual void clean();
+	virtual void load(CLoadParams* params) override;
+	int m_SpawnTime = 0;
+	
+private:
+
 };
 
 class CStableObjectsCreator : public CBaseCreator
 {
 	// Inherited via CBaseCreator
-	virtual std::unique_ptr<CGameObject> createGameObject() const override
+	virtual CGameObject* createGameObject() const override
 	{
-		return std::make_unique<CStableObjects>();
+		return new CStableObjects();
 	}
 };
