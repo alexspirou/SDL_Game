@@ -17,7 +17,7 @@ public:
 		return *s_Instance;
 	}
 	//Load image
-	bool loadImage(const char* fileName, std::string id, SDL_Renderer* pRenderer);
+	bool loadImage(std::string filename, std::string id, SDL_Renderer* pRenderer);
 	//Draw static image
 	void draw(std::string id, int x, int y, int width, int height,
 		SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
@@ -25,7 +25,7 @@ public:
 	void drawFrame(std::string id, int x, int y, int width, int
 		height, int currentRow, int currentFrame, SDL_Renderer*
 		renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
-
+	void drawTile(std::string tilesetID, int tileSize, int x, int y, int row, int fram, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void clearTextureMap(std::string id);
 
 private:

@@ -15,8 +15,7 @@ struct CTileSet
 class CTileLayer : public ILayer
 {
 public:
-	CTileLayer(int tileSize, int rowCount, int colCount,
-		std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets);
+	CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets);
 	virtual void draw();
 	virtual void update();
 
@@ -25,10 +24,8 @@ private:
 
 	int m_TileSize;
 	int m_RowCount, m_ColCount;
-
-	std::vector<std::vector<int>> m_TileMap;		//Tile map, holds indexes for each png, data from xml
-
-	std::vector<CTileSet> m_TileSetsList; //Holds all tilesets that??
+	std::vector<std::vector<int>> m_TileMap;	//Tile map, holds indexes for each png, data from xml
+	std::vector<CTileSet> m_vTileSets; //Holds all tilesets that??
 
 
 };

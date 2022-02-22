@@ -3,9 +3,9 @@
 #include <iostream>
 //Define static member
 
-bool CTextureManager::loadImage(const char* filename, std::string id, SDL_Renderer* pRenderer)
+bool CTextureManager::loadImage(std::string filename, std::string id, SDL_Renderer* pRenderer)
 {
-	SDL_Surface* pTempSurface = IMG_Load(filename);
+	SDL_Surface* pTempSurface = IMG_Load(filename.c_str());
 	if (!pTempSurface)
 	 std::cout << "[E]: IMG NOT LOAD!! [PATH]: " << filename << std::endl; 
 
@@ -40,6 +40,15 @@ void CTextureManager::drawFrame(std::string id, int x, int y, int width, int hei
 	destRect.x = x;
 	destRect.y = y;
 	SDL_RenderCopyEx(pRenderer, m_TextureMap[id], &srcRect,
+		&destRect, 0, 0, flip);
+}
+
+void CTextureManager::drawTile( std::string tilesetID, int tileSize, int x, int y, int row, int frame, SDL_Renderer* pRenderer, SDL_RendererFlip flip)
+{
+	SDL_Rect destRect{x, y,  tileSize, tileSize };
+	SDL_Rect srcRect{ tileSize *frame, tileSize*row, tileSize, tileSize };
+
+	SDL_RenderCopyEx(pRenderer, m_TextureMap[tilesetID], &srcRect,
 		&destRect, 0, 0, flip);
 }
 

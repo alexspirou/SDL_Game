@@ -44,9 +44,9 @@ bool CGame::init(const char* iTitle, int xPos, int yPos, int width, int height, 
 		m_ObjectFactory.registerTypeID("CStableObject", new CStableObjectsCreator());
 		m_ObjectFactory.registerTypeID("CEnemy", new CEnemyCreator ());
 
-		CMapParser map;
-		std::vector<std::vector<int>> vec;
-		map.parseMap("Assets/Map/gameMap.tmx", &vec);
+
+		m_MapParser.parseMap("Assets/Map/gameMap.tmx", "MAP");
+		m_GameMap = std::move(m_MapParser.getMap("MAP"));
 
 		//Start main menu		
 		m_GameStateMachine.reset(new CGameStateMachine);
@@ -66,6 +66,7 @@ void CGame::render()
 	SDL_RenderClear(m_pRenderer);
 
 	m_GameStateMachine->render();
+	m_GameMap->draw();
 
 	SDL_RenderPresent(m_pRenderer);
 }

@@ -1,6 +1,6 @@
 #include "CMapParser.h"
 
-bool CMapParser::parseMap(std::string mapXMLPath, std::vector<std::vector<int>>* oTileMap)
+bool CMapParser::parseMap(std::string mapXMLPath, std::string  id)
 {
 	
 	TiXmlDocument xmlDoc;
@@ -9,79 +9,86 @@ bool CMapParser::parseMap(std::string mapXMLPath, std::vector<std::vector<int>>*
 		std::cerr << xmlDoc.ErrorDesc() << "\n";
 		return false;
 	}
-	CTileSet tileset{};
-	TiXmlElement* pRoot = xmlDoc.RootElement();
+	
+	TiXmlElement* pRoot = xmlDoc.RootElement();  TiXmlElement* tileSetXMLElement =NULL; TiXmlElement* layerXMLElement = NULL;
+	std::vector<CTileSet> vTileSets;
 
-	TiXmlElement* tileSetXMLElement =NULL;
-	TiXmlElement* layerXMLElement = NULL;
+	std::vector<CTileSet> m_vTileSets; 
+	std::vector<std::unique_ptr<CTileLayer>> vTileLayers;
+	int tileRows, tileCols, tileSize;
+	pRoot->Attribute("width", &tileRows);
+	pRoot->Attribute("height", &tileCols);
+	pRoot->Attribute("tilewidth", &tileSize);
 
-	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	CGameMap* gameMap = new CGameMap();
+
+	for (TiXmlElement* currentXMLElement = pRoot->FirstChildElement(); currentXMLElement != NULL; currentXMLElement = currentXMLElement->NextSiblingElement())
 	{
-		auto xmlID = e->Value();
+		auto xmlID = currentXMLElement->Value();
 		if (xmlID == std::string("tileset"))
 		{
-			tileSetXMLElement = e;
+			tileSetXMLElement = currentXMLElement;
+			vTileSets.push_back(parseTileSet(tileSetXMLElement));
 		}
 		else if (xmlID == std::string("layer"))
 		{
-			layerXMLElement = e;
-		}
-
-	}
-	parseTileSet(tileSetXMLElement, &tileset);
-
-	TiXmlElement* dataXMLElement = NULL;
-	for (TiXmlElement* e = layerXMLElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-	{
-		auto xmlID = e->Value();
-		if (xmlID == std::string("data"))
-		{
-			dataXMLElement = e;
+			layerXMLElement = currentXMLElement;
+			gameMap->m_vMapLayers.push_back((parseData(layerXMLElement, vTileSets, 32, tileRows, tileCols)));
 		}
 	}
+	//std::unique_ptr<CGameMap> gameMap(std::make_unique<CGameMap>(std::move(vTileLayers)));
 
-	//Parse data element and get map data here
-	std::string mapData(dataXMLElement->GetText());
-	std::istringstream matrixStream(mapData);
-	std::string pixelID;
-	 oTileMap->resize(tileset.RowCount, std::vector<int>(tileset.ColCount));
-	for (int row = 0; row < tileset.RowCount; row++)
-	{
-		for (int col = 0; col < tileset.ColCount; col++)
-		{
-			std::getline(matrixStream, pixelID, ',');
-			std::stringstream streamPixelID(pixelID);
-			streamPixelID >> (* oTileMap)[row][col];
-			if (!matrixStream.good())
-				break;
-		}
-	}
-
+	m_MapDict[id] = gameMap;
 
 	return true;
 }
 
-void CMapParser::parseTileSet(TiXmlElement* xmlTileSate, CTileSet* tileSet)
+CTileSet CMapParser::parseTileSet(TiXmlElement* xmlTileSate)
 {
-
-	tileSet->name = xmlTileSate->Attribute("name");
+	CTileSet tempTileset;
+	tempTileset.name = xmlTileSate->Attribute("name");
 	
-	//xmlTileSate->Attribute("tilewidth", &tileSet->FirstID);
-	//xmlTileSate->Attribute("tileheight", &tileSet->FirstID);
+	xmlTileSate->Attribute("tilecount", &tempTileset.TileCount);
+	xmlTileSate->Attribute("columns", &tempTileset.ColCount);
+	tempTileset.RowCount = (tempTileset.ColCount / tempTileset.ColCount);
 
-	xmlTileSate->Attribute("tilecount", &tileSet->TileCount);
-	xmlTileSate->Attribute("columns", &tileSet->ColCount);
-	tileSet->RowCount = (tileSet->ColCount / tileSet->ColCount);
-
-	xmlTileSate->Attribute("firstgid", &tileSet->FirstID);
-	tileSet->LastID = (tileSet->FirstID + tileSet->ColCount) - 1;
+	xmlTileSate->Attribute("firstgid", &tempTileset.FirstID);
+	tempTileset.LastID = (tempTileset.FirstID + tempTileset.ColCount) - 1;
 
 	TiXmlElement* xmlImageSource = xmlTileSate->FirstChildElement();
-	tileSet->sourcePNG = xmlImageSource->Attribute("source");
+	tempTileset.sourcePNG = xmlImageSource->Attribute("source");
+
+	return tempTileset;
 }
 
-void CMapParser::parseData(TiXmlElement* xmlData, std::vector<std::vector<int>>* oTileMap)
+CTileLayer* CMapParser::parseData(TiXmlElement* xmlData, std::vector<CTileSet> tileSet, int tileSize, int rows, int cols)
 {
 
+	TiXmlElement* dataXMLElement = NULL;
+	for (TiXmlElement* currentXMLElement = xmlData->FirstChildElement(); currentXMLElement != NULL; currentXMLElement = currentXMLElement->NextSiblingElement())
+	{
+		auto xmlID = currentXMLElement->Value();
+		if (xmlID == std::string("data"))
+		{
+			dataXMLElement = currentXMLElement;
+		}
+	}
+	//Parse data element and get map data here
+	std::string mapData(dataXMLElement->GetText());
+	std::istringstream matrixStream(mapData);
+	std::string pixelID;
 
+	std::vector<std::vector<int>> oDataMap(rows, std::vector<int>(cols));
+	for (int row = 0; row < rows; row++)
+	{
+		for (int col = 0; col < cols; col++)
+		{
+			std::getline(matrixStream, pixelID, ',');
+			std::stringstream streamPixelID(pixelID);
+			streamPixelID >> oDataMap[row][col];
+			if (!matrixStream.good())
+				break;
+		}
+	}
+	return (new CTileLayer(tileSize, rows, cols, oDataMap, tileSet));
 }

@@ -1,7 +1,21 @@
 ﻿  Scanning sources for module dependencies...
-  CGame.cpp
-  CTileLayer.cpp
-  CMapParser.cpp
+  CEnemy.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  CPlayer.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  CPlayerStates.cpp
+  CFontTextureManager.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Managers\CFontTextureManager.cpp(7,9): warning C4551: function call missing argument list
+  CMenuStates.cpp
+  CPauseStates.cpp
+  main.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\main.cpp(8,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating Code...
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(43): warning C4715: 'CGame::Instance': not all control paths return a value
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(43): warning C4715: 'CGame::Instance': not all control paths return a value
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(43): warning C4715: 'CGame::Instance': not all control paths return a value
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(43): warning C4715: 'CGame::Instance': not all control paths return a value
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(43): warning C4715: 'CGame::Instance': not all control paths return a value
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(43): warning C4715: 'CGame::Instance': not all control paths return a value
   SDL-Game.vcxproj -> D:\repos\SDL_Game\SDL-Game\SDL-Game\x64\Debug\SDL-Game.exe
   0 File(s) copied

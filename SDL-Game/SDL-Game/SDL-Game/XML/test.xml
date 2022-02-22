@@ -43,10 +43,10 @@
 <STABLEOBJECTS>
 <TEXTURES>
   <texture filename="Assets/Background.png" ID="Background"/>
- <!-- <texture filename="Assets/Fountain.png" ID="Fountain1"/>
+ <texture filename="Assets/Fountain.png" ID="Fountain1"/>
  <texture filename="Assets/Fountain.png" ID="Fountain2"/>
  <texture filename="Assets/Fountain.png" ID="Fountain3"/>
- <texture filename="Assets/Fountain.png" ID="Fountain4"/> -->
+ <texture filename="Assets/Fountain.png" ID="Fountain4"/>
 
 </TEXTURES>
 <OBJECTS>

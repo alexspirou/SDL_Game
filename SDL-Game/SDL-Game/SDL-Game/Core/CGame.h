@@ -11,7 +11,9 @@
 #include "../Game Objects/CPlayer.h"
 #include "../Game Objects/CGameObject.h"
 #include "../Game Objects/CEnemy.h"
-
+//Map
+#include "../Map/CGameMap.h"
+#include "../Parser/CMapParser.h"
 //Input handlers
 #include "../Controllers/CKeyBoardEvents.h"
 #include "../Controllers/CMouseEvents.h"
@@ -59,7 +61,7 @@ public:
 	inline auto &getKeyboardEvents()			{ return m_KeyboardEvents; }
 	inline auto &getStateMachine()				{ return m_GameStateMachine; }
 	inline auto& getObjectFactory()				{ return m_ObjectFactory; }
-
+	inline auto& getMap()						{ return m_GameMap; }
 private:
 	~CGame()
 	{
@@ -80,6 +82,8 @@ private:
 	CMouseEvents mouseEvents;
 	CKeyboardEvents m_KeyboardEvents;
 	CGameObjectFactory m_ObjectFactory;
+	CMapParser m_MapParser;
+	CGameMap* m_GameMap;
 
 	std::unique_ptr<CGameStateMachine> m_GameStateMachine;
 
