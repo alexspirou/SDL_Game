@@ -1,6 +1,10 @@
 #include "CPlayer.h"
 #include "../ScreenDimentions.h"
 #include "../Core/CGame.h"
+CPlayer::CPlayer()
+{
+
+}
 void CPlayer::draw( )
 {
 	CGameObject::drawFrame();
@@ -21,6 +25,17 @@ void CPlayer::clean()
 
 }
 
+void CPlayer::manageSounds(int sound)
+{
+	if (sound == 1)
+	{
+		if (SDL_GetTicks() / 1000 == 20)
+		{
+			CGame::Instance().getSoundManager().loadSound("D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/MainChar/Sounds/fireSound.wav");
+		}
+	}
+}
+
 
 void CPlayer::handleMouseMotionEvents()
 {
@@ -31,19 +46,36 @@ void CPlayer::handleMouseMotionEvents()
 
 void CPlayer::handleKeyBoardEvents()
 {
+	//Change this to switch statements
+
 	bool moveRight = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_RIGHT);
 	bool moveLeft = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_LEFT);
-	bool jump = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_SPACE);
+	bool goDown = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_DOWN);
+	bool attack1 = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_Q);
+	bool attack2 = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_W);
 
-	if		(moveRight) { m_velocity.m_x = 0.5; m_textureID = "mainCharWalkRight"; }
-	else if (moveLeft)  { m_velocity.m_x = -0.5; m_textureID = "mainCharWalkLeft";}
-	else if (moveLeft) { m_velocity.m_y = 1; m_textureID = "mainCharWalkLeft"; }
+	if (moveRight) { isLookingRight = true; m_velocity.m_x = 0.5; m_textureID = "mainCharWalkRight"; m_FlipSiderRender = SDL_FLIP_NONE; }
+	else if (moveLeft) { isLookingRight = false; m_velocity.m_x = -0.5; m_textureID = "mainCharWalkRight"; m_FlipSiderRender = SDL_FLIP_HORIZONTAL; }
+	else if (goDown) { m_textureID = "mainCharFall"; m_TotalFrames = 2; }
+	else if (attack1) 
+	{
+		if(isLookingRight) m_velocity.m_x = 2; else m_velocity.m_x = -2;
+		m_textureID = "mainCharAttack1"; m_TotalFrames = 8; 
+	}
+	else if (attack2) 
+	{ 
+		if (isLookingRight) m_velocity.m_x = 2; else m_velocity.m_x = -2;
+		m_textureID = "mainCharAttack2"; m_TotalFrames = 8; 
+	
+	}
 
 	else
 	{
+		//m_FlipSiderRender = SDL_FLIP_NONE;
 		m_textureID = "mainCharIdle";
-		m_velocity.m_x = 0;
-		m_velocity.m_y = 0;
+		m_velocity = 0;
+		 m_TotalFrames = 8;
+
 	}
 
 

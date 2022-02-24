@@ -17,8 +17,7 @@ void CTileLayer::draw()
 {
 	for (auto layerRow = 0; layerRow < m_RowCount; layerRow++)
 	{
-		std::cout << layerRow << std::endl;
-
+		int i = 0;
 		for (auto layerCol = 0; layerCol < m_ColCount; layerCol++)
 		{
 			int currentTileID = m_TileMap[layerRow][layerCol];
@@ -47,7 +46,11 @@ void CTileLayer::draw()
 				tileSet.TileSize = 32;
 				int rowFromTilePng = currentTileID / tileSet.ColCount;
 				int colFromTilePng = currentTileID - rowFromTilePng* tileSet.ColCount - 1;
-				
+				//if (currentTileID % tileSet.ColCount == 0)
+				//{
+				//	rowFromTilePng--;
+				//	colFromTilePng = tileSet.ColCount - 1;
+				//}
 				auto destX = layerCol * tileSet.TileSize; auto destY = layerRow * tileSet.TileSize;
 
 				CTextureManager::Instance().drawTile(tileSet.name, tileSet.TileSize, destX,

@@ -11,6 +11,12 @@ public:
 
 	//Operator overloading
 
+	Vector2D operator = (const float& assigned)
+	{
+		this->m_x = assigned;
+		this->m_x = assigned;
+		return *this;
+	}
 	Vector2D operator+(const Vector2D& rhs)
 	{
 		return  Vector2D(this->m_x + rhs.m_x, this->m_y + rhs.m_y);
@@ -40,6 +46,7 @@ public:
 	{
 		this->m_x *= scale;
 		this->m_y *= scale;
+
 	}
 	Vector2D operator/(float scalar)
 	{

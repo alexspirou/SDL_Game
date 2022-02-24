@@ -6,13 +6,13 @@
 class CPlayer : public CGameObject
 {
 public:
-	CPlayer() = default;
+	CPlayer();
 	virtual ~CPlayer() = default;
 
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	enum playerStand { IDLE = 0, WALKING = 1 };
+	void manageSounds(int sound);
 private:
 
 	void handleMouseClickEvents();
@@ -20,6 +20,9 @@ private:
 	void handleMouseMotionEvents();
 
 	void handleKeyBoardEvents();
+
+	bool isLookingRight = true;
+
 };
 
 

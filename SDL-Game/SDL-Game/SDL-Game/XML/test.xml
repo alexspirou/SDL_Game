@@ -17,13 +17,17 @@
 
 <PLAY>
 <TEXTURES>
- <texture filename="Assets/MainChar/mainCharIdle.png" ID="mainCharIdle"/>
+ <texture filename="Assets/MainChar/Idle.png" ID="mainCharIdle"/>
  <texture filename="Assets/MainChar/mainCharWalkRight.png" ID="mainCharWalkRight"/>
  <texture filename="Assets/MainChar/mainCharWalkLeft.png" ID="mainCharWalkLeft"/>
+ <texture filename="Assets/MainChar/Attack1.png" ID="mainCharAttack1"/>
+ <texture filename="Assets/MainChar/Attack2.png" ID="mainCharAttack2"/>
+ <texture filename="Assets/MainChar/fall.png" ID="mainCharFall"/>
+
 </TEXTURES>
 <OBJECTS>
-  <object type="CPlayer" x="10" y="500" width="48"
-  height="48" textureID="mainCharIdle" numFrames="6"currentRow = "0"
+  <object type="CPlayer" x="10" y="340" width="250"
+  height="250" textureID="mainCharIdle" numFrames="8"currentRow = "0"
   callbackID="1"/>
 </OBJECTS>
 </PLAY>
@@ -44,32 +48,16 @@
 <TEXTURES>
   <texture filename="Assets/Background.png" ID="Background"/>
  <texture filename="Assets/Fountain.png" ID="Fountain1"/>
- <texture filename="Assets/Fountain.png" ID="Fountain2"/>
- <texture filename="Assets/Fountain.png" ID="Fountain3"/>
- <texture filename="Assets/Fountain.png" ID="Fountain4"/>
-
 </TEXTURES>
 <OBJECTS>
-  <object type="CStableObject" x="0" y="0" width="750"
-  height="580" textureID="Background" numFrames="1" currentRow = "0"
+  <object type="CStableObject" x="0" y="0" width="960"
+  height="640" textureID="Background" numFrames="1" currentRow = "0"
   spawnTime = "0"
   callbackID="1"/>
   <object type="CStableObject" x="250" y="500" width="72"
   height="72" textureID="Fountain1" numFrames="4"
   spawnTime = "1"
   callbackID="2"/>
-  <object type="CStableObject" x="400" y="500" width="72"
-  height="72" textureID="Fountain2" numFrames="4" currentRow = "0"
-  spawnTime = "2"
-  callbackID="2"/>
-  <object type="CStableObject" x="500" y="500" width="72"
-  height="72" textureID="Fountain3" numFrames="4" currentRow = "0"
-  spawnTime = "8"
-  callbackID="2"/>
-  <object type="CStableObject" x="600" y="500" width="72"
-  height="72" textureID="Fountain4" numFrames="4" currentRow = "0"
-  spawnTime = "12"
-  callbackID="1"/>
 </OBJECTS>
 </STABLEOBJECTS>
 

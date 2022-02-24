@@ -28,13 +28,14 @@ void CPlayerStates::render()
         object->drawFrame();
     }
 
+    CGame::Instance().getMap()->draw();
+
 }
 
 bool CPlayerStates::onEnter()
 {
     std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
 
-    std::cout << __FUNCSIG__ << std::endl;
     CStateParser stateParser;
 
     stateParser.parseState("XML/test.xml", "STABLEOBJECTS", &m_vGameObjects, &m_TexturesIDs);

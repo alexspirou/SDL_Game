@@ -22,6 +22,8 @@
 #include "../GameStates/CPlayerStates.h"
 #include "../GameStates/CGameStateMachine.h"
 
+//Manager
+#include "../Managers/CSoundManager.h"
 
 //Factories
 #include "../Factories/CGameObjectFactory.h"
@@ -43,7 +45,7 @@ public:
 	}
 
 
-	bool init(const char* iTitle, int xPos, int yPos, int width, int height, bool foolscreen);
+	bool init(const char* iTitle, int width, int height, bool foolscreen);
 
 	void render();
 
@@ -62,6 +64,7 @@ public:
 	inline auto &getStateMachine()				{ return m_GameStateMachine; }
 	inline auto& getObjectFactory()				{ return m_ObjectFactory; }
 	inline auto& getMap()						{ return m_GameMap; }
+	inline auto& getSoundManager()				{ return m_SoundManager; }
 private:
 	~CGame()
 	{
@@ -79,6 +82,7 @@ private:
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 
+	CSoundManager m_SoundManager;
 	CMouseEvents mouseEvents;
 	CKeyboardEvents m_KeyboardEvents;
 	CGameObjectFactory m_ObjectFactory;

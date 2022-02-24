@@ -16,8 +16,8 @@ bool CMapParser::parseMap(std::string mapXMLPath, std::string  id)
 	std::vector<CTileSet> m_vTileSets; 
 	std::vector<std::unique_ptr<CTileLayer>> vTileLayers;
 	int tileRows, tileCols, tileSize;
-	pRoot->Attribute("width", &tileRows);
-	pRoot->Attribute("height", &tileCols);
+	pRoot->Attribute("width", &tileCols);
+	pRoot->Attribute("height", &tileRows);
 	pRoot->Attribute("tilewidth", &tileSize);
 
 	CGameMap* gameMap = new CGameMap();
@@ -79,16 +79,17 @@ CTileLayer* CMapParser::parseData(TiXmlElement* xmlData, std::vector<CTileSet> t
 	std::string pixelID;
 
 	std::vector<std::vector<int>> oDataMap(rows, std::vector<int>(cols));
-	for (int row = 0; row < rows; row++)
+	int row = 0; int col = 0;
+	for (int i = 0; i < cols*rows; i++)
 	{
-		for (int col = 0; col < cols; col++)
-		{
-			std::getline(matrixStream, pixelID, ',');
-			std::stringstream streamPixelID(pixelID);
-			streamPixelID >> oDataMap[row][col];
-			if (!matrixStream.good())
-				break;
-		}
+		if (col / cols == 1) { row++; col = 0; }
+
+		std::getline(matrixStream, pixelID, ',');
+		std::stringstream streamPixelID(pixelID);
+		streamPixelID >> oDataMap[row][col];
+		col++;
+		if (!matrixStream.good())
+			break;
 	}
 	return (new CTileLayer(tileSize, rows, cols, oDataMap, tileSet));
 }

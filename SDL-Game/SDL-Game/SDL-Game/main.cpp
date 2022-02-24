@@ -16,7 +16,7 @@ int main(int argc, char* args[])
 	//std::cout << "\[" << typeid(theGame).name() <<"]\n";
 
 
-	CGame::Instance().init("SDL Game", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, false);
+	CGame::Instance().init("SDL Game", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 	while (CGame::Instance().isRunning())
 	{
 		frameStart = SDL_GetTicks();

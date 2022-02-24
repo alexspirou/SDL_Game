@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Managers\CSoundManager.cpp" />
     <ClCompile Include="Parser\CMapParser.cpp" />
     <ClCompile Include="Map\CTileLayer.cpp" />
     <ClCompile Include="Game Objects\CStableObject.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="__TinyXML\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Managers\CSoundManager.h" />
     <ClInclude Include="Parser\CMapParser.h" />
     <ClInclude Include="Map\CTileLayer.h" />
     <ClInclude Include="Game Objects\CStableObject.h" />

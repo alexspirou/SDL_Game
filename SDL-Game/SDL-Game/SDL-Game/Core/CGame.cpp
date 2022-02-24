@@ -13,30 +13,28 @@
 //Static game variable initilazation
 //CGame* CGame::s_Instance = 0;
 
-bool CGame::init(const char* iTitle, int xPos, int yPos, int width, int height, bool fullscreen)
+bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) { std::cout << "SDL init fail\n"; return false; }
-		std::cout<< "SDL init success\n";
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) 
+	{ 
+		std::cout << "SDL init fail\n"; return false;
+	}
 
 		//Set window's flag
 		int flags = 0;
-		if (fullscreen) { flags = SDL_WINDOW_FULLSCREEN; }
-		else { flags = SDL_WINDOW_SHOWN; }
+		//else { flags = SDL_WINDOW_SHOWN; }
+		flags = (SDL_WINDOW_SHOWN );
 		//Create window
-		m_pWindow = SDL_CreateWindow(iTitle, xPos, yPos, width, height, flags);
+		m_pWindow = SDL_CreateWindow(iTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
 
 		if (m_pWindow == NULL) {	std::cout << "Window creation fail\n"; return false; }
 
-		std::cout << "Window creation success\n";
 		m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 
 		if (m_pRenderer == NULL) { std::cout << "Renderer creation faile\n"; return false; }
 
-
-		std::cout << "Renderer creation success\n";
 		SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 
-		std::cout << "Init success\n";
 		m_bRunning = true;
 
 		//Register objects types from xml
@@ -66,7 +64,7 @@ void CGame::render()
 	SDL_RenderClear(m_pRenderer);
 
 	m_GameStateMachine->render();
-	m_GameMap->draw();
+	
 
 	SDL_RenderPresent(m_pRenderer);
 }
