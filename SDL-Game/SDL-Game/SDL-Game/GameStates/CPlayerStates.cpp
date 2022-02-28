@@ -14,9 +14,18 @@ void CPlayerStates::update()
         CGame::Instance().getStateMachine()->changeState(std::make_unique<CPauseStates>());
         std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
     }
+    //Update gameobjects
     for (auto& object : m_vGameObjects)
     {
         object->update();
+    }
+    for (auto& player : m_vPlayer)
+    {
+        player->update();
+    }
+    for (auto& enemy : m_vEnemies)
+    {
+        enemy->update();
     }
    
 }
@@ -27,7 +36,14 @@ void CPlayerStates::render()
     {
         object->drawFrame();
     }
-
+    for (auto& player : m_vPlayer)
+    {
+        player->drawFrame();
+    }
+    for (auto& enemy : m_vEnemies)
+    {
+        enemy->drawFrame();
+    }
     CGame::Instance().getMap()->draw();
 
 }
@@ -39,8 +55,13 @@ bool CPlayerStates::onEnter()
     CStateParser stateParser;
 
     stateParser.parseState("XML/test.xml", "STABLEOBJECTS", &m_vGameObjects, &m_TexturesIDs);
-    stateParser.parseState("XML/test.xml", "PLAY", &m_vGameObjects , &m_TexturesIDs);
-    stateParser.parseState("XML/test.xml", "ENEMY", &m_vGameObjects, &m_TexturesIDs);
+    stateParser.parseState("XML/test.xml", "PLAY", &m_vPlayer, &m_TexturesIDs);
+
+    std::vector<std::unique_ptr<CGameObject>> m_vTempEnemies;
+
+    stateParser.parseState("XML/test.xml", "ENEMY", &m_vTempEnemies, &m_TexturesIDs);
+
+    //m_vEnemies = std::move(m_vTempEnemies);
 
     return false;
 }

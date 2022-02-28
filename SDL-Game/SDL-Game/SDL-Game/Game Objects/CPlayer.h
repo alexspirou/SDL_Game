@@ -1,7 +1,7 @@
 #pragma once
 #include "CGameObject.h"
 #include "../Factories/CBaseCreator.h"
-
+#include "../Helper/CTimer.h"
 
 class CPlayer : public CGameObject
 {
@@ -12,8 +12,9 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	void manageSounds(int sound);
 private:
+
+	void manageSounds(int sound);
 
 	void handleMouseClickEvents();
 
@@ -22,7 +23,7 @@ private:
 	void handleKeyBoardEvents();
 
 	bool isLookingRight = true;
-
+	CTimer timer;
 };
 
 

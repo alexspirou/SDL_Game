@@ -1,6 +1,7 @@
 #pragma once
 #include "CGameObject.h"
 #include "../Factories/CBaseCreator.h"
+#include "../Game Objects/CPlayer.h"
 class CEnemy : public CGameObject
 {
 public:
@@ -10,7 +11,8 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	void test() {}
+
+	bool isPLayerNear(std::unique_ptr<CPlayer> player);
 private:
 	void move();
 	bool moveRight = true;

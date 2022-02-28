@@ -21,6 +21,11 @@ void CStableObjects::update()
 {
 
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
+
+	if (m_TotalFrames == 8)
+	{
+		m_currentRow = 1;
+	}
 }
 
 void CStableObjects::clean()

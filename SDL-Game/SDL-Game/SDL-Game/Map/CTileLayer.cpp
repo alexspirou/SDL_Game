@@ -2,11 +2,11 @@
 #include "../Managers/CTextureManager.h"
 #include "../Core/CGame.h"
 CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount,
-	std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets):
-
-	m_TileSize{ tileSize }, m_RowCount{ rowCount }, m_ColCount{ colCount },
-	m_TileMap{ std::move(tileMap) }, m_vTileSets{ tileSets }
+	std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets)
 {
+	m_TileSize = tileSize;
+	m_RowCount = rowCount; m_ColCount = colCount;
+	m_TileMap = std::move(tileMap); m_vTileSets = tileSets;
 	for (auto& tileSet : m_vTileSets)
 	{
 		CTextureManager::Instance().loadImage(tileSet.sourcePNG , tileSet.name, CGame::Instance().getRenderer());
@@ -17,18 +17,14 @@ void CTileLayer::draw()
 {
 	for (auto layerRow = 0; layerRow < m_RowCount; layerRow++)
 	{
-		int i = 0;
 		for (auto layerCol = 0; layerCol < m_ColCount; layerCol++)
 		{
 			int currentTileID = m_TileMap[layerRow][layerCol];
 			int holdTileID = currentTileID;
 
 			if (currentTileID == 0) continue; //No tile to draw
-
 			else
 			{
-
-
 				int index = 0;
 				int tilesetSize = m_vTileSets.size();
 
@@ -41,11 +37,10 @@ void CTileLayer::draw()
 				//		break;
 				//	}
 				//}
-
 				CTileSet tileSet = m_vTileSets[index];
-				tileSet.TileSize = 32;
+				tileSet.TileSize = 16;
 				int rowFromTilePng = currentTileID / tileSet.ColCount;
-				int colFromTilePng = currentTileID - rowFromTilePng* tileSet.ColCount - 1;
+				int colFromTilePng = currentTileID - rowFromTilePng * tileSet.ColCount - 1;
 				//if (currentTileID % tileSet.ColCount == 0)
 				//{
 				//	rowFromTilePng--;
@@ -57,7 +52,6 @@ void CTileLayer::draw()
 					destY, rowFromTilePng, colFromTilePng, CGame::Instance().getRenderer());
 
 			}
-
 		}
 	}
 

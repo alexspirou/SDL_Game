@@ -20,6 +20,16 @@ void CEnemy::clean()
 
 }
 
+bool CEnemy::isPLayerNear(std::unique_ptr<CPlayer> player)
+{
+
+	if (player->getPosition().m_x > 200)
+	{
+		std::cout << getPosition().m_x << std::endl;
+	}
+	return false;
+}
+
 void CEnemy::move()
 {
 	if (moveRight)

@@ -1,12 +1,20 @@
 ﻿  Scanning sources for module dependencies...
-  CInputHandler.cpp
-  CMouseEvents.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Controllers\CMouseEvents.cpp(42,37): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Controllers\CMouseEvents.cpp(43,37): warning C4244: '=': conversion from 'Sint32' to 'float', possible loss of data
-  CGame.cpp
-  CGameObjectFactory.cpp
+  CTileLayer.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Map\CTileLayer.cpp(29,41): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  CStateParser.cpp
+  CPauseMenu.cpp
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  CEnemy.cpp
+  CPauseStates.cpp
+  CFontTextureManager.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Managers\CFontTextureManager.cpp(7,9): warning C4551: function call missing argument list
+  CMenu.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  CMenuStates.cpp
+  CInputHandler.cpp
+  CPlayerStates.cpp
+D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Parser\CStateParser.h(95,46): warning C4390: ';': empty controlled statement found; is this the intent?
+  CGame.cpp
+  CPlayer.cpp
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   CGameObject.cpp
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
@@ -16,25 +24,6 @@ D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(27,79)
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(27,63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(32,74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CGameObject.cpp(32,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  CPlayer.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  CStableObject.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CStableObject.cpp(10,17): warning C4018: '<=': signed/unsigned mismatch
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CStableObject.cpp(12,22): warning C4018: '<': signed/unsigned mismatch
-  CPlayerStates.cpp
-  CFontTextureManager.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Managers\CFontTextureManager.cpp(7,9): warning C4551: function call missing argument list
-  CTileLayer.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Map\CTileLayer.cpp(33,41): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  CMenu.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  CMenuStates.cpp
-  CPauseMenu.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  CPauseStates.cpp
-  CStateParser.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Parser\CStateParser.cpp(81,45): warning C4390: ';': empty controlled statement found; is this the intent?
   main.cpp
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\main.cpp(8,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating Code...
@@ -48,8 +37,6 @@ D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(45): warning C4715: 'C
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(45): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(45): warning C4715: 'CGame::Instance': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(45): warning C4715: 'CGame::Instance': not all control paths return a value
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(45): warning C4715: 'CGame::Instance': not all control paths return a value
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Controllers\CMouseEvents.cpp(31): warning C4715: 'CMouseEvents::getMouseStates': not all control paths return a value
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(45): warning C4715: 'CGame::Instance': not all control paths return a value
   SDL-Game.vcxproj -> D:\repos\SDL_Game\SDL-Game\SDL-Game\x64\Debug\SDL-Game.exe
   0 File(s) copied

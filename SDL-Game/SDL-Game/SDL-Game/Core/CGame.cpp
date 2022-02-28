@@ -23,7 +23,8 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 		//Set window's flag
 		int flags = 0;
 		//else { flags = SDL_WINDOW_SHOWN; }
-		flags = (SDL_WINDOW_SHOWN );
+		if (fullscreen) flags = SDL_WINDOW_FULLSCREEN;
+		else flags = (SDL_WINDOW_SHOWN ); 
 		//Create window
 		m_pWindow = SDL_CreateWindow(iTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
 
@@ -43,7 +44,7 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 		m_ObjectFactory.registerTypeID("CEnemy", new CEnemyCreator ());
 
 
-		m_MapParser.parseMap("Assets/Map/gameMap.tmx", "MAP");
+		m_MapParser.parseMap("Assets/Map/darkMap.tmx", "MAP");
 		m_GameMap = std::move(m_MapParser.getMap("MAP"));
 
 		//Start main menu		

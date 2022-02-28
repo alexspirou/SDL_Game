@@ -14,7 +14,6 @@
  callbackID="2"/> -->
 </OBJECTS>
 </MENU>
-
 <PLAY>
 <TEXTURES>
  <texture filename="Assets/MainChar/Idle.png" ID="mainCharIdle"/>
@@ -23,10 +22,11 @@
  <texture filename="Assets/MainChar/Attack1.png" ID="mainCharAttack1"/>
  <texture filename="Assets/MainChar/Attack2.png" ID="mainCharAttack2"/>
  <texture filename="Assets/MainChar/fall.png" ID="mainCharFall"/>
+ <texture filename="Assets/MainChar/Death.png" ID="mainCharDeath"/>
 
 </TEXTURES>
 <OBJECTS>
-  <object type="CPlayer" x="10" y="340" width="250"
+  <object type="CPlayer" x="50" y="376" width="250"
   height="250" textureID="mainCharIdle" numFrames="8"currentRow = "0"
   callbackID="1"/>
 </OBJECTS>
@@ -47,15 +47,30 @@
 <STABLEOBJECTS>
 <TEXTURES>
   <texture filename="Assets/Background.png" ID="Background"/>
- <texture filename="Assets/Fountain.png" ID="Fountain1"/>
+ <texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles"/>
+<texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles1"/>
+<texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles2"/>
+<texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles3"/>
 </TEXTURES>
 <OBJECTS>
   <object type="CStableObject" x="0" y="0" width="960"
   height="640" textureID="Background" numFrames="1" currentRow = "0"
   spawnTime = "0"
   callbackID="1"/>
-  <object type="CStableObject" x="250" y="500" width="72"
-  height="72" textureID="Fountain1" numFrames="4"
+  <object type="CStableObject" x="140" y="536" width="25"
+  height="90" textureID="tenctacles" numFrames="8" currentRow = "1"
+  spawnTime = "1"
+  callbackID="2"/>
+  <object type="CStableObject" x="310" y="536" width="25"
+  height="90" textureID="tenctacles1" numFrames="8" currentRow = "1"
+  spawnTime = "1"
+  callbackID="2"/>
+  <object type="CStableObject" x="476" y="536" width="25"
+  height="90" textureID="tenctacles2" numFrames="8" currentRow = "1"
+  spawnTime = "1"
+  callbackID="2"/>
+  <object type="CStableObject" x="688" y="536" width="25"
+  height="90" textureID="tenctacles3" numFrames="8" currentRow = "0"
   spawnTime = "1"
   callbackID="2"/>
 </OBJECTS>

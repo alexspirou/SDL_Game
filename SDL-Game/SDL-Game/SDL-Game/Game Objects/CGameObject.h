@@ -17,6 +17,7 @@ public:
 	virtual void update();
 	virtual void clean();
 	virtual void load(CLoadParams* params) override;
+	virtual Vector2D getPosition() { return m_position; }
 	virtual bool isDestroy() { return m_bDestroyed; }
 	virtual void setDestroy(bool destroy) {  m_bDestroyed = destroy; }
 
