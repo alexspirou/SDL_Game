@@ -21,8 +21,8 @@ public :
 
 		return true;
 	}
-
-	CGameObject* createObjectByID(std::string typeID)
+	template <typename T>
+	T* createObjectByID(std::string typeID)
 	{
 		auto it = m_creators.find(typeID);
 
@@ -33,7 +33,7 @@ public :
 		}
 		//std::unique_ptr<CBaseCreator> pCreator(std::move(it->second));
 		CBaseCreator* pCreator = it->second;
-		return pCreator->createGameObject();
+		return new T();
 	}
 private:
 

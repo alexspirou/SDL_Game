@@ -9,10 +9,9 @@ class CSoundManager
 public:
 	CSoundManager();
 	void loadSound(const char* id, const char* path);
-	void loadSound(const char* path);
 
 	void playSound(const char* id);
-	void clean();
+	void clean(const char* id);
 
 private:
 

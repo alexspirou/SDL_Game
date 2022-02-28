@@ -152,7 +152,6 @@
     <ClCompile Include="Map\CTileLayer.cpp" />
     <ClCompile Include="Game Objects\CStableObject.cpp" />
     <ClCompile Include="Map\CGameMap.cpp" />
-    <ClCompile Include="Parser\CStateParser.cpp" />
     <ClCompile Include="Factories\CGameObjectFactory.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseStates.cpp" />

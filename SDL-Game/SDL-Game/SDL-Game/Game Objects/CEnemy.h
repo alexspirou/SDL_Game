@@ -12,7 +12,7 @@ public:
 	virtual void update();
 	virtual void clean();
 
-	bool isPLayerNear(std::unique_ptr<CPlayer> player);
+	bool isPLayerNear(std::unique_ptr<CPlayer>& const player);
 private:
 	void move();
 	bool moveRight = true;
@@ -21,7 +21,7 @@ private:
 class CEnemyCreator : public CBaseCreator
 {
 	// Factory for enemy objects
-	virtual CGameObject* createGameObject() const override
+	virtual CEnemy* createGameObject() const override
 	{
 		return new CEnemy();
 	}

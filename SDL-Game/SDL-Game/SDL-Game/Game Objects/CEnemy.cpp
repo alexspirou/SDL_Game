@@ -14,21 +14,21 @@ void CEnemy::update()
 	CGameObject::update();
 
 }
-
 void CEnemy::clean()
 {
 
 }
-
-bool CEnemy::isPLayerNear(std::unique_ptr<CPlayer> player)
+bool CEnemy::isPLayerNear(std::unique_ptr<CPlayer>& const player)
 {
+	//TODO : Check if player is near and attack.
 
 	if (player->getPosition().m_x > 200)
 	{
-		std::cout << getPosition().m_x << std::endl;
+		if (player->getPosition().m_y > this->m_position.m_y - this->m_width*2) m_velocity.m_y = 0.5;
+		else  m_velocity.m_y = 0;
 	}
 	return false;
-}
+} 
 
 void CEnemy::move()
 {

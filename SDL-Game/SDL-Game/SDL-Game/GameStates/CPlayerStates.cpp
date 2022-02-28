@@ -14,18 +14,18 @@ void CPlayerStates::update()
         CGame::Instance().getStateMachine()->changeState(std::make_unique<CPauseStates>());
         std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
     }
-    //Update gameobjects
+   // Update gameobjects
     for (auto& object : m_vGameObjects)
     {
         object->update();
     }
-    for (auto& player : m_vPlayer)
-    {
-        player->update();
-    }
+
+    m_Player->update();
+
     for (auto& enemy : m_vEnemies)
     {
         enemy->update();
+        //enemy->isPLayerNear(std::move(m_vPlayer[0]));
     }
    
 }
@@ -35,14 +35,17 @@ void CPlayerStates::render()
     for (auto& object : m_vGameObjects)
     {
         object->drawFrame();
+        //std::cout << typeid(object).name() << std::endl;
     }
-    for (auto& player : m_vPlayer)
-    {
-        player->drawFrame();
-    }
+
+    m_Player->drawFrame();
+    //std::cout << typeid(player).name() << std::endl;
+
     for (auto& enemy : m_vEnemies)
     {
         enemy->drawFrame();
+       // std::cout << typeid(enemy).name() << std::endl;
+        enemy->isPLayerNear((m_Player));
     }
     CGame::Instance().getMap()->draw();
 
@@ -54,14 +57,11 @@ bool CPlayerStates::onEnter()
 
     CStateParser stateParser;
 
-    stateParser.parseState("XML/test.xml", "STABLEOBJECTS", &m_vGameObjects, &m_TexturesIDs);
-    stateParser.parseState("XML/test.xml", "PLAY", &m_vPlayer, &m_TexturesIDs);
-
-    std::vector<std::unique_ptr<CGameObject>> m_vTempEnemies;
-
-    stateParser.parseState("XML/test.xml", "ENEMY", &m_vTempEnemies, &m_TexturesIDs);
-
-    //m_vEnemies = std::move(m_vTempEnemies);
+    stateParser.parseState("XML/test.xml", "STABLEOBJECTS", &m_TexturesIDs, &m_vGameObjects);
+    stateParser.parseState("XML/test.xml", "ENEMY", &m_TexturesIDs, &m_vEnemies);
+    std::vector<std::unique_ptr<CPlayer>> vTempPlayer;
+    stateParser.parseState<CPlayer>("XML/test.xml", "PLAY", &m_TexturesIDs, &vTempPlayer);
+    m_Player = std::move(vTempPlayer[0]);
 
     return false;
 }

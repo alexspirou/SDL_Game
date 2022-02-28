@@ -30,7 +30,7 @@ private:
 class CPlayerCreator : public CBaseCreator
 {
 	// Inherited via CBaseCreator
-	virtual CGameObject* createGameObject() const override
+	virtual CPlayer* createGameObject() const override
 	{
 		return new CPlayer();
 	}

@@ -78,9 +78,6 @@
     <ClCompile Include="__TinyXML\tinyxmlparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Parser\CStateParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game Objects\CStableObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

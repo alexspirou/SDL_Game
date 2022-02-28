@@ -27,13 +27,7 @@ void CPlayer::clean()
 }
 void CPlayer::manageSounds(int sound)
 {
-	if (sound == 1)
-	{
-		if (SDL_GetTicks() / 1000 == 20)
-		{
-			CGame::Instance().getSoundManager().loadSound("D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/MainChar/Sounds/fireSound.wav");
-		}
-	}
+
 }
 void CPlayer::handleMouseMotionEvents()
 {

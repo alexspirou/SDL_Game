@@ -12,8 +12,6 @@
 bool CMenuStates::onEnter()
 {
     loadMenuObjects();
-    auto render = CGame::Instance().getRenderer();
-    auto loadAnimatePlayer = CTextureManager::Instance().loadImage("Assets/enemySheet.png", "enemy", render);
 
     return true;
 }
@@ -40,7 +38,6 @@ bool CMenuStates::onExit()
     CTextureManager::Instance().clearTextureMap(m_LoadIDMenuStart);
     CTextureManager::Instance().clearTextureMap(m_LoadIDMenuOptions);
     CTextureManager::Instance().clearTextureMap(m_LoadIDMenuExit);
-    CTextureManager::Instance().clearTextureMap("enemy");
 
     return true;
 }

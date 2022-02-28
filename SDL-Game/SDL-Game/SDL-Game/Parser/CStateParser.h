@@ -11,7 +11,8 @@ class GameObject;
 class CStateParser
 {
 public:
-	bool parseState(const char* stateFile, std::string stateID, std::vector<std::unique_ptr<CGameObject>>* pObjects, std::vector<std::string>* pTextureIDs)
+	template<typename T>
+	bool parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<T>>* pObjects )
 	{
 		// create the XML document
 		TiXmlDocument xmlDoc;
@@ -58,7 +59,8 @@ public:
 			}
 		}
 		// Return vector with objects
-		parseObjects(pObjectRoot, std::move(pObjects));
+		
+		parseObjects<T>(pObjectRoot, std::move(pObjects));
 		return true;
 	}
 
@@ -76,8 +78,8 @@ private:
 			CTextureManager::Instance().loadImage(filenameAttribute, idAttribute, CGame::Instance().getRenderer());
 		}
 	}
-
-	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<CGameObject>>* pObjects)
+	template<typename T>
+	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<T>>* pObjects)
 	{
 		for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 		{
@@ -101,13 +103,15 @@ private:
 			{
 				std::cout << "CEnemy " << std::endl;
 			}
-			CGameObject* pGameObject = CGame::Instance().getObjectFactory().createObjectByID(e->Attribute("type"));
+			T* pGameObject = CGame::Instance().getObjectFactory().createObjectByID<T>(e->Attribute("type"));
 			pGameObject->load(new CLoadParams(x, y, width, height, textureID, numFrames, currentRow, spawnTime, callbackID, animSpeed));
 
-			auto takewOwnershipPtr = std::unique_ptr<CGameObject>{ std::exchange(pGameObject, nullptr) };
+			auto takewOwnershipPtr = std::unique_ptr<T>{ std::exchange(pGameObject, nullptr) };
 
 			//return objects
 			pObjects->push_back(std::move(takewOwnershipPtr));
+				
+
 		}
 	}
 };

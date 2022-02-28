@@ -1,7 +1,8 @@
 #pragma once
 #include "CGameObject.h"
 #include "../Factories/CBaseCreator.h"
-class CStableObjects :  public CGameObject
+
+class CStableObject :  public CGameObject
 {
 public:
 	virtual void draw();
@@ -18,8 +19,8 @@ private:
 class CStableObjectsCreator : public CBaseCreator
 {
 	// Inherited via CBaseCreator
-	virtual CGameObject* createGameObject() const override
+	virtual CStableObject* createGameObject() const override
 	{
-		return new CStableObjects();
+		return new CStableObject();
 	}
 };

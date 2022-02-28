@@ -1,23 +1,17 @@
 #include "CStableObject.h"
 
-void CStableObjects::draw()
+void CStableObject::draw()
 {
-	CGameObject::draw();
+	CStableObject::draw();
 }
 
-void CStableObjects::drawFrame()
+void CStableObject::drawFrame()
 {
 	if(m_SpawnTime <= SDL_GetTicks()/ 1000)
 		CGameObject::drawFrame();
-	if (m_SpawnTime + 5 < SDL_GetTicks() / 1000)
-	{
-
-		m_bDestroyed = true;
-		return;
-	}
 }
 
-void CStableObjects::update()
+void CStableObject::update()
 {
 
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
@@ -26,16 +20,16 @@ void CStableObjects::update()
 	{
 		m_currentRow = 1;
 	}
+	CGameObject::update();
 }
 
-void CStableObjects::clean()
+void CStableObject::clean()
 {
 	
 }
 
-void CStableObjects::load(CLoadParams* params)
+void CStableObject::load(CLoadParams* params)
 {
-	
 	CGameObject::load(params);
 	m_SpawnTime = params->getSpawnTime();
 }
