@@ -11,7 +11,7 @@ void CStableObject::drawFrame()
 		CGameObject::drawFrame();
 }
 
-void CStableObject::update()
+void CStableObject::update(double dt)
 {
 
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
@@ -20,7 +20,7 @@ void CStableObject::update()
 	{
 		m_currentRow = 1;
 	}
-	CGameObject::update();
+	CGameObject::update(dt);
 }
 
 void CStableObject::clean()

@@ -9,7 +9,7 @@ public:
 	CPauseMenu(void(*callbackFunction)(int*));
 	CPauseMenu();
 	virtual void drawFrame();
-	virtual void update();
+	virtual void update(double dt);
 	virtual void clean();
 	enum PauseMenu { RESTART = 0, OPTIONS = 1, MAINMENU = 2, CANCEL = 3 };
 

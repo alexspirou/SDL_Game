@@ -49,7 +49,7 @@ public:
 
 	void render();
 
-	void update();
+	void update(double dt);
 
 	void handleEvents();
 

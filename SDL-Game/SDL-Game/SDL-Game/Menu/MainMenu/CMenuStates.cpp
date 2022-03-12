@@ -12,15 +12,17 @@
 bool CMenuStates::onEnter()
 {
     loadMenuObjects();
+    CGame::Instance().getSoundManager().loadSound("menuChange","D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/menuChange.wav");
+    CGame::Instance().getSoundManager().loadSound("welcomeToGame", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/welcomeToGame.wav");
 
     return true;
 }
 
-void CMenuStates::update()
+void CMenuStates::update(double dt)
 {
     MoveMenuPosition();
 
-    updateMenuDependTheMenuPosition();
+    updateMenuDependTheMenuPosition(dt);
 }
 void CMenuStates::render()
 {
@@ -39,6 +41,9 @@ bool CMenuStates::onExit()
     CTextureManager::Instance().clearTextureMap(m_LoadIDMenuOptions);
     CTextureManager::Instance().clearTextureMap(m_LoadIDMenuExit);
 
+    CGame::Instance().getSoundManager().clean("menuChange");
+    CGame::Instance().getSoundManager().clean("welcomeToGame");
+
     return true;
 }
 //Helper private functions
@@ -46,29 +51,31 @@ bool CMenuStates::onExit()
 void CMenuStates::MoveMenuPosition()
 {
     auto keyboardEvents = CGame::Instance().getKeyboardEvents();
-
+    int menuSoundVolume = 50;
     auto DownArrowIsPressed = keyboardEvents.isKeyDown(SDL_SCANCODE_DOWN);
     if (DownArrowIsPressed)
     {
-        if      (m_MenuPositionInScreen == Menu::START)     { m_MenuPositionInScreen = Menu::OPTIONS; }
-        else if (m_MenuPositionInScreen == Menu::OPTIONS)   { m_MenuPositionInScreen = Menu::EXIT; }
+       
+        if      (m_MenuPositionInScreen == Menu::START)     { CGame::Instance().getSoundManager().playSound("menuChange", menuSoundVolume); m_MenuPositionInScreen = Menu::OPTIONS; }
+        else if (m_MenuPositionInScreen == Menu::OPTIONS)   { CGame::Instance().getSoundManager().playSound("menuChange", menuSoundVolume); m_MenuPositionInScreen = Menu::EXIT; }
 
     }
     auto UpArrowIsPressed = keyboardEvents.isKeyDown(SDL_SCANCODE_UP);
     if (UpArrowIsPressed)
     {
-        if      (m_MenuPositionInScreen == Menu::EXIT)       { m_MenuPositionInScreen = Menu::OPTIONS; }
-        else if (m_MenuPositionInScreen == Menu::OPTIONS)    { m_MenuPositionInScreen = Menu::START; }
+
+        if      (m_MenuPositionInScreen == Menu::EXIT)       { CGame::Instance().getSoundManager().playSound("menuChange", menuSoundVolume); m_MenuPositionInScreen = Menu::OPTIONS; }
+        else if (m_MenuPositionInScreen == Menu::OPTIONS)    { CGame::Instance().getSoundManager().playSound("menuChange", menuSoundVolume); m_MenuPositionInScreen = Menu::START; }
 
     }
     SDL_Delay(80);
 }
 
-void CMenuStates::updateMenuDependTheMenuPosition()
+void CMenuStates::updateMenuDependTheMenuPosition(double dt)
 {
-    if      (m_MenuPositionInScreen == Menu::START)          m_vGameObjects[START]->update();
-    else if (m_MenuPositionInScreen == Menu::OPTIONS)        m_vGameObjects[OPTIONS]->update();
-    else if (m_MenuPositionInScreen == Menu::EXIT)           m_vGameObjects[EXIT]->update();
+    if      (m_MenuPositionInScreen == Menu::START)          m_vGameObjects[START]->update(dt);
+    else if (m_MenuPositionInScreen == Menu::OPTIONS)        m_vGameObjects[OPTIONS]->update(dt);
+    else if (m_MenuPositionInScreen == Menu::EXIT)           m_vGameObjects[EXIT]->update(dt);
 }
 
 void CMenuStates::renderMenuDependTheMenuPosition()
@@ -115,6 +122,7 @@ bool CMenuStates::loadMenuObjects()
 
 void CMenuStates::s_StarGame()
 {
+    CGame::Instance().getSoundManager().playSound("welcomeToGame", 50);
     std::cout << "Play button clicked\n";
     //In the future will change to LevelStates, where the first stage of the game will load
     CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CPlayerStates>());
@@ -122,7 +130,6 @@ void CMenuStates::s_StarGame()
 
 void CMenuStates::s_ExitGame()
 {
-    std::cout << "EXIT GAME " << std::endl;
     CGame::Instance().quit();
 }
 

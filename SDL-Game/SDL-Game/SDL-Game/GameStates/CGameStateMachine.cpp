@@ -1,10 +1,10 @@
 #include "CGameStateMachine.h"
-void CGameStateMachine::update()
+void CGameStateMachine::update(double dt)
 {
 	//Update objects of chosen state
 	if (!m_gameStates.empty())
 	{
-		m_gameStates.back()->update();
+		m_gameStates.back()->update(dt);
 	}
 }
 void CGameStateMachine::render()

@@ -10,7 +10,7 @@ void CPauseMenu::drawFrame()
 	CGameObject::drawFrame();
 }
 
-void CPauseMenu::update()
+void CPauseMenu::update(double dt)
 {
 	auto keyboardEvents = CGame::Instance().getKeyboardEvents();
 

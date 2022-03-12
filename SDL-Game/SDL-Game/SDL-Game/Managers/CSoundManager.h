@@ -9,14 +9,17 @@ class CSoundManager
 public:
 	CSoundManager();
 	void loadSound(const char* id, const char* path);
+	void playSound(const char* id, int volume);
+	void loadMusic(const char* id, const char* path);
+	void playMusic(const char* id, int volume);
 
-	void playSound(const char* id);
 	void clean(const char* id);
 
 private:
 
-	Mix_Chunk* m_sfx{};
+
 	std::map<const char*, Mix_Chunk*> m_SoundMap;
+	std::map<const char*, Mix_Music*> m_MusicMap;
 
 };
 

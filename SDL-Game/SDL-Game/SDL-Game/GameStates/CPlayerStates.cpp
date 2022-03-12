@@ -5,7 +5,7 @@
 #include "../ScreenDimentions.h"
 #include "../Parser/CStateParser.h"
 
-void CPlayerStates::update()
+void CPlayerStates::update(double dt)
 {
     auto isESCpressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_ESCAPE);
     if (isESCpressed)
@@ -17,35 +17,29 @@ void CPlayerStates::update()
    // Update gameobjects
     for (auto& object : m_vGameObjects)
     {
-        object->update();
+        object->update(dt);
     }
 
-    m_Player->update();
+    m_Player->update(dt);
 
     for (auto& enemy : m_vEnemies)
     {
-        enemy->update();
-        //enemy->isPLayerNear(std::move(m_vPlayer[0]));
+        enemy->update(dt);
     }
-   
 }
-
 void CPlayerStates::render()
 {
     for (auto& object : m_vGameObjects)
     {
         object->drawFrame();
-        //std::cout << typeid(object).name() << std::endl;
     }
 
-    m_Player->drawFrame();
-    //std::cout << typeid(player).name() << std::endl;
+    m_Player->draw();
 
     for (auto& enemy : m_vEnemies)
     {
         enemy->drawFrame();
-       // std::cout << typeid(enemy).name() << std::endl;
-        enemy->isPLayerNear((m_Player));
+        enemy->isPLayerNear(m_Player.get());
     }
     CGame::Instance().getMap()->draw();
 
@@ -56,12 +50,13 @@ bool CPlayerStates::onEnter()
     std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
 
     CStateParser stateParser;
-
     stateParser.parseState("XML/test.xml", "STABLEOBJECTS", &m_TexturesIDs, &m_vGameObjects);
     stateParser.parseState("XML/test.xml", "ENEMY", &m_TexturesIDs, &m_vEnemies);
-    std::vector<std::unique_ptr<CPlayer>> vTempPlayer;
-    stateParser.parseState<CPlayer>("XML/test.xml", "PLAY", &m_TexturesIDs, &vTempPlayer);
-    m_Player = std::move(vTempPlayer[0]);
+    stateParser.parseState<CPlayer>("XML/test.xml", "PLAY", &m_TexturesIDs, NULL, &m_Player);
+
+
+    CGame::Instance().getSoundManager().loadMusic("backGroundMusic","D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/backGroundMusic.wav");
+    CGame::Instance().getSoundManager().playMusic("backGroundMusic", 40);
 
     return false;
 }

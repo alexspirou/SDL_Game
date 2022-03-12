@@ -6,7 +6,7 @@ class CGameStateMachine
 {
 public:
 
-	void update();
+	void update(double dt);
 
 	void render();
 

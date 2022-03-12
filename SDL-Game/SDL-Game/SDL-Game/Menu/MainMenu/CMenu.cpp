@@ -10,7 +10,7 @@ void CMenu::draw()
 {
 	CGameObject::draw();
 }
-void CMenu::update()
+void CMenu::update(double dt)
 {
 	auto keyboardEvents = CGame::Instance().getKeyboardEvents();
 

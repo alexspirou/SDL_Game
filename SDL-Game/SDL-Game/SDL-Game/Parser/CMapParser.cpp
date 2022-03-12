@@ -36,8 +36,6 @@ bool CMapParser::parseMap(std::string mapXMLPath, std::string  id)
 			gameMap->m_vMapLayers.push_back((parseData(layerXMLElement, vTileSets, 32, tileRows, tileCols)));
 		}
 	}
-	//std::unique_ptr<CGameMap> gameMap(std::make_unique<CGameMap>(std::move(vTileLayers)));
-
 	m_MapDict[id] = gameMap;
 
 	return true;

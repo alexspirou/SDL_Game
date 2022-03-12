@@ -9,7 +9,7 @@ class CPlayerStates : public IGameStates
 {
 public:
 	virtual ~CPlayerStates() = default;
-	virtual void update();
+	virtual void update(double dt);
 	virtual void render();
 	virtual bool onEnter();
 	virtual bool onExit();

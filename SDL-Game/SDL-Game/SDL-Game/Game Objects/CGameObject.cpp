@@ -33,12 +33,11 @@ void CGameObject::draw()
 
 }
 
-void CGameObject::update()
+void CGameObject::update(double dt)
 {
-	 //Change 100 to variable
-
+	deltaTime = dt;
 	//Adding accelaration to velocity because we dont want to have the max speed instantaneously
-	m_velocity += m_acceleration;
+
 	//Adding velocity to position, velocity could be a float so the object move slower than 1
 	m_position += m_velocity;
 }

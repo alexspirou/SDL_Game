@@ -6,16 +6,18 @@ class CEnemy : public CGameObject
 {
 public:
 
-	CEnemy() = default;
+	CEnemy();
 
 	virtual void draw();
-	virtual void update();
+	virtual void update(double dt);
 	virtual void clean();
 
-	bool isPLayerNear(std::unique_ptr<CPlayer>& const player);
+	bool isPLayerNear(CPlayer* const player);
 private:
 	void move();
 	bool moveRight = true;
+	bool isNear = false;
+
 };
 
 class CEnemyCreator : public CBaseCreator

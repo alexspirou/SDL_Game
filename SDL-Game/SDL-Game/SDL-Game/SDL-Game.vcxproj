@@ -146,12 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game Objects\Fireballs\CFireBall.cpp" />
     <ClCompile Include="Helper\CTimer.cpp" />
     <ClCompile Include="Managers\CSoundManager.cpp" />
     <ClCompile Include="Parser\CMapParser.cpp" />
     <ClCompile Include="Map\CTileLayer.cpp" />
     <ClCompile Include="Game Objects\CStableObject.cpp" />
-    <ClCompile Include="Map\CGameMap.cpp" />
     <ClCompile Include="Factories\CGameObjectFactory.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp" />
     <ClCompile Include="Menu\PauseMenu\CPauseStates.cpp" />
@@ -175,6 +175,7 @@
     <ClCompile Include="__TinyXML\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game Objects\Fireballs\CFireBall.h" />
     <ClInclude Include="Helper\CTimer.h" />
     <ClInclude Include="Managers\CSoundManager.h" />
     <ClInclude Include="Parser\CMapParser.h" />

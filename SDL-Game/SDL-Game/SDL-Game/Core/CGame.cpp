@@ -54,10 +54,10 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 		return true;
 
 }
-void CGame::update()
+void CGame::update(double dt)
 {
 	//Update all states
-	m_GameStateMachine->update();
+	m_GameStateMachine->update(dt);
 }
 void CGame::render()
 {

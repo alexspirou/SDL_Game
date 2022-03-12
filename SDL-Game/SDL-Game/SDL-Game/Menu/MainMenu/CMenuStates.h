@@ -11,7 +11,7 @@ public:
 
 	virtual ~CMenuStates() {  /*std::cout << "~CMenuStates()" << std::endl;*/ }
 
-	virtual void update();
+	virtual void update(double dt);
 	virtual void render();
 	virtual bool onEnter();
 	virtual bool onExit();
@@ -28,7 +28,7 @@ private:
 	void MoveMenuPosition();
 
 	void renderMenuDependTheMenuPosition();
-	void updateMenuDependTheMenuPosition();
+	void updateMenuDependTheMenuPosition(double dt);
 
 	int m_MenuPositionInScreen = 0;
 

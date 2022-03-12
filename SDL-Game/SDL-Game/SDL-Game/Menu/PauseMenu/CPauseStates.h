@@ -6,7 +6,7 @@
 class CPauseStates : public IGameStates
 {
 public:
-	virtual void update() override;
+	virtual void update(double dt) override;
 	virtual void render() override ;
 	virtual bool onEnter()override;
 	virtual bool onExit() override;

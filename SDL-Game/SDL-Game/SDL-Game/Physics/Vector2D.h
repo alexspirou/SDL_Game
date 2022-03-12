@@ -14,7 +14,7 @@ public:
 	Vector2D operator = (const float& assigned)
 	{
 		this->m_x = assigned;
-		this->m_x = assigned;
+		this->m_y = assigned;
 		return *this;
 	}
 	Vector2D operator+(const Vector2D& rhs)

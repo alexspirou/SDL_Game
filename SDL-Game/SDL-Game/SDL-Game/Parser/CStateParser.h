@@ -12,7 +12,7 @@ class CStateParser
 {
 public:
 	template<typename T>
-	bool parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<T>>* pObjects )
+	bool parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<T>>* pObjects = NULL, std::unique_ptr<T>* pObject = NULL)
 	{
 		// create the XML document
 		TiXmlDocument xmlDoc;
@@ -60,7 +60,9 @@ public:
 		}
 		// Return vector with objects
 		
-		parseObjects<T>(pObjectRoot, std::move(pObjects));
+		if(pObjects)parseObjects<T>(pObjectRoot, std::move(pObjects));
+
+		else if(pObject) parseObjects<T>(pObjectRoot,NULL, pObject);
 		return true;
 	}
 
@@ -79,7 +81,7 @@ private:
 		}
 	}
 	template<typename T>
-	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<T>>* pObjects)
+	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<T>>* pObjects = NULL, std::unique_ptr<T>* pObject = NULL)
 	{
 		for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 		{
@@ -109,8 +111,9 @@ private:
 			auto takewOwnershipPtr = std::unique_ptr<T>{ std::exchange(pGameObject, nullptr) };
 
 			//return objects
-			pObjects->push_back(std::move(takewOwnershipPtr));
-				
+			if (pObjects)pObjects->push_back(std::move(takewOwnershipPtr));
+
+			else if (pObject) *pObject = std::move(takewOwnershipPtr);
 
 		}
 	}

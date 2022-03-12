@@ -9,7 +9,7 @@ public:
 	CMenu(void(*callbackFunction)());
 	CMenu() = default;
 	virtual void draw();
-	virtual void update();
+	virtual void update(double dt) override;
 	virtual void clean();
 
 

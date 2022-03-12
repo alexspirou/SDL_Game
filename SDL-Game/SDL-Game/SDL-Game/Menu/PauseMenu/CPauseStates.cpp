@@ -22,9 +22,9 @@ bool CPauseStates::onEnter()
     return true;
 }
 
-void CPauseStates::update()
+void CPauseStates::update(double dt)
 {
-    m_PauseMenu->update();
+    m_PauseMenu->update(dt);
 }
 
 void CPauseStates::render()
