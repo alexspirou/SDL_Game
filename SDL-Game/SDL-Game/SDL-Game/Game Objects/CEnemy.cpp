@@ -13,44 +13,34 @@ void CEnemy::draw()
 void CEnemy::update(double dt)
 {
 
-	move();
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
 	m_currentRow = 0;
 
+	m_ColliderBox.m_Box = { int(m_position.m_x) + m_width / 2 - 22 , int(m_position.m_y) + m_height / 2, 44, 61 };
+	
 	CGameObject::update(dt);
 
 }
-void CEnemy::clean()
-{
-
-}
-bool CEnemy::isPLayerNear(CPlayer* const player)
-{
-	//TODO : Check if player is near and attack.
-	if (player->getPosition().m_y > this->m_position.m_y - this->m_width * 2) m_velocity.m_y = 0.2 * deltaTime;
-	else { m_velocity.m_y = 0; }
-	if (player->getPosition().m_x == this->m_position.m_x - this->m_width - player->getWidth())
-	{
-		CGame::Instance().getSoundManager().playSound("fuckOff", 50);
-	}
-	return false;
-} 
-
-void CEnemy::move()
+void CEnemy::move(double velocity)
 {
 	if (moveRight)
 	{
-		m_velocity.m_x = 0.1 * deltaTime;
-		if (m_position.m_x > SCREEN_WIDTH - m_width)
+		m_velocity.m_x = velocity * deltaTime;
+		if (m_ColliderBox.m_Box.x> SCREEN_WIDTH - m_ColliderBox.m_Box.w)
 			moveRight = false;
 		m_FlipSiderRender = SDL_FLIP_NONE;
 	}
 	else if (!moveRight)
 	{
-		m_velocity.m_x = -0.1 * deltaTime;
-		if (m_position.m_x < 0)
+		m_velocity.m_x = -velocity * deltaTime;
+		if (m_ColliderBox.m_Box.x < 0)
 			moveRight = true;
 		m_FlipSiderRender = SDL_FLIP_HORIZONTAL;
 
 	}
+	std::cout << m_ColliderBox.m_Box.x << std::endl;
+}
+void CEnemy::clean()
+{
+
 }

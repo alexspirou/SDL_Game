@@ -13,6 +13,7 @@ public:
 	void loadMusic(const char* id, const char* path);
 	void playMusic(const char* id, int volume);
 
+	void muteAll();
 	void clean(const char* id);
 
 private:

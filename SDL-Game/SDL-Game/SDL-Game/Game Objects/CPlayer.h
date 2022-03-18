@@ -3,6 +3,7 @@
 #include "../Factories/CBaseCreator.h"
 #include "../Helper/CTimer.h"
 #include "../Game Objects/Fireballs/CFireBall.h"
+#include "../Collision/ColliderBox.h"
 
 class CPlayer : public CGameObject
 {
@@ -13,31 +14,29 @@ public:
 	virtual void draw();
 	virtual void update(double dt);
 	virtual void clean();
+	CFireBall& getFireball() { return m_Fireball; }
 
-	int getWidth() { return (m_width/m_TotalFrames) - 100; }
 private:
-	Vector2D m_Gravity{ 0, 1 };
+
+	Vector2D m_Gravity;
+	Vector2D m_Force;
+	double m_Mass;
 
 	bool isLookingRight = true;
 
 	CFireBall m_Fireball;
-
-	void manageSounds(int sound);
-
+	
+	//Input handlers
 	void handleMouseClickEvents();
-
-	void handleMouseMotionEvents();
-
 	void handleKeyBoardEvents();
 
 	//Player's abilities
-
 	void move(float velocity);
 	void moveUpDown(float velocity);
 	void jump();
 	bool applyGravity();
 	void shootFireBall(); bool isShooting = false;
-
+	void shootingScreenLimitsReuse();
 };
 
 

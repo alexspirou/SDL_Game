@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<STATES>
+<PLAY>
+<TEXTURES>
+ <texture filename="Assets/MainChar/Idle.png" ID="mainCharIdle"/>
+ <texture filename="Assets/MainChar/mainCharWalkRight.png" ID="mainCharWalkRight"/>
+ <texture filename="Assets/MainChar/mainCharWalkLeft.png" ID="mainCharWalkLeft"/>
+ <texture filename="Assets/MainChar/Attack1.png" ID="mainCharAttack1"/>
+ <texture filename="Assets/MainChar/Attack2.png" ID="mainCharAttack2"/>
+ <texture filename="Assets/MainChar/fall.png" ID="mainCharFall"/>
+ <texture filename="Assets/MainChar/Death.png" ID="mainCharDeath"/>
+
+</TEXTURES>
+<OBJECTS>
+  <object type="CPlayer" objectID = "Player1" x="50" y="100" width="250"
+  height="250" textureID="mainCharIdle" numFrames="8" currentRow = "0"
+  callbackID="1"/>
+</OBJECTS>
+</PLAY>
+</STATES>

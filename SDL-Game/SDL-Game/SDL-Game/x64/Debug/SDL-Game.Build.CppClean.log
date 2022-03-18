@@ -1,5 +1,7 @@
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\vc143.pdb
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\vc143.idb
+d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\main.obj
+d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cgameobject.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cplayer.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cgame.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cenemy.obj
@@ -12,8 +14,6 @@ d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cfonttexturemanager.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cpausestates.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cpausemenu.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cgameobjectfactory.obj
-d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cstateparser.obj
-d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cgamemap.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cstableobject.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\ctilelayer.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cmapparser.obj
@@ -24,12 +24,11 @@ d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\tinyxmlerror.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\tinyxml.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\tinystr.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\ctexturemanager.obj
-d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\main.obj
-d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cgameobject.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cloadparams.h.ifc
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cloadparams.h.ifc.d.json
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cloadparams.h.obj
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cplayerstates.obj
+d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\cfireball.obj
 d:\repos\sdl_game\sdl-game\sdl-game\x64\debug\sdl-game.exe
 d:\repos\sdl_game\sdl-game\sdl-game\sdl-game\x64\debug\sdl-game.ilk
 d:\repos\sdl_game\sdl-game\sdl-game\x64\debug\sdl-game.pdb

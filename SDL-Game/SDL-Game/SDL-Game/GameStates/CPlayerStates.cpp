@@ -15,32 +15,43 @@ void CPlayerStates::update(double dt)
         std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
     }
    // Update gameobjects
-    for (auto& object : m_vGameObjects)
-    {
-        object->update(dt);
-    }
+    for (auto& object : m_vGameObjects){ object->update(dt); }
 
     m_Player->update(dt);
 
+    for (auto& enemy : m_vEnemies) { enemy->update(dt); }
     for (auto& enemy : m_vEnemies)
-    {
-        enemy->update(dt);
+    { 
+        if (calculateLength(&m_Player->getCollinder(), &enemy->getCollinder()) < 100)
+        {
+           // enemy->move(20);
+        }
+        else
+        {
+            //enemy->move(20);
+
+        }
+
     }
+    for (auto& enemy : m_vEnemies) { isCollision(&m_Player->getCollinder(), &enemy->getCollinder()); }
+    for (auto& enemy : m_vEnemies) 
+    { 
+        if (isCollision(&m_Player->getFireball().getColliderBox(), &enemy->getCollinder()))
+        {
+            //std::cout <<  enemy->getObjectID() << " got hit " << std::endl;
+        }
+    }
+
+    
 }
 void CPlayerStates::render()
 {
-    for (auto& object : m_vGameObjects)
-    {
-        object->drawFrame();
-    }
+    for (auto& object : m_vGameObjects) { object->drawFrame(); }
 
     m_Player->draw();
 
-    for (auto& enemy : m_vEnemies)
-    {
-        enemy->drawFrame();
-        enemy->isPLayerNear(m_Player.get());
-    }
+    for (auto& enemy : m_vEnemies){ enemy->drawFrame(); }
+
     CGame::Instance().getMap()->draw();
 
 }
@@ -50,13 +61,13 @@ bool CPlayerStates::onEnter()
     std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
 
     CStateParser stateParser;
-    stateParser.parseState("XML/test.xml", "STABLEOBJECTS", &m_TexturesIDs, &m_vGameObjects);
-    stateParser.parseState("XML/test.xml", "ENEMY", &m_TexturesIDs, &m_vEnemies);
-    stateParser.parseState<CPlayer>("XML/test.xml", "PLAY", &m_TexturesIDs, NULL, &m_Player);
+    stateParser.parseState("XML/objects.xml", "STABLEOBJECTS", &m_TexturesIDs, &m_vGameObjects);
+    stateParser.parseState("XML/enemies.xml", "ENEMY", &m_TexturesIDs, &m_vEnemies);
+    stateParser.parseState<CPlayer>("XML/player.xml", "PLAY", &m_TexturesIDs, NULL, &m_Player);
 
 
     CGame::Instance().getSoundManager().loadMusic("backGroundMusic","D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/backGroundMusic.wav");
-    CGame::Instance().getSoundManager().playMusic("backGroundMusic", 40);
+    CGame::Instance().getSoundManager().playMusic("backGroundMusic", 10);
 
     return false;
 }

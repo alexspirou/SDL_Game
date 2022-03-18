@@ -12,7 +12,7 @@ class CStateParser
 {
 public:
 	template<typename T>
-	bool parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<T>>* pObjects = NULL, std::unique_ptr<T>* pObject = NULL)
+	bool parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<T>>* vObjects = NULL, std::unique_ptr<T>* pObject = NULL)
 	{
 		// create the XML document
 		TiXmlDocument xmlDoc;
@@ -60,9 +60,9 @@ public:
 		}
 		// Return vector with objects
 		
-		if(pObjects)parseObjects<T>(pObjectRoot, std::move(pObjects));
-
+		if(vObjects)parseObjects<T>(pObjectRoot, std::move(vObjects));
 		else if(pObject) parseObjects<T>(pObjectRoot,NULL, pObject);
+
 		return true;
 	}
 
@@ -81,11 +81,14 @@ private:
 		}
 	}
 	template<typename T>
-	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<T>>* pObjects = NULL, std::unique_ptr<T>* pObject = NULL)
+	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<T>>* vObjects = NULL, std::unique_ptr<T>* pObject = NULL)
 	{
 		for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 		{
 			int x{}, y{}, width{}, height{}, currentRow{}, numFrames{}, spawnTime, callbackID{}, animSpeed{};
+			
+			std::string textureID = e->Attribute("textureID");
+			std::string objectID = e->Attribute("objectID");
 
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
@@ -95,23 +98,17 @@ private:
 			e->Attribute("callbackID", &callbackID);
 			e->Attribute("animSpeed", &animSpeed);
 			e->Attribute("currentRow", &currentRow);
+			e->Attribute("spawnTime", &spawnTime);
 
-			if (e->Attribute("spawnTime", &spawnTime));
 
-
-			std::string textureID = e->Attribute("textureID");
-			std::string s = e->Attribute("type");
-			if (s == "CEnemy")
-			{
-				std::cout << "CEnemy " << std::endl;
-			}
 			T* pGameObject = CGame::Instance().getObjectFactory().createObjectByID<T>(e->Attribute("type"));
-			pGameObject->load(new CLoadParams(x, y, width, height, textureID, numFrames, currentRow, spawnTime, callbackID, animSpeed));
+
+			pGameObject->load(new CLoadParams(x, y, width, height, textureID, numFrames, objectID,currentRow, spawnTime, callbackID, animSpeed));
 
 			auto takewOwnershipPtr = std::unique_ptr<T>{ std::exchange(pGameObject, nullptr) };
 
 			//return objects
-			if (pObjects)pObjects->push_back(std::move(takewOwnershipPtr));
+			if (vObjects)vObjects->push_back(std::move(takewOwnershipPtr));
 
 			else if (pObject) *pObject = std::move(takewOwnershipPtr);
 

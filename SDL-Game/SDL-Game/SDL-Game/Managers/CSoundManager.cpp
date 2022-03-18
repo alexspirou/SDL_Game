@@ -37,6 +37,11 @@ void CSoundManager::playMusic(const char* id, int volume)
 	Mix_VolumeMusic(volume);
 	Mix_PlayMusic(m_MusicMap[id], -1);
 }
+void CSoundManager::muteAll()
+{
+
+
+}
 void  CSoundManager::clean(const char* id)
 {
 	Mix_FreeChunk(m_SoundMap[id]);

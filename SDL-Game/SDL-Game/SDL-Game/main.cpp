@@ -4,7 +4,7 @@
 #include "Core/CGame.h"
 #include <iostream>
 
-const int FPS = 50;
+const int FPS = 40;
 const int DELAY_TIME = 1000.0f / FPS;
 
 int main(int argc, char* args[])

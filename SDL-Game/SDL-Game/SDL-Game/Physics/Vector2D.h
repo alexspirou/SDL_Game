@@ -40,7 +40,11 @@ public:
 	}
 	Vector2D operator*(const float scale)
 	{
-		return Vector2D(this->m_x * scale, this->m_y * scale);
+		return Vector2D(m_x * scale, m_y * scale);
+	}
+	Vector2D operator/(float scalar)
+	{
+		return Vector2D(m_x / scalar, m_y / scalar);
 	}
 	Vector2D operator*=(const float scale)
 	{
@@ -48,10 +52,7 @@ public:
 		this->m_y *= scale;
 
 	}
-	Vector2D operator/(float scalar)
-	{
-		return Vector2D(m_x / scalar, m_y / scalar);
-	}
+
 	Vector2D& operator/=(float scalar)
 	{
 		m_x /= scalar;

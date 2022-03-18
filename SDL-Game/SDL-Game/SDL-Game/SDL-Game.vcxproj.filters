@@ -194,5 +194,8 @@
     <ClInclude Include="Game Objects\Fireballs\CFireBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Collision\ColliderBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

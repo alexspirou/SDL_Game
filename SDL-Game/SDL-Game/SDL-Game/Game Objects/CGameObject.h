@@ -7,6 +7,7 @@
 #include "CLoadParams.h"
 #include "../Physics/Vector2D.h"
 #include "../Controllers/CMouseEvents.h"
+#include "Fireballs/CFireBall.h"
 
 class CGameObject : public IObject
 {
@@ -19,9 +20,23 @@ public:
 	virtual void load(CLoadParams* params) override;
 	virtual Vector2D getPosition() { return m_position; }
 	virtual std::string getTextureID() { return m_textureID; }
+	std::string getObjectID() { return m_ObjectID; }
+	double calculateLength(CGameObject* gameObject);
+	inline ColliderBox& getCollinder() { return m_ColliderBox; }
+
+	int getWidth() { return m_width; }
+	int getHeight() { return m_height; }
+	bool isCollision(CGameObject* p, int extraWidthHeight);
+	bool isCollision(CFireBall& p);
+
 
 protected:
 	std::string m_textureID;
+	std::string m_ObjectID;
+	ColliderBox m_ColliderBox;
+
+	double m_SpawnTime;
+	double deltaTime;
 
 	int m_currentFrame;
 	int m_currentRow;
@@ -36,7 +51,6 @@ protected:
 	int m_width; int m_height;
 	SDL_RendererFlip m_FlipSiderRender;
 	bool isPlayerMovingRightInScreen = true;
-	double deltaTime;
 
 	bool m_bDestroyed = false;
 };

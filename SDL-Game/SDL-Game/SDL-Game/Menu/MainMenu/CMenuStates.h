@@ -9,7 +9,7 @@ class CMenuStates : public IGameStates
 {
 public:
 
-	virtual ~CMenuStates() {  /*std::cout << "~CMenuStates()" << std::endl;*/ }
+	virtual ~CMenuStates() = default;
 
 	virtual void update(double dt);
 	virtual void render();

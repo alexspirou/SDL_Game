@@ -66,8 +66,6 @@ void CGameStateMachine::popState()
 	{
 		if (m_gameStates.back()->onExit())
 		{
-			std::cout << "POP called; " << std::endl;
-
 			m_gameStates.pop_back();
 		}
 	}

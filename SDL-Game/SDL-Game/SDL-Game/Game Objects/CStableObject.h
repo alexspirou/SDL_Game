@@ -9,9 +9,7 @@ public:
 	virtual void drawFrame();
 	virtual void update(double dt);
 	virtual void clean();
-	virtual void load(CLoadParams* params) override;
-	int m_SpawnTime = 0;
-	
+
 private:
 
 };

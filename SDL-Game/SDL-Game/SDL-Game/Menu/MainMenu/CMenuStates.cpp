@@ -98,9 +98,9 @@ bool CMenuStates::loadMenuObjects()
     if (!loadStartMenu || !loadOptionMenu || !loadExitMenu) { return false; }
 
     int x = SCREEN_WIDTH; int y = SCREEN_HEIGHT;
-    CLoadParams  startMenuParams =  { 0, 0, x, y ,m_LoadIDMenuStart,0 };
-    CLoadParams  optionsMenuParams = { 0, 0, x, y ,m_LoadIDMenuOptions,0 };
-    CLoadParams  exietMenuParams = { 0, 0, x, y ,m_LoadIDMenuExit,0 };
+    CLoadParams  startMenuParams =  { 0, 0, x, y ,m_LoadIDMenuStart,0 ,""};
+    CLoadParams  optionsMenuParams = { 0, 0, x, y ,m_LoadIDMenuOptions,0 ,"" };
+    CLoadParams  exietMenuParams = { 0, 0, x, y ,m_LoadIDMenuExit,0,"" };
 
     auto startMenu = std::make_unique<CMenu>(s_StarGame);
     auto optionsMenu = std::make_unique<CMenu>( s_Options);
@@ -123,7 +123,6 @@ bool CMenuStates::loadMenuObjects()
 void CMenuStates::s_StarGame()
 {
     CGame::Instance().getSoundManager().playSound("welcomeToGame", 50);
-    std::cout << "Play button clicked\n";
     //In the future will change to LevelStates, where the first stage of the game will load
     CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CPlayerStates>());
 }

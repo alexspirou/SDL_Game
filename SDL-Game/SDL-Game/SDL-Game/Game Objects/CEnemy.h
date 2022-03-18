@@ -11,13 +11,11 @@ public:
 	virtual void draw();
 	virtual void update(double dt);
 	virtual void clean();
+	void move(double velocity);
 
-	bool isPLayerNear(CPlayer* const player);
 private:
-	void move();
 	bool moveRight = true;
 	bool isNear = false;
-
 };
 
 class CEnemyCreator : public CBaseCreator

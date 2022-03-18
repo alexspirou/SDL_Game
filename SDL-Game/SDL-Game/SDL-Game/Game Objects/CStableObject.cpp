@@ -27,9 +27,3 @@ void CStableObject::clean()
 {
 	
 }
-
-void CStableObject::load(CLoadParams* params)
-{
-	CGameObject::load(params);
-	m_SpawnTime = params->getSpawnTime();
-}
