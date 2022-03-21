@@ -13,8 +13,8 @@ bool CPauseStates::onEnter()
 
     if (!pauseMenu) { return false; }
 
-    int x = SCREEN_WIDTH; int y = SCREEN_HEIGHT;
-    CLoadParams  pauseMenuParams = { 0, 0, x, y ,"pauseMenusR" , 0, ""};
+    int x = SCREEN_WIDTH; int y = 580;
+    CLoadParams  pauseMenuParams = { 0, 0, x, y ,"pauseMenusR" , 0, "", NULL};
 
     m_PauseMenu.reset(new CPauseMenu(s_PauseCallback));
     m_PauseMenu->load(&pauseMenuParams);
@@ -43,7 +43,6 @@ void CPauseStates::s_PauseCallback(int* oCurrentFram)
     switch (*oCurrentFram)
     {
     case CPauseMenu::RESTART:
-        CGame::Instance().getStateMachine()->popState();
         CGame::Instance().getStateMachine()->changeState(std::make_unique<CPlayerStates>());
         break;
     case CPauseMenu::OPTIONS:
@@ -51,9 +50,7 @@ void CPauseStates::s_PauseCallback(int* oCurrentFram)
         std::cout << "OPTIONS PAUSE" << std::endl;
         break;
     case CPauseMenu::MAINMENU:
-        CGame::Instance().getStateMachine()->popState();
         CGame::Instance().getStateMachine()->changeStateAndPopPrevious(std::make_unique<CMenuStates>());
-
         SDL_Delay(100);
         break;
     case CPauseMenu::CANCEL:

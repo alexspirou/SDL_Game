@@ -7,13 +7,12 @@ CPlayer::CPlayer() :
 {
 	CGame::Instance().getSoundManager().loadSound("jumpSound", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/jump.wav");
 	CGame::Instance().getSoundManager().loadSound("fireBall", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/MainChar/Sounds/fireBall.wav ");
-	auto loadStartMenu = CTextureManager::Instance().loadImage("Assets/colliderBox.png", "colliderBox", CGame::Instance().getRenderer());
 
 }
 void CPlayer::draw()
 {
 	m_Fireball.draw();
-	CTextureManager::Instance().draw("colliderBox", m_ColliderBox.m_Box.x, m_ColliderBox.m_Box.y, m_ColliderBox.m_Box.w, m_ColliderBox.m_Box.h, CGame::Instance().getRenderer());
+
 	CGameObject::drawFrame();
 }
 
@@ -31,13 +30,9 @@ void CPlayer::update(double dt)
 
 	m_Fireball.update(deltaTime);
 	
-
 	m_Force += m_Gravity;
 	m_Force  = (m_Force / m_Mass )* dt;	
 	m_position += m_velocity;
-
-	m_ColliderBox.m_Box = { int((m_position.m_x) + m_width/2) -20 , int(m_position.m_y) + m_height / 2 -25, 40, 75 };
-
 
 	CGameObject::update(dt);
 }
@@ -76,10 +71,7 @@ void CPlayer::jump()
 
 bool CPlayer::applyGravity()
 {
-	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
-	
-	//Here will be change with collision of map that it doesnt fall
-	if (m_RealPosition.m_y < 470 )
+	if (isFall)
 	{ 
 		m_velocity = m_velocity + m_Gravity  * deltaTime;
 		m_position = m_position + m_velocity * deltaTime; 
@@ -126,8 +118,8 @@ void CPlayer::handleKeyBoardEvents()
 	bool attack2 = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_W);
 	bool isJumpPressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_D);
 	
-	if		(moveRight)		{  move(3); m_textureID = "mainCharWalkRight";  m_TotalFrames =  8;	}
-	else if (moveLeft)		{  move(-3); m_textureID = "mainCharWalkRight"; m_TotalFrames = 8;		}
+	if		(moveRight)		{  move(6); m_textureID = "mainCharWalkRight";  m_TotalFrames =  8;	}
+	else if (moveLeft)		{  move(-6); m_textureID = "mainCharWalkRight"; m_TotalFrames = 8;		}
 	else if (moveUp)		{  moveUpDown(-10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;	}
 	else if (moveDown)		{  moveUpDown(10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;		}
 	else if (attack1)		{  shootFireBall(); move(0); m_textureID = "mainCharAttack1"; m_TotalFrames = 8; }

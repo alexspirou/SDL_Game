@@ -18,25 +18,6 @@ public:
 
 private:
 
-	double calculateLength(ColliderBox* gameObject1, ColliderBox* gameObject2)
-	{
-		double distance = sqrt(((gameObject1->m_Box.x - gameObject2->m_Box.x) * (gameObject1->m_Box.x - gameObject2->m_Box.x)) + ((gameObject1->m_Box.y - gameObject2->m_Box.y) * (gameObject1->m_Box.y - gameObject2->m_Box.y)));
-
-		return distance;
-	}
-	bool isCollision(ColliderBox* gameObject1, ColliderBox* gameObject2)
-	{
-		if (gameObject1->m_Box.x + gameObject1->m_Box.w < gameObject2->m_Box.x || gameObject1->m_Box.x > gameObject2->m_Box.x + gameObject2->m_Box.w ||
-			gameObject1->m_Box.y + gameObject1->m_Box.h < gameObject2->m_Box.y || gameObject1->m_Box.y> gameObject2->m_Box.y + gameObject2->m_Box.h)
-		{
-			return false;
-		}
-		else
-		{
-			std::cout << "Collision " << std::endl;
-			return true;
-		}
-	}
 	const std::string m_playID{"PLAY"};
 	std::vector<std::unique_ptr<CStableObject>> m_vGameObjects;
 	std::unique_ptr<CPlayer> m_Player;

@@ -13,21 +13,18 @@ class CGameObject : public IObject
 {
 public:
 	CGameObject();
+	virtual void draw()override;
 	virtual void drawFrame();
-	virtual void draw();
-	virtual void update(double dt);
-	virtual void clean();
+	virtual void update(double dt)override;
+	virtual void clean()override;
 	virtual void load(CLoadParams* params) override;
 	virtual Vector2D getPosition() { return m_position; }
 	virtual std::string getTextureID() { return m_textureID; }
 	std::string getObjectID() { return m_ObjectID; }
 	double calculateLength(CGameObject* gameObject);
 	inline ColliderBox& getCollinder() { return m_ColliderBox; }
-
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }
-	bool isCollision(CGameObject* p, int extraWidthHeight);
-	bool isCollision(CFireBall& p);
 
 
 protected:
@@ -40,7 +37,9 @@ protected:
 
 	int m_currentFrame;
 	int m_currentRow;
-	
+	int m_width; 
+	int m_height;
+
 	Vector2D m_position;
 	Vector2D m_velocity;
 	Vector2D m_acceleration;
@@ -48,7 +47,7 @@ protected:
 	int m_TotalFrames;
 
 	CMouseEvents m_mouseEvents;
-	int m_width; int m_height;
+
 	SDL_RendererFlip m_FlipSiderRender;
 	bool isPlayerMovingRightInScreen = true;
 

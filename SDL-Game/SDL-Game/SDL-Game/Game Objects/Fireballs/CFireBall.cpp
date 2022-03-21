@@ -3,12 +3,14 @@
 #include "../../Managers/CTextureManager.h"
 #include "../../Managers/CSoundManager.h"
 
-CFireBall::CFireBall()
+CFireBall::CFireBall():
+m_ColliderBox(0,0, 61, 59)
 {
 	CTextureManager::Instance(). loadImage("D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/MainChar/Fireballs/energyFireBall.png","FireBall", CGame::Instance().getRenderer());
 	m_textureID = "FireBall";
 	m_width = 61;
 	m_height = 59;
+
 }
 void CFireBall::draw()
 {
@@ -16,7 +18,7 @@ void CFireBall::draw()
 }
 void CFireBall::update(double dt)
 {
-	m_ColliderBox.m_Box = { int(m_position.m_x) + m_width/2, int(m_position.m_y + m_height/2), 61, 59 };
+	m_ColliderBox.colliderBox = { int(m_position.m_x) + m_width/2, int(m_position.m_y + m_height/2), 61, 59 };
 	m_position += m_Velocity;
 
 }

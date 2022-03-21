@@ -33,7 +33,7 @@ bool CMapParser::parseMap(std::string mapXMLPath, std::string  id)
 		else if (xmlID == std::string("layer"))
 		{
 			layerXMLElement = currentXMLElement;
-			gameMap->m_vMapLayers.push_back((parseData(layerXMLElement, vTileSets, 32, tileRows, tileCols)));
+			gameMap->m_vMapLayers.push_back((parseData(layerXMLElement, vTileSets, 32, tileRows, tileCols, &m_TilesIDPos)));
 		}
 	}
 	m_MapDict[id] = gameMap;
@@ -59,7 +59,7 @@ CTileSet CMapParser::parseTileSet(TiXmlElement* xmlTileSate)
 	return tempTileset;
 }
 
-CTileLayer* CMapParser::parseData(TiXmlElement* xmlData, std::vector<CTileSet> tileSet, int tileSize, int rows, int cols)
+CTileLayer* CMapParser::parseData(TiXmlElement* xmlData, std::vector<CTileSet> tileSet, int tileSize, int rows, int cols, std::vector<Tile>* tilesIDpos)
 {
 
 	TiXmlElement* dataXMLElement = NULL;
@@ -89,5 +89,5 @@ CTileLayer* CMapParser::parseData(TiXmlElement* xmlData, std::vector<CTileSet> t
 		if (!matrixStream.good())
 			break;
 	}
-	return (new CTileLayer(tileSize, rows, cols, oDataMap, tileSet));
+	return (new CTileLayer(tileSize, rows, cols, oDataMap, tileSet, tilesIDpos));
 }

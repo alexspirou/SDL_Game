@@ -46,6 +46,8 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 
 		m_MapParser.parseMap("Assets/Map/darkMap.tmx", "MAP");
 		m_GameMap = std::move(m_MapParser.getMap("MAP"));
+		m_MapParser.getTilesIDPos();
+
 
 		//Start main menu		
 		m_GameStateMachine.reset(new CGameStateMachine);

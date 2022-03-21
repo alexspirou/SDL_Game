@@ -1,8 +1,7 @@
 #include "CTileLayer.h"
 #include "../Managers/CTextureManager.h"
 #include "../Core/CGame.h"
-CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount,
-	std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets)
+CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets, std::vector<Tile>* destinatioMapTilesID)
 {
 	m_TileSize = tileSize;
 	m_RowCount = rowCount; m_ColCount = colCount;
@@ -11,6 +10,7 @@ CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount,
 	{
 		CTextureManager::Instance().loadImage(tileSet.sourcePNG , tileSet.name, CGame::Instance().getRenderer());
 	}
+	createMapDestinationTilesID(destinatioMapTilesID);
 }
 
 void CTileLayer::draw()
@@ -60,3 +60,33 @@ void CTileLayer::draw()
 void CTileLayer::update()
 {
 }
+
+void CTileLayer::createMapDestinationTilesID(std::vector<Tile>* destinatioMapTilesID)
+{
+
+	for (auto layerRow = 0; layerRow < m_RowCount; layerRow++)
+	{
+		for (auto layerCol = 0; layerCol < m_ColCount; layerCol++)
+		{
+			int currentTileID = m_TileMap[layerRow][layerCol];
+			int holdTileID = currentTileID;
+
+			if (currentTileID == 10)
+			{
+				int index = 0;
+				int tilesetSize = m_vTileSets.size();
+
+				CTileSet tileSet = m_vTileSets[index];
+				tileSet.TileSize = 16;
+				int rowFromTilePng = currentTileID / tileSet.ColCount;
+				int colFromTilePng = currentTileID - rowFromTilePng * tileSet.ColCount - 1;
+				auto destX = layerCol * tileSet.TileSize; auto destY = layerRow * tileSet.TileSize;
+
+				Tile tempTile{ currentTileID , destX, destY };
+				destinatioMapTilesID->push_back(tempTile);
+			}
+		}
+	}
+}
+
+

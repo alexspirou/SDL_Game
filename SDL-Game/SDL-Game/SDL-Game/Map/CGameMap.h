@@ -25,7 +25,7 @@ public:
 			layer->update();
 		}
 	}
-
+	std::map<int, std::vector<int>> m_PositionTileIDMap;
 	std::vector<ILayer*> getMapLayers() const { return m_vMapLayers; }
 	std::vector<ILayer*> m_vMapLayers;
 

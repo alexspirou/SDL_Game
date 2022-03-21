@@ -197,5 +197,14 @@
     <ClInclude Include="Collision\ColliderBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Collision\CCollisionDetection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\CMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

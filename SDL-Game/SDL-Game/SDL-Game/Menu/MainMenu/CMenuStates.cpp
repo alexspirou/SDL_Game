@@ -98,9 +98,9 @@ bool CMenuStates::loadMenuObjects()
     if (!loadStartMenu || !loadOptionMenu || !loadExitMenu) { return false; }
 
     int x = SCREEN_WIDTH; int y = SCREEN_HEIGHT;
-    CLoadParams  startMenuParams =  { 0, 0, x, y ,m_LoadIDMenuStart,0 ,""};
-    CLoadParams  optionsMenuParams = { 0, 0, x, y ,m_LoadIDMenuOptions,0 ,"" };
-    CLoadParams  exietMenuParams = { 0, 0, x, y ,m_LoadIDMenuExit,0,"" };
+    CLoadParams  startMenuParams =  { 0, 0, x, y ,m_LoadIDMenuStart,0 ,"", NULL};
+    CLoadParams  optionsMenuParams = { 0, 0, x, y ,m_LoadIDMenuOptions,0 ,"", NULL};
+    CLoadParams  exietMenuParams = { 0, 0, x, y ,m_LoadIDMenuExit,0,"", NULL };
 
     auto startMenu = std::make_unique<CMenu>(s_StarGame);
     auto optionsMenu = std::make_unique<CMenu>( s_Options);

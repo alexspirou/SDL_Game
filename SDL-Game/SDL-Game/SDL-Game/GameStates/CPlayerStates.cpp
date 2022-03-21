@@ -4,7 +4,8 @@
 #include "../Menu/PauseMenu/CPauseStates.h"
 #include "../ScreenDimentions.h"
 #include "../Parser/CStateParser.h"
-
+#include "../Physics/CMath.h"
+#include "../Collision/CCollisionDetection.h"
 void CPlayerStates::update(double dt)
 {
     auto isESCpressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_ESCAPE);
@@ -22,26 +23,27 @@ void CPlayerStates::update(double dt)
     for (auto& enemy : m_vEnemies) { enemy->update(dt); }
     for (auto& enemy : m_vEnemies)
     { 
-        if (calculateLength(&m_Player->getCollinder(), &enemy->getCollinder()) < 100)
-        {
-           // enemy->move(20);
-        }
-        else
-        {
-            //enemy->move(20);
-
-        }
+        calculateLength(m_Player->getCollinder(), enemy->getCollinder());
 
     }
-    for (auto& enemy : m_vEnemies) { isCollision(&m_Player->getCollinder(), &enemy->getCollinder()); }
+    for (auto& enemy : m_vEnemies) { isCollision(m_Player->getCollinder(), enemy->getCollinder()); }
     for (auto& enemy : m_vEnemies) 
     { 
-        if (isCollision(&m_Player->getFireball().getColliderBox(), &enemy->getCollinder()))
+        if (isCollision(m_Player->getFireball().getColliderBox(), enemy->getCollinder()))
         {
             //std::cout <<  enemy->getObjectID() << " got hit " << std::endl;
         }
     }
 
+    if (isCollision(m_Player->getCollinder(), CGame::Instance().getMapParser().m_TilesIDPos))
+    {
+        m_Player->isFall = false;
+    }
+    else
+    {
+        m_Player->isFall = true;
+
+    }
     
 }
 void CPlayerStates::render()

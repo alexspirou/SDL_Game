@@ -7,8 +7,7 @@ void CStableObject::draw()
 
 void CStableObject::drawFrame()
 {
-	if(m_SpawnTime <= SDL_GetTicks()/ 1000)
-		CGameObject::drawFrame();
+	CGameObject::drawFrame();
 }
 
 void CStableObject::update(double dt)

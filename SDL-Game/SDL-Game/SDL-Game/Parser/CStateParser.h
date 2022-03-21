@@ -7,12 +7,13 @@
 #include "../Game Objects/CGameObject.h"
 #include "../Core/CGame.h"
 #include "../Managers/CTextureManager.h"
+
 class GameObject;
 class CStateParser
 {
 public:
 	template<typename T>
-	bool parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<T>>* vObjects = NULL, std::unique_ptr<T>* pObject = NULL)
+	inline bool parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<T>>* vObjects = NULL, std::unique_ptr<T>* pObject = NULL)
 	{
 		// create the XML document
 		TiXmlDocument xmlDoc;
@@ -69,7 +70,7 @@ public:
 
 private:
 
-	void parseTextures(TiXmlElement* pStateRoot, std::vector<std::string>* pTextureIDs)
+	inline void parseTextures(TiXmlElement* pStateRoot, std::vector<std::string>* pTextureIDs)
 	{
 		for (TiXmlElement* dataFromXML = pStateRoot->FirstChildElement(); dataFromXML != NULL; dataFromXML = dataFromXML->NextSiblingElement())
 		{
@@ -81,15 +82,28 @@ private:
 		}
 	}
 	template<typename T>
-	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<T>>* vObjects = NULL, std::unique_ptr<T>* pObject = NULL)
+	inline void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<T>>* vObjects = NULL, std::unique_ptr<T>* pObject = NULL)
 	{
+		auto getValuesPerComma = [&](std::string stringForTrimming, std::vector<int>* vValues, int size )
+		{
+			std::istringstream streamCollinderBox(stringForTrimming);
+			std::string colliderBoxValue;
+			vValues->resize(size);
+			for (auto i = 0; i < size; i++)
+			{
+				std::getline(streamCollinderBox, colliderBoxValue, ',');
+				std::stringstream streamPixelID(colliderBoxValue);
+				streamPixelID >> vValues->at(i);
+			}
+		};
+
 		for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 		{
 			int x{}, y{}, width{}, height{}, currentRow{}, numFrames{}, spawnTime, callbackID{}, animSpeed{};
 			
 			std::string textureID = e->Attribute("textureID");
 			std::string objectID = e->Attribute("objectID");
-
+			
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
 			e->Attribute("width", &width);
@@ -100,10 +114,15 @@ private:
 			e->Attribute("currentRow", &currentRow);
 			e->Attribute("spawnTime", &spawnTime);
 
+			std::string sColliderBox = e->Attribute("colliderBox");
+			std::vector<int> tmpVecCollinderBox(4);
+			getValuesPerComma(sColliderBox, &tmpVecCollinderBox, 4);
+
+			ColliderBox tempColliderBox{ tmpVecCollinderBox[0],tmpVecCollinderBox[1],tmpVecCollinderBox[2],tmpVecCollinderBox[3] };
 
 			T* pGameObject = CGame::Instance().getObjectFactory().createObjectByID<T>(e->Attribute("type"));
 
-			pGameObject->load(new CLoadParams(x, y, width, height, textureID, numFrames, objectID,currentRow, spawnTime, callbackID, animSpeed));
+			pGameObject->load(new CLoadParams(x, y, width, height, textureID, numFrames, objectID, &tempColliderBox, currentRow, spawnTime, callbackID, animSpeed));
 
 			auto takewOwnershipPtr = std::unique_ptr<T>{ std::exchange(pGameObject, nullptr) };
 

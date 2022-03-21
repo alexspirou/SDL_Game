@@ -65,6 +65,7 @@ public:
 	inline auto& getObjectFactory()				{ return m_ObjectFactory; }
 	inline auto& getMap()						{ return m_GameMap; }
 	inline auto& getSoundManager()				{ return m_SoundManager; }
+	inline auto& getMapParser()					{ return m_MapParser; }
 private:
 	~CGame()
 	{
