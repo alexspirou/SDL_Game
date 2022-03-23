@@ -25,8 +25,8 @@ void CPlayer::update(double dt)
 
 	if (!applyGravity())
 	{
-		handleKeyBoardEvents();
 	}
+	handleKeyBoardEvents();
 
 	m_Fireball.update(deltaTime);
 	
@@ -43,7 +43,6 @@ void CPlayer::update(double dt)
 
 void CPlayer::jump()
 {
-	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
 	m_velocity = 0;
 	m_textureID = "mainCharIdle";
 
@@ -60,13 +59,8 @@ void CPlayer::jump()
 		m_position = m_position + m_velocity * deltaTime;
 		m_velocity = m_velocity + m_Gravity;
 		CGame::Instance().getSoundManager().playSound("jumpSound", 40);
+	}
 
-	}
-	if (m_RealPosition.m_x < 0)
-	{
-		applyGravity();
-	}
-	
 }
 
 bool CPlayer::applyGravity()
@@ -87,17 +81,15 @@ bool CPlayer::applyGravity()
 void CPlayer::shootFireBall()
 {
 	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
-	//Add operator overloading for comparison
+	// TODO : Add operator overloading for comparison
 	if(m_Fireball.m_position.m_x == m_RealPosition.m_x) CGame::Instance().getSoundManager().playSound("fireBall", 30);
 
 	if(isLookingRight) m_Fireball.m_Velocity.m_x = 40 * deltaTime;
 	else  m_Fireball.m_Velocity.m_x = -40 * deltaTime;
 
-
 	isShooting = true;
 	
 }
-
 
 //void CPlayer::handleMouseMotionEvents()
 //{

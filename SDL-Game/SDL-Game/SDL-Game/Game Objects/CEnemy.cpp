@@ -3,7 +3,6 @@
 #include "../Core/CGame.h"
 CEnemy::CEnemy()
 {
-	CGame::Instance().getSoundManager().loadSound("fuckOff", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/gamath.wav");
 }
 void CEnemy::draw()
 {
