@@ -3,7 +3,7 @@
 #include "ILayer.h"
 #include <string>
 #include <vector>
-#include "../Map/Tile.h"
+#include "../Map/CollisionTile.h"
 //Data structure for tiles data
 struct CTileSet
 {
@@ -16,14 +16,14 @@ struct CTileSet
 class CTileLayer : public ILayer
 {
 public:
-	CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets, std::vector<Tile>* destinatioMapTilesID);
+	CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets, std::vector<CollisionTile>* destinatioMapTilesID);
 	virtual void draw();
 	virtual void update();
 
 	inline auto getTileMap() { return m_TileMap; }
 private:
 
-	void createMapDestinationTilesID(std::vector<Tile>* destinatioMapTilesID);
+	void GetMapColliderIDAndPosition(std::vector<CollisionTile>* destinatioMapTilesID);
 	int m_TileSize;
 	int m_RowCount, m_ColCount;
 	std::vector<std::vector<int>> m_TileMap;	//Tile map, holds indexes for each png, data from xml

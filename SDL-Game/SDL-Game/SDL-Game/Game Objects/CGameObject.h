@@ -7,7 +7,6 @@
 #include "CLoadParams.h"
 #include "../Physics/Vector2D.h"
 #include "../Controllers/CMouseEvents.h"
-#include "Fireballs/CFireBall.h"
 
 class CGameObject : public IObject
 {

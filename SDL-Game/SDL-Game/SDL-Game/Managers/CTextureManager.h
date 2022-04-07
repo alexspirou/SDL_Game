@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <memory>
+#include "../Collision/ColliderBox.h"
 
 class CTextureManager
 {
@@ -27,6 +28,8 @@ public:
 		renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawTile(std::string tilesetID, int tileSize, int x, int y, int row, int fram, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void clearTextureMap(std::string id);
+	void drawColliderBox(SDL_Renderer*, ColliderBox& colliderBox);
+
 
 private:
 

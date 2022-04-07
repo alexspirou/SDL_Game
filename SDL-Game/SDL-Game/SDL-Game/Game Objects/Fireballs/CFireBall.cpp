@@ -18,7 +18,7 @@ void CFireBall::draw()
 }
 void CFireBall::update(double dt)
 {
-	m_ColliderBox.colliderBox = { int(m_position.m_x) + m_width/2, int(m_position.m_y + m_height/2), 61, 59 };
+	m_ColliderBox = { int(m_position.m_x) + m_width/2, int(m_position.m_y + m_height/2), 61, 59 };
 	m_position += m_Velocity;
 
 }

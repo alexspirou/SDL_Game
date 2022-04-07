@@ -15,8 +15,7 @@ public :
 			std::cout << "SAME OBJECT " << std::endl;
 			return false;
 		}
-		//Assign object to its id
-		//m_creators[typeID] = std::move(pCreator);
+		// Assign object to its id
 		m_creators[typeID] = pCreator;
 
 		return true;
@@ -31,13 +30,12 @@ public :
 			std::cout << "could not find type: " << typeID << "\n";
 			return NULL;
 		}
-		//std::unique_ptr<CBaseCreator> pCreator(std::move(it->second));
 		CBaseCreator* pCreator = it->second;
 		return new T();
 	}
 private:
 
-	//std::map<std::string, std::unique_ptr<CBaseCreator>> m_creators;
+	// Map of types that will be used
 	std::map<std::string, CBaseCreator*> m_creators;
 
 };

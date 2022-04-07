@@ -44,17 +44,11 @@ public:
 		else { return *s_Instance; }
 	}
 
-
 	bool init(const char* iTitle, int width, int height, bool foolscreen);
-
 	void render();
-
 	void update(double dt);
-
 	void handleEvents();
-
 	void clean();
-
 	void quit();
 
 	inline auto getRenderer()					{ return m_pRenderer; }

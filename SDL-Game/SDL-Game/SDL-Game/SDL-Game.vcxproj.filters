@@ -63,9 +63,6 @@
     <ClCompile Include="Menu\PauseMenu\CPauseMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Factories\CGameObjectFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="__TinyXML\tinystr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -203,7 +200,7 @@
     <ClInclude Include="Physics\CMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Map\Tile.h">
+    <ClInclude Include="Map\CollisionTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

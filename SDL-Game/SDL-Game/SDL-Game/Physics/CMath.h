@@ -10,7 +10,7 @@
 __MATH_API inline double calculateLength(ColliderBox& gameObject1, ColliderBox& gameObject2)
 {
 
-	return sqrt(((gameObject1.colliderBox.x - gameObject2.colliderBox.x) * (gameObject1.colliderBox.x - gameObject2.colliderBox.x)) + ((gameObject1.colliderBox.y - gameObject2.colliderBox.y) * (gameObject1.colliderBox.y - gameObject2.colliderBox.y)));
+	return sqrt(((gameObject1.x - gameObject2.x) * (gameObject1.x - gameObject2.x)) + ((gameObject1.y - gameObject2.y) * (gameObject1.y - gameObject2.y)));
 }
 
 #endif

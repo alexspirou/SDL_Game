@@ -38,18 +38,18 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 
 		m_bRunning = true;
 
-		//Register objects types from xml
+		// Register objects types from xml
 		m_ObjectFactory.registerTypeID("CPlayer", new CPlayerCreator());
 		m_ObjectFactory.registerTypeID("CStableObject", new CStableObjectsCreator());
 		m_ObjectFactory.registerTypeID("CEnemy", new CEnemyCreator ());
 
-
+		// Parse map data from tile2D exported XML
 		m_MapParser.parseMap("Assets/Map/darkMap.tmx", "MAP");
 		m_GameMap = std::move(m_MapParser.getMap("MAP"));
 		m_MapParser.getTilesIDPos();
 
 
-		//Start main menu		
+		// Start main menu		
 		m_GameStateMachine.reset(new CGameStateMachine);
 		m_GameStateMachine->pushState(std::make_unique<CMenuStates>());
 
@@ -68,7 +68,6 @@ void CGame::render()
 
 	m_GameStateMachine->render();
 	
-
 	SDL_RenderPresent(m_pRenderer);
 }
 void CGame::handleEvents()

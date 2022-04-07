@@ -8,13 +8,13 @@
 #include "ColliderBox.h"
 #include <iostream>
 #include <algorithm>
-#include "../Map/Tile.h"
+#include "../Map/CollisionTile.h"
 
-COLLISIONDETECTION_API inline bool isCollision(ColliderBox& gameObject1, ColliderBox& gameObject2)
+COLLISIONDETECTION_API inline bool isCollision(ColliderBox& colliderBoxObj1, ColliderBox& colliderBoxObj2)
 {
 
-	if (gameObject1.colliderBox.x + gameObject1.colliderBox.w < gameObject2.colliderBox.x + gameObject2.colliderBox.w || gameObject1.colliderBox.x > gameObject2.colliderBox.x + gameObject2.colliderBox.w ||
-		gameObject1.colliderBox.y + gameObject1.colliderBox.h < gameObject2.colliderBox.y || gameObject1.colliderBox.y > gameObject2.colliderBox.y + gameObject2.colliderBox.h)
+	if (colliderBoxObj1.x + colliderBoxObj1.w < colliderBoxObj2.x + colliderBoxObj2.w || colliderBoxObj1.x > colliderBoxObj2.x + colliderBoxObj2.w ||
+		colliderBoxObj1.y + colliderBoxObj1.h < colliderBoxObj2.y || colliderBoxObj1.y > colliderBoxObj2.y + colliderBoxObj2.h)
 	{
 		return false;
 	}
@@ -24,7 +24,7 @@ COLLISIONDETECTION_API inline bool isCollision(ColliderBox& gameObject1, Collide
 		return true;
 	}
 }
-COLLISIONDETECTION_API inline bool isCollision(ColliderBox& gameObject1, std::vector<Tile> vTiles)
+COLLISIONDETECTION_API inline bool isCollision(ColliderBox& colliderBoxObj, std::vector<CollisionTile> vTiles)
 {
 	bool collisionFlag = false;
 	std::vector<int> vTileIndeces;
@@ -39,14 +39,13 @@ COLLISIONDETECTION_API inline bool isCollision(ColliderBox& gameObject1, std::ve
 
 	for (auto& tileIndex : vTileIndeces)
 	{
-		if (gameObject1.colliderBox.x + gameObject1.colliderBox.w < vTiles[tileIndex].x + 16 || gameObject1.colliderBox.x >  vTiles[tileIndex].x + 16 ||
-			gameObject1.colliderBox.y + gameObject1.colliderBox.h < vTiles[tileIndex].y|| gameObject1.colliderBox.y> vTiles[tileIndex].y + 32)
+		if (colliderBoxObj.x + colliderBoxObj.w < vTiles[tileIndex].ColliderBox.x  || colliderBoxObj.x >  vTiles[tileIndex].ColliderBox.x  ||
+			colliderBoxObj.y + colliderBoxObj.h < vTiles[tileIndex].ColliderBox.y  || colliderBoxObj.y > vTiles[tileIndex].ColliderBox.y )
 		{
 			continue;
 		}
 		else
 		{
-			std::cout << "Collision tile" << vTiles[tileIndex].ID << std::endl;
 			return true;
 		}
 	}

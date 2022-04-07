@@ -3,16 +3,16 @@
 #include "../Core/CGame.h"
 #include "../Managers/CTextureManager.h"
 CPlayer::CPlayer() :
-	m_Gravity{0, 2.6}, m_Force{0, 0}, m_Mass{1}
+	m_Gravity{0, 2.9}, m_Force{0, 0}, m_Mass{1} // TODO : Move them to XML
 {
 	CGame::Instance().getSoundManager().loadSound("jumpSound", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/jump.wav");
 	CGame::Instance().getSoundManager().loadSound("fireBall", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/MainChar/Sounds/fireBall.wav ");
-
+	feetCollider = { 0,0,0,0 };
 }
-void CPlayer::draw()
+void CPlayer::drawFrame()
 {
 	m_Fireball.draw();
-
+	//CTextureManager::Instance().drawColliderBox(CGame::Instance().getRenderer(), feetCollider);
 	CGameObject::drawFrame();
 }
 
@@ -25,19 +25,20 @@ void CPlayer::update(double dt)
 
 	if (!applyGravity())
 	{
+		handleKeyBoardEvents();
 	}
-	handleKeyBoardEvents();
 
 	m_Fireball.update(deltaTime);
 	
 	m_Force += m_Gravity;
 	m_Force  = (m_Force / m_Mass )* dt;	
-	m_position += m_velocity;
+
 
 	CGameObject::update(dt);
+
+	feetCollider = { m_ColliderBox.x, m_ColliderBox.y + m_ColliderBox.h, 40, 10 };
+
 }
-
-
 
 // Private Functions
 
@@ -60,13 +61,12 @@ void CPlayer::jump()
 		m_velocity = m_velocity + m_Gravity;
 		CGame::Instance().getSoundManager().playSound("jumpSound", 40);
 	}
-
 }
-
 bool CPlayer::applyGravity()
 {
 	if (isFall)
 	{ 
+		m_Gravity.m_y = 2;
 		m_velocity = m_velocity + m_Gravity  * deltaTime;
 		m_position = m_position + m_velocity * deltaTime; 
 		return true;
@@ -81,7 +81,7 @@ bool CPlayer::applyGravity()
 void CPlayer::shootFireBall()
 {
 	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
-	// TODO : Add operator overloading for comparison
+	//Add operator overloading for comparison
 	if(m_Fireball.m_position.m_x == m_RealPosition.m_x) CGame::Instance().getSoundManager().playSound("fireBall", 30);
 
 	if(isLookingRight) m_Fireball.m_Velocity.m_x = 40 * deltaTime;
@@ -148,9 +148,7 @@ void CPlayer::move(float velocity)
 	}
 	else 
 	{
-		
 		m_velocity = 0;
-
 	}
 }
 

@@ -15,7 +15,7 @@ public:
 
 private:
 	bool moveRight = true;
-	bool isNear = false;
+
 };
 
 class CEnemyCreator : public CBaseCreator

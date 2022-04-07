@@ -11,12 +11,13 @@ public:
 	CPlayer();
 	virtual ~CPlayer() = default;
 
-	virtual void draw();
+	virtual void drawFrame();
 	virtual void update(double dt);
 	virtual void clean();
 	CFireBall& getFireball() { return m_Fireball; }
 
 	bool isFall = false;
+	ColliderBox feetCollider;
 private:
 
 	Vector2D m_Gravity;

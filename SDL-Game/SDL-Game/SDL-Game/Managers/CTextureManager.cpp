@@ -57,3 +57,9 @@ void CTextureManager::clearTextureMap(std::string id)
 	SDL_DestroyTexture(m_TextureMap.find(id)->second);
 	m_TextureMap.erase(id);
 }
+
+void CTextureManager::drawColliderBox(SDL_Renderer* renderer, ColliderBox& colliderBox)
+{
+	SDL_RenderFillRect(renderer, new SDL_Rect{ colliderBox.x, colliderBox.y, colliderBox.w, colliderBox.h });
+
+}

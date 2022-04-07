@@ -15,34 +15,35 @@ void CPlayerStates::update(double dt)
         CGame::Instance().getStateMachine()->changeState(std::make_unique<CPauseStates>());
         std::cout << sizeof(CGame::Instance().getStateMachine()) / 4 << std::endl;
     }
-   // Update gameobjects
-    for (auto& object : m_vGameObjects){ object->update(dt); }
 
+    // Update player
     m_Player->update(dt);
 
+    // Update gameobjects
+    for (auto& object : m_vGameObjects){ object->update(dt); }
+    // Update all enemies
     for (auto& enemy : m_vEnemies) { enemy->update(dt); }
-    for (auto& enemy : m_vEnemies)
-    { 
-        calculateLength(m_Player->getCollinder(), enemy->getCollinder());
-
-    }
+    // Calculate length with player of all enemies
+    for (auto& enemy : m_vEnemies){  calculateLength(m_Player->getCollinder(), enemy->getCollinder()); }
+    // Check collision for player and enemies
     for (auto& enemy : m_vEnemies) { isCollision(m_Player->getCollinder(), enemy->getCollinder()); }
+    // Check collision for player's fireballs and enemies
     for (auto& enemy : m_vEnemies) 
     { 
         if (isCollision(m_Player->getFireball().getColliderBox(), enemy->getCollinder()))
         {
-            //std::cout <<  enemy->getObjectID() << " got hit " << std::endl;
+            // TODO : Do something
         }
     }
 
-    if (isCollision(m_Player->getCollinder(), CGame::Instance().getMapParser().m_TilesIDPos))
+    // Check collision for gravity
+    if (isCollision(m_Player->feetCollider, CGame::Instance().getMapParser().m_vTilesIDPos))
     {
         m_Player->isFall = false;
     }
     else
     {
         m_Player->isFall = true;
-
     }
     
 }
@@ -50,11 +51,17 @@ void CPlayerStates::render()
 {
     for (auto& object : m_vGameObjects) { object->drawFrame(); }
 
-    m_Player->draw();
+    m_Player->drawFrame();
 
-    for (auto& enemy : m_vEnemies){ enemy->drawFrame(); }
+    for (auto& enemy : m_vEnemies) { enemy->drawFrame(); }
+
+    for (auto& collisioNTile: CGame::Instance().getMapParser().m_vTilesIDPos)
+    {
+        CTextureManager::Instance().drawColliderBox(CGame::Instance().getRenderer(), collisioNTile.ColliderBox);
+    }
 
     CGame::Instance().getMap()->draw();
+
 
 }
 

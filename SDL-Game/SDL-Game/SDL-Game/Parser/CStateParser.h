@@ -9,6 +9,7 @@
 #include "../Managers/CTextureManager.h"
 
 class GameObject;
+// CStateParser retrieve data for sprites from an XML 
 class CStateParser
 {
 public:

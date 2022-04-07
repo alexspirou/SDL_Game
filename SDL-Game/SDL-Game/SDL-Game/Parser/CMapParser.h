@@ -7,7 +7,7 @@
 #include "../Map/CTileLayer.h"
 
 #include "../__TinyXML/tinyxml.h"
-#include "../Map/Tile.h"
+#include "../Map/CollisionTile.h"
 
 class CMapParser
 {
@@ -15,11 +15,11 @@ class CMapParser
 public:
 	bool parseMap(std::string mapXMLPath, std::string  id);
 	inline CGameMap* getMap(std::string id) { return m_MapDict[id]; }
-	inline auto getTilesIDPos() { return m_TilesIDPos;  }
-	std::vector<Tile> m_TilesIDPos;
+	inline auto getTilesIDPos() { return m_vTilesIDPos;  }
+	std::vector<CollisionTile> m_vTilesIDPos;
 private:
 	CTileSet parseTileSet(TiXmlElement* xmlTileSate);
-	CTileLayer*  parseData(TiXmlElement* xmlData, std::vector<CTileSet> tileSet, int tileSize, int rows, int cols, std::vector<Tile>* tilesIDpos);
+	CTileLayer*  parseData(TiXmlElement* xmlData, std::vector<CTileSet> tileSet, int tileSize, int rows, int cols, std::vector<CollisionTile>* tilesIDpos);
 
 	std::map<std::string, CGameMap*> m_MapDict;
 

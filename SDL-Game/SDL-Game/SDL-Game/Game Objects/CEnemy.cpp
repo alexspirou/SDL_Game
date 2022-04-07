@@ -25,19 +25,19 @@ void CEnemy::move(double velocity)
 	if (moveRight)
 	{
 		m_velocity.m_x = velocity * deltaTime;
-		if (m_ColliderBox.colliderBox.x> SCREEN_WIDTH - m_ColliderBox.colliderBox.w)
+		if (m_ColliderBox.x> SCREEN_WIDTH - m_ColliderBox.w)
 			moveRight = false;
 		m_FlipSiderRender = SDL_FLIP_NONE;
 	}
 	else if (!moveRight)
 	{
 		m_velocity.m_x = -velocity * deltaTime;
-		if (m_ColliderBox.colliderBox.x < 0)
+		if (m_ColliderBox.x < 0)
 			moveRight = true;
 		m_FlipSiderRender = SDL_FLIP_HORIZONTAL;
 
 	}
-	std::cout << m_ColliderBox.colliderBox.x << std::endl;
+	std::cout << m_ColliderBox.x << std::endl;
 }
 void CEnemy::clean()
 {

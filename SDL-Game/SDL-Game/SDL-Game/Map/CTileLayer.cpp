@@ -1,16 +1,18 @@
 #include "CTileLayer.h"
 #include "../Managers/CTextureManager.h"
 #include "../Core/CGame.h"
-CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets, std::vector<Tile>* destinatioMapTilesID)
+CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets, std::vector<CollisionTile>* destinatioMapTilesID)
 {
 	m_TileSize = tileSize;
 	m_RowCount = rowCount; m_ColCount = colCount;
 	m_TileMap = std::move(tileMap); m_vTileSets = tileSets;
+
+	// Load all tiles from tilemap png
 	for (auto& tileSet : m_vTileSets)
 	{
 		CTextureManager::Instance().loadImage(tileSet.sourcePNG , tileSet.name, CGame::Instance().getRenderer());
 	}
-	createMapDestinationTilesID(destinatioMapTilesID);
+	GetMapColliderIDAndPosition(destinatioMapTilesID);
 }
 
 void CTileLayer::draw()
@@ -41,6 +43,7 @@ void CTileLayer::draw()
 				tileSet.TileSize = 16;
 				int rowFromTilePng = currentTileID / tileSet.ColCount;
 				int colFromTilePng = currentTileID - rowFromTilePng * tileSet.ColCount - 1;
+
 				//if (currentTileID % tileSet.ColCount == 0)
 				//{
 				//	rowFromTilePng--;
@@ -61,7 +64,7 @@ void CTileLayer::update()
 {
 }
 
-void CTileLayer::createMapDestinationTilesID(std::vector<Tile>* destinatioMapTilesID)
+void CTileLayer::GetMapColliderIDAndPosition(std::vector<CollisionTile>* destinatioMapTilesID)
 {
 
 	for (auto layerRow = 0; layerRow < m_RowCount; layerRow++)
@@ -82,7 +85,7 @@ void CTileLayer::createMapDestinationTilesID(std::vector<Tile>* destinatioMapTil
 				int colFromTilePng = currentTileID - rowFromTilePng * tileSet.ColCount - 1;
 				auto destX = layerCol * tileSet.TileSize; auto destY = layerRow * tileSet.TileSize;
 
-				Tile tempTile{ currentTileID , destX, destY };
+				CollisionTile tempTile{ currentTileID , destX, destY };
 				destinatioMapTilesID->push_back(tempTile);
 			}
 		}

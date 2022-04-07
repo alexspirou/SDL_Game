@@ -9,11 +9,10 @@
  <texture filename="Assets/MainChar/Attack2.png" ID="mainCharAttack2"/>
  <texture filename="Assets/MainChar/fall.png" ID="mainCharFall"/>
  <texture filename="Assets/MainChar/Death.png" ID="mainCharDeath"/>
-
 </TEXTURES>
 <OBJECTS>
-  <object type="CPlayer" objectID = "Player1" x="50" y="100" width="250"
-  height="250" colliderBox = "0,0,40,82" textureID="mainCharIdle" numFrames="8" currentRow = "0"
+  <object type="CPlayer" objectID = "Player1" x="50" y="300" width="250"
+  height="250" colliderBox = "0,0,40,80" textureID="mainCharIdle" numFrames="8" currentRow = "0"
   callbackID="1"/>
 </OBJECTS>
 </PLAY>
