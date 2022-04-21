@@ -20,7 +20,6 @@ public:
 	virtual Vector2D getPosition() { return m_position; }
 	virtual std::string getTextureID() { return m_textureID; }
 	std::string getObjectID() { return m_ObjectID; }
-	double calculateLength(CGameObject* gameObject);
 	inline ColliderBox& getCollinder() { return m_ColliderBox; }
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }

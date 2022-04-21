@@ -17,7 +17,7 @@ public:
 private:
 	
 	std::unique_ptr<CPauseMenu> m_PauseMenu;
-	static void s_PauseCallback(int* oCurrentFram);
+	static void s_PauseCallback(int* oCurrentFram); // callback should be static
 	const std::string m_MenuID{ "PAUSE MENU" };
 };
 

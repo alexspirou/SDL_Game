@@ -1,19 +1,5 @@
 ﻿  Scanning sources for module dependencies...
-  CPlayer.cpp
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(7,1): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(34,24): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(34,34): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(53,42): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(60,42): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(70,42): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(71,42): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(87,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(88,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(137,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(145,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(162,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.cpp(167,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  CPlayerStates.cpp
 D:\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Core\CGame.h(45): warning C4715: 'CGame::Instance': not all control paths return a value
   SDL-Game.vcxproj -> D:\repos\SDL_Game\SDL-Game\SDL-Game\x64\Debug\SDL-Game.exe
   0 File(s) copied

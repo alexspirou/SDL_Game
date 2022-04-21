@@ -35,7 +35,7 @@ void CPlayer::update(double dt)
 
 
 	CGameObject::update(dt);
-
+	// Update feet collider
 	feetCollider = { m_ColliderBox.x, m_ColliderBox.y + m_ColliderBox.h, 40, 10 };
 
 }
@@ -82,7 +82,7 @@ void CPlayer::shootFireBall()
 {
 	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
 	//Add operator overloading for comparison
-	if(m_Fireball.m_position.m_x == m_RealPosition.m_x) CGame::Instance().getSoundManager().playSound("fireBall", 30);
+	if(m_Fireball.m_position.m_x == m_RealPosition.m_x) CGame::Instance().getSoundManager().playSound("fireBall", 15);
 
 	if(isLookingRight) m_Fireball.m_Velocity.m_x = 40 * deltaTime;
 	else  m_Fireball.m_Velocity.m_x = -40 * deltaTime;
@@ -110,8 +110,8 @@ void CPlayer::handleKeyBoardEvents()
 	bool attack2 = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_W);
 	bool isJumpPressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_D);
 	
-	if		(moveRight)		{  move(6); m_textureID = "mainCharWalkRight";  m_TotalFrames =  8;	}
-	else if (moveLeft)		{  move(-6); m_textureID = "mainCharWalkRight"; m_TotalFrames = 8;		}
+	if		(moveRight)		{  move(10); m_textureID = "mainCharWalkRight";  m_TotalFrames =  8;	}
+	else if (moveLeft)		{  move(-10); m_textureID = "mainCharWalkRight"; m_TotalFrames = 8;		}
 	else if (moveUp)		{  moveUpDown(-10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;	}
 	else if (moveDown)		{  moveUpDown(10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;		}
 	else if (attack1)		{  shootFireBall(); move(0); m_textureID = "mainCharAttack1"; m_TotalFrames = 8; }
@@ -136,7 +136,6 @@ void CPlayer::move(float velocity)
 		m_FlipSiderRender = SDL_FLIP_HORIZONTAL;
 		m_velocity.m_x = velocity * deltaTime;
 		m_velocity.m_y = 0;
-
 	}
 	else if (velocity > 0)
 	{

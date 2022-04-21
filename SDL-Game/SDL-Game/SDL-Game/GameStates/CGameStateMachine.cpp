@@ -1,7 +1,6 @@
 #include "CGameStateMachine.h"
 void CGameStateMachine::update(double dt)
 {
-	//Update objects of chosen state
 	if (!m_gameStates.empty())
 	{
 		m_gameStates.back()->update(dt);
@@ -9,13 +8,10 @@ void CGameStateMachine::update(double dt)
 }
 void CGameStateMachine::render()
 {
-
-	//Render chosen states objects
 	if (!m_gameStates.empty())
 	{
 		m_gameStates.back()->render();
 	}
-
 }
 //Add a new state
 void CGameStateMachine::pushState(std::unique_ptr<IGameStates>&& pState)
@@ -34,6 +30,7 @@ void CGameStateMachine::changeState(std::unique_ptr< IGameStates>&& pState)
 		{
 			return; //Do nothing
 		}
+		m_gameStates.back()->onExit();
 	}
 	m_gameStates.push_back(std::move(pState));
 

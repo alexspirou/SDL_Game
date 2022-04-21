@@ -14,9 +14,7 @@ void CEnemy::update(double dt)
 {
 
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
-	m_currentRow = 0;
 
-	
 	CGameObject::update(dt);
 
 }

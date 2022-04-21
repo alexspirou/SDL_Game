@@ -12,13 +12,8 @@ public:
 	virtual void update(double dt) override;
 	virtual void clean();
 
-
 private:
 
 	void (*m_callback)();
-
-
-
-
 };
 

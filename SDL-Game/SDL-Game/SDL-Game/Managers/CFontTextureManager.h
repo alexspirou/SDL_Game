@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 static TTF_Font* font = NULL;
+// A Structure with all data to create a font
 struct FontStruct
 {
     FontStruct(int x, int y, int w, int h, SDL_Color color) : x{ x }, y{ y }, w{ w }, h{ h }, color{ color } { }
@@ -13,12 +14,12 @@ struct FontStruct
 };
 class CFontTextureManager
 {
-
 public:
     CFontTextureManager();
     bool loadFont(const char* path, int fontSize);
-    void renderText(std::string textToRender, FontStruct fontStruct, int side);
+    void renderText(std::string textToRender, FontStruct* fontStruct, int side);
     void renderScore(int score, SDL_Color colour);
+
 private:
     TTF_Font* font;
     SDL_Color wht = { 180,0,0 };

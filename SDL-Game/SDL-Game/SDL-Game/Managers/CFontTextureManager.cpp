@@ -20,24 +20,18 @@ bool CFontTextureManager::loadFont(const char* path, int fontSize)
     return true;
 }
 
-void CFontTextureManager::renderText(std::string textToRender, FontStruct fontStruct , int side)
+void CFontTextureManager::renderText(std::string textToRender, FontStruct* fontStruct , int side)
 {
     //If there was an error in rendering the text
     const char* textToCharPtr = textToRender.c_str();
-    message = TTF_RenderText_Solid(font, textToCharPtr, fontStruct.color);
+    message = TTF_RenderText_Solid(font, textToCharPtr, fontStruct->color);
 
     auto render = CGame::Instance().getRenderer();
 
     texture = SDL_CreateTextureFromSurface(render, message);
 
-    SDL_Rect dest;
-    //right 
-    if (side == 0) dest = { fontStruct.x - message->w ,fontStruct.y  ,fontStruct.w + message->w, fontStruct.h + message->h };
-    //left
-    else if (side == 1) dest = { fontStruct.x  , fontStruct.y  , fontStruct.w + message->w,fontStruct.h + message->h };
-
-    SDL_RendererFlip flip{};
-    SDL_RenderCopyEx(render, texture, 0, &dest, 0, nullptr, flip);
+    SDL_Rect dest = { fontStruct->x  , fontStruct->y   , fontStruct->w ,fontStruct->h  };
+    SDL_RenderCopyEx(render, texture, 0, &dest, 0, nullptr, SDL_FLIP_NONE);
 
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(message);
