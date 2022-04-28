@@ -1,4 +1,4 @@
 # SDL_Game
 
-## Game preview
+## Game preview (In Progress)
 ![](/SDL-Game/SDL-Game/SDL-Game/Assets/gamePreview.gif)
