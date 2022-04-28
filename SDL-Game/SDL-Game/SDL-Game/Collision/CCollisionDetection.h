@@ -31,7 +31,7 @@ COLLISIONDETECTION_API inline bool isCollision(ColliderBox& colliderBoxObj, std:
 
 	for (int i = 0; i < vTiles.size(); i++)
 	{
-		if (vTiles[i].ID == 10)
+		if (vTiles[i].ID == 10 || vTiles[i].ID == 11)
 		{
 			vTileIndeces.push_back(i);
 		}

@@ -24,5 +24,6 @@ private:
 	std::vector<std::unique_ptr<CEnemy>> m_vEnemies;
 	std::vector<std::string> m_TexturesIDs;
 	std::unique_ptr<CGameObject> m_BackGround;
+	int m_MapFrame = 0;
 };
 

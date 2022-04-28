@@ -8,6 +8,7 @@
 <texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles1"/>
 <texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles2"/>
 <texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles3"/>
+
 </TEXTURES>
 <OBJECTS>
   <object type="CStableObject" objectID = "MainBackground" x="0" y="0" width="960"
@@ -30,9 +31,10 @@
   height="90" colliderBox = "0,0,0,0" textureID="tenctacles3" numFrames="8" currentRow = "0"
   spawnTime = "1"
   callbackID="2"/>
+
+
 </OBJECTS>
 </STABLEOBJECTS>
-
 
 <GAMEOVER>
 </GAMEOVER>

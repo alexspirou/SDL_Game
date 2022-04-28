@@ -1,5 +1,6 @@
 #pragma once
 #include"ILayer.h"
+#include "CollisionTile.h"
 #include <vector>
 #include <memory>
 class CGameMap
@@ -11,24 +12,34 @@ public:
 	}
 	CGameMap() = default;
 	//Draw all layers from vector
-	virtual void draw()
+	void draw(int frame)
 	{
 		for (auto& layer : m_vMapLayers)
 		{
-			layer->draw();
+			layer->draw(frame);
 		}
 	}
-	virtual void update()
+	void update(int frame)
 	{
 		for (auto& layer : m_vMapLayers)
 		{
-			layer->update();
+			layer->update(frame);
 		}
 	}
-	std::map<int, std::vector<int>> m_PositionTileIDMap;
+	void GetMapColliderIDAndPosition(int frame)
+	{
+		for (auto& layer : m_vMapLayers)
+		{
+			layer->GetMapColliderIDAndPosition(&m_vTilesIDPos, frame);
+		}
+	}
+	inline auto getTilesIDPos() { return m_vTilesIDPos; }
+
 	std::vector<ILayer*> getMapLayers() const { return m_vMapLayers; }
 	std::vector<ILayer*> m_vMapLayers;
 
 private:
+
+	std::vector<CollisionTile> m_vTilesIDPos;
 
 };

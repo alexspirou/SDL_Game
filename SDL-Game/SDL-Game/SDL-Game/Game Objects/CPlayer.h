@@ -15,13 +15,14 @@ public:
 	virtual void update(double dt);
 	virtual void clean();
 	CFireBall& getFireball() { return m_Fireball; }
-
+	void setPositionX(int x) { m_position.m_x = x; }
 	bool isFall = false;
 	ColliderBox feetCollider;
 private:
 
 	Vector2D m_Gravity;
 	Vector2D m_Force;
+
 	double m_Mass;
 	int m_TimeTillRevive;
 	bool isLookingRight = true;

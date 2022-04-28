@@ -23,20 +23,22 @@ bool CPlayerStates::onEnter()
 void CPlayerStates::update(double dt)
 {
     auto isESCpressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_ESCAPE);
-    auto isZeroPressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_0);
-
-
     if (isESCpressed)
     {
         CGame::Instance().getStateMachine()->changeState(std::make_unique<CPauseStates>());
     }
 
-    if (isZeroPressed)
-    {
-        CGame::Instance().getStateMachine()->changeState(std::make_unique<CGameOverState>());
-    }
     // Update player
     m_Player->update(dt);
+
+    if (m_Player->getCollinder().x - m_Player->getCollinder().w > SCREEN_WIDTH)
+    {
+        // TODO : Change tiles in map
+        m_MapFrame ++;
+        CGame::Instance().getMap()->GetMapColliderIDAndPosition(m_MapFrame);
+        m_Player->setPositionX(-m_Player->getWidth()/2);
+    }
+
 
     // Update gameobjects
     for (auto& object : m_vGameObjects){ object->update(dt); }
@@ -56,7 +58,7 @@ void CPlayerStates::update(double dt)
     }
 
     // Check collision for gravity
-    if (isCollision(m_Player->feetCollider, CGame::Instance().getMapParser().m_vTilesIDPos))
+    if (isCollision(m_Player->feetCollider, CGame::Instance().getMap()->getTilesIDPos()))
     {
         m_Player->isFall = false;
     }
@@ -66,6 +68,9 @@ void CPlayerStates::update(double dt)
     }
 
     if(m_Player->feetCollider.y > SCREEN_HEIGHT) { CGame::Instance().getStateMachine()->changeState(std::make_unique<CGameOverState>()); }
+
+    CGame::Instance().getMap()->update(m_MapFrame);
+
     
 }
 void CPlayerStates::render()
@@ -76,24 +81,23 @@ void CPlayerStates::render()
 
     for (auto& enemy : m_vEnemies) { enemy->drawFrame(); }
 
-    for (auto& collisioNTile: CGame::Instance().getMapParser().m_vTilesIDPos)
+    for (auto& collisioNTile: CGame::Instance().getMap()->getTilesIDPos())
     {
-        CTextureManager::Instance().drawColliderBox(CGame::Instance().getRenderer(), collisioNTile.ColliderBox);
+       CTextureManager::Instance().drawColliderBox(CGame::Instance().getRenderer(), collisioNTile.ColliderBox);
     }
 
-    CGame::Instance().getMap()->draw();
+    CGame::Instance().getMap()->draw(m_MapFrame);
 
 }
-
-
 
 bool CPlayerStates::onExit()
 {
     std::cout << __FUNCSIG__ << std::endl;
 
+    CGame::Instance().getMap()->GetMapColliderIDAndPosition(0);
+
     for (auto& textures : m_TexturesIDs)
     {
-        std::cout << textures << std::endl;
         CTextureManager::Instance().clearTextureMap(textures);
     }
     std::cout << "CLEANED SUCCESFULL" << std::endl;

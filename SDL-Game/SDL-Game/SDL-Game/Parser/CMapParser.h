@@ -15,11 +15,9 @@ class CMapParser
 public:
 	bool parseMap(std::string mapXMLPath, std::string  id);
 	inline CGameMap* getMap(std::string id) { return m_MapDict[id]; }
-	inline auto getTilesIDPos() { return m_vTilesIDPos;  }
-	std::vector<CollisionTile> m_vTilesIDPos;
 private:
 	CTileSet parseTileSet(TiXmlElement* xmlTileSate);
-	CTileLayer*  parseData(TiXmlElement* xmlData, std::vector<CTileSet> tileSet, int tileSize, int rows, int cols, std::vector<CollisionTile>* tilesIDpos);
+	CTileLayer*  parseData(TiXmlElement* xmlData, std::vector<CTileSet> tileSet, int tileSize, int rows, int cols);
 
 	std::map<std::string, CGameMap*> m_MapDict;
 

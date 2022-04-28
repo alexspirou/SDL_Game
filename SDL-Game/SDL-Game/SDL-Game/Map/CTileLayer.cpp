@@ -1,7 +1,8 @@
 #include "CTileLayer.h"
 #include "../Managers/CTextureManager.h"
 #include "../Core/CGame.h"
-CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets, std::vector<CollisionTile>* destinatioMapTilesID)
+#include "../ScreenDimentions.h"
+CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std::vector<int>> tileMap, std::vector<CTileSet> tileSets)
 {
 	m_TileSize = tileSize;
 	m_RowCount = rowCount; m_ColCount = colCount;
@@ -12,11 +13,11 @@ CTileLayer::CTileLayer(int tileSize, int rowCount, int colCount, std::vector<std
 	{
 		CTextureManager::Instance().loadImage(tileSet.sourcePNG , tileSet.name, CGame::Instance().getRenderer());
 	}
-	GetMapColliderIDAndPosition(destinatioMapTilesID);
 }
 
-void CTileLayer::draw()
+void CTileLayer::draw(int frame)
 {
+
 	for (auto layerRow = 0; layerRow < m_RowCount; layerRow++)
 	{
 		for (auto layerCol = 0; layerCol < m_ColCount; layerCol++)
@@ -51,21 +52,26 @@ void CTileLayer::draw()
 				//}
 				auto destX = layerCol * tileSet.TileSize; auto destY = layerRow * tileSet.TileSize;
 
-				CTextureManager::Instance().drawTile(tileSet.name, tileSet.TileSize, destX,
+				if (currentTileID == 10) destX++;
+				CTextureManager::Instance().drawTile(tileSet.name, tileSet.TileSize, destX - SCREEN_WIDTH*frame,
 					destY, rowFromTilePng, colFromTilePng, CGame::Instance().getRenderer());
-
+			
 			}
 		}
 	}
 
 }
 
-void CTileLayer::update()
+void CTileLayer::update(int frame)
 {
+
+
 }
 
-void CTileLayer::GetMapColliderIDAndPosition(std::vector<CollisionTile>* destinatioMapTilesID)
+void CTileLayer::GetMapColliderIDAndPosition(std::vector<CollisionTile>* destinatioMapTilesID, int frame)
 {
+
+	destinatioMapTilesID->clear();
 
 	for (auto layerRow = 0; layerRow < m_RowCount; layerRow++)
 	{
@@ -74,7 +80,7 @@ void CTileLayer::GetMapColliderIDAndPosition(std::vector<CollisionTile>* destina
 			int currentTileID = m_TileMap[layerRow][layerCol];
 			int holdTileID = currentTileID;
 
-			if (currentTileID == 10)
+			if (currentTileID == 10 || currentTileID == 11)
 			{
 				int index = 0;
 				int tilesetSize = m_vTileSets.size();
@@ -85,7 +91,7 @@ void CTileLayer::GetMapColliderIDAndPosition(std::vector<CollisionTile>* destina
 				int colFromTilePng = currentTileID - rowFromTilePng * tileSet.ColCount - 1;
 				auto destX = layerCol * tileSet.TileSize; auto destY = layerRow * tileSet.TileSize;
 
-				CollisionTile tempTile{ currentTileID , destX, destY };
+				CollisionTile tempTile{ currentTileID , destX - SCREEN_WIDTH * frame, destY };
 				destinatioMapTilesID->push_back(tempTile);
 			}
 		}

@@ -10,8 +10,6 @@
 #include "../Game Objects/CEnemy.h"
 #include <typeinfo>
 #include "../Parser/CMapParser.h"
-//Static game variable initilazation
-//CGame* CGame::s_Instance = 0;
 
 bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 {
@@ -42,13 +40,11 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 		m_ObjectFactory.registerTypeID("CPlayer", new CPlayerCreator());
 		m_ObjectFactory.registerTypeID("CStableObject", new CStableObjectsCreator());
 		m_ObjectFactory.registerTypeID("CEnemy", new CEnemyCreator ());
-		m_ObjectFactory.registerTypeID("CGameOver", new CEnemyCreator());
 
 		// Parse map data from tile2D exported XML
 		m_MapParser.parseMap("Assets/Map/darkMap.tmx", "MAP");
 		m_GameMap = std::move(m_MapParser.getMap("MAP"));
-		m_MapParser.getTilesIDPos();
-
+		m_GameMap->GetMapColliderIDAndPosition(0);
 
 		// Start main menu		
 		m_GameStateMachine.reset(new CGameStateMachine);

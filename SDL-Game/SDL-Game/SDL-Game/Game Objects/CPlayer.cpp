@@ -27,7 +27,15 @@ void CPlayer::update(double dt)
 	{
 		handleKeyBoardEvents();
 	}
+	else
+	{
+		bool moveRight = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_RIGHT);
+		bool moveLeft = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_LEFT);
 
+		if(moveRight && !isLookingRight) move(10);
+		if (moveLeft && isLookingRight) move(-10);
+
+	}
 	m_Fireball.update(deltaTime);
 	
 	m_Force += m_Gravity;
@@ -49,16 +57,20 @@ void CPlayer::jump()
 
 	if (isLookingRight) 
 	{
-		m_velocity.m_x = 4 ; m_velocity.m_y = -10;
+		m_velocity.m_x = 5; 
+		m_velocity.m_y = -10;
 		m_position = m_position + m_velocity * deltaTime;
 		m_velocity = m_velocity + m_Gravity;
+
 		CGame::Instance().getSoundManager().playSound("jumpSound", 40);
 	}
 	else if (!isLookingRight)
 	{
-		m_velocity.m_x = -4; m_velocity.m_y = -10;
+		m_velocity.m_x = -5;
+		m_velocity.m_y = -10;
 		m_position = m_position + m_velocity * deltaTime;
 		m_velocity = m_velocity + m_Gravity;
+
 		CGame::Instance().getSoundManager().playSound("jumpSound", 40);
 	}
 }
@@ -110,13 +122,14 @@ void CPlayer::handleKeyBoardEvents()
 	bool attack2 = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_W);
 	bool isJumpPressed = CGame::Instance().getKeyboardEvents().isKeyDown(SDL_SCANCODE_D);
 	
-	if		(moveRight)		{  move(10); m_textureID = "mainCharWalkRight";  m_TotalFrames =  8;	}
+	if	(moveRight)		{  move(20); m_textureID = "mainCharWalkRight";  m_TotalFrames =  8;	}
 	else if (moveLeft)		{  move(-10); m_textureID = "mainCharWalkRight"; m_TotalFrames = 8;		}
+	else if (isJumpPressed) { jump(); std::cout << "jump" << std::endl;
+	}
 	else if (moveUp)		{  moveUpDown(-10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;	}
 	else if (moveDown)		{  moveUpDown(10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;		}
 	else if (attack1)		{  shootFireBall(); move(0); m_textureID = "mainCharAttack1"; m_TotalFrames = 8; }
 	else if (attack2)		{  move(0);  m_textureID = "mainCharAttack2"; m_TotalFrames = 8;		}
-	else if (isJumpPressed) {  jump();																}
 	else
 	{
 		m_textureID = "mainCharIdle";
@@ -128,16 +141,15 @@ void CPlayer::handleKeyBoardEvents()
 void CPlayer::move(float velocity)
 {
 	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
-	m_velocity = 0;
 
-	if (m_RealPosition.m_x >= 0  && velocity < 0)
+	if (m_RealPosition.m_x >= 0  && velocity < 0 && !isFall)
 	{
 		isLookingRight = false;
 		m_FlipSiderRender = SDL_FLIP_HORIZONTAL;
 		m_velocity.m_x = velocity * deltaTime;
 		m_velocity.m_y = 0;
 	}
-	else if (velocity > 0)
+	else if (velocity > 0 && !isFall)
 	{
 		isLookingRight = true;
 		m_FlipSiderRender = SDL_FLIP_NONE;
@@ -145,9 +157,24 @@ void CPlayer::move(float velocity)
 		m_velocity.m_y = 0;
 
 	}
-	else 
+	else if(!isFall)
 	{
 		m_velocity = 0;
+	}
+
+	// Moving whlie is junping
+	else if (m_RealPosition.m_x >= 0 && velocity < 0 &&  isFall)
+	{
+		isLookingRight = false;
+		m_FlipSiderRender = SDL_FLIP_HORIZONTAL;
+		m_velocity.m_x = velocity * deltaTime;
+	}
+	else if (velocity > 0 && isFall)
+	{
+		isLookingRight = true;
+		m_FlipSiderRender = SDL_FLIP_NONE;
+		m_velocity.m_x = velocity * deltaTime;
+
 	}
 }
 
