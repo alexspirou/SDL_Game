@@ -25,5 +25,9 @@ private:
 	std::vector<std::string> m_TexturesIDs;
 	std::unique_ptr<CGameObject> m_BackGround;
 	int m_MapFrame = 0;
+
+
+	void changeMapLevel();
+	bool isGameOver();
 };
 

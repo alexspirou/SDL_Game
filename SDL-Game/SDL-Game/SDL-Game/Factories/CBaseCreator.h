@@ -7,6 +7,8 @@
 class CBaseCreator
 {
 public:
-	virtual CGameObject* createGameObject() const = 0;
+	//virtual CGameObject* createGameObject() const = 0;
+	virtual IObject* createGameObject() const = 0;
+
 	virtual ~CBaseCreator() = default;
 };

@@ -146,6 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game Objects\Fireballs\CPlayerFireBall.cpp" />
+    <ClCompile Include="Game Objects\Fireballs\CEnemyFireBall.cpp" />
     <ClCompile Include="GameStates\CGameOver.cpp" />
     <ClCompile Include="GameStates\CGameOverState.cpp" />
     <ClCompile Include="Game Objects\Fireballs\CFireBall.cpp" />
@@ -176,6 +178,8 @@
     <ClCompile Include="__TinyXML\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game Objects\Fireballs\CPlayerFireBall.h" />
+    <ClInclude Include="Game Objects\Fireballs\CEnemyFireBall.h" />
     <ClInclude Include="GameStates\CGameOver.h" />
     <ClInclude Include="GameStates\CGameOverState.h" />
     <ClInclude Include="Map\CollisionTile.h" />

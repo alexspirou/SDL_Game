@@ -2,16 +2,22 @@
 #include "../ScreenDimentions.h"
 #include "../Core/CGame.h"
 #include "../Managers/CTextureManager.h"
+#include "../Parser/CStateParser.h"
+
 CPlayer::CPlayer() :
 	m_Gravity{0, 2.9}, m_Force{0, 0}, m_Mass{1} // TODO : Move them to XML
 {
-	CGame::Instance().getSoundManager().loadSound("jumpSound", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/jump.wav");
-	CGame::Instance().getSoundManager().loadSound("fireBall", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/MainChar/Sounds/fireBall.wav ");
+	CGame::Instance().getSoundManager().loadSound("jumpSound", "Assets/Music/jump.wav");
+	CGame::Instance().getSoundManager().loadSound("fireBall", "Assets/MainChar/Sounds/fireBall.wav ");
 	feetCollider = { 0,0,0,0 };
+	CStateParser stateParser;
+
+	stateParser.parseState("XML/playerFireBalls.xml", "CPLAYERFIREBALLS", &m_vTexturedIDs, &m_Fireball);
+
 }
 void CPlayer::drawFrame()
 {
-	m_Fireball.draw();
+	m_Fireball[m_FireballIndex]->draw();
 	//CTextureManager::Instance().drawColliderBox(CGame::Instance().getRenderer(), feetCollider);
 	CGameObject::drawFrame();
 }
@@ -21,7 +27,7 @@ void CPlayer::update(double dt)
 	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
 
 
-	if (!isShooting || m_Fireball.m_position.m_x > SCREEN_WIDTH ||  m_Fireball.m_position.m_x < -m_Fireball.getWidth()) { m_Fireball.m_position = m_RealPosition; isShooting = false; }
+	if (!isShooting || m_Fireball[m_FireballIndex]->m_position.m_x > SCREEN_WIDTH ||  m_Fireball[m_FireballIndex]->m_position.m_x < -m_Fireball[m_FireballIndex]->getWidth()) { m_Fireball[m_FireballIndex]->m_position = m_RealPosition; isShooting = false; }
 
 	if (!applyGravity())
 	{
@@ -36,7 +42,7 @@ void CPlayer::update(double dt)
 		if (moveLeft && isLookingRight) move(-10);
 
 	}
-	m_Fireball.update(deltaTime);
+	m_Fireball[m_FireballIndex]->update(deltaTime);
 	
 	m_Force += m_Gravity;
 	m_Force  = (m_Force / m_Mass )* dt;	
@@ -94,10 +100,10 @@ void CPlayer::shootFireBall()
 {
 	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
 	//Add operator overloading for comparison
-	if(m_Fireball.m_position.m_x == m_RealPosition.m_x) CGame::Instance().getSoundManager().playSound("fireBall", 15);
+	if(m_Fireball[m_FireballIndex]->m_position.m_x == m_RealPosition.m_x) CGame::Instance().getSoundManager().playSound("fireBall", 15);
 
-	if(isLookingRight) m_Fireball.m_Velocity.m_x = 40 * deltaTime;
-	else  m_Fireball.m_Velocity.m_x = -40 * deltaTime;
+	if(isLookingRight) m_Fireball[m_FireballIndex]->m_Velocity.m_x = 40 * deltaTime;
+	else  m_Fireball[m_FireballIndex]->m_Velocity.m_x = -40 * deltaTime;
 
 	isShooting = true;
 	
@@ -128,8 +134,8 @@ void CPlayer::handleKeyBoardEvents()
 	}
 	else if (moveUp)		{  moveUpDown(-10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;	}
 	else if (moveDown)		{  moveUpDown(10); m_textureID = "mainCharIdle"; m_TotalFrames = 8;		}
-	else if (attack1)		{  shootFireBall(); move(0); m_textureID = "mainCharAttack1"; m_TotalFrames = 8; }
-	else if (attack2)		{  move(0);  m_textureID = "mainCharAttack2"; m_TotalFrames = 8;		}
+	else if (attack1) { m_FireballIndex = 0; shootFireBall(); move(0); m_textureID = "mainCharAttack1"; m_TotalFrames = 8; }
+	else if (attack2) { m_FireballIndex = 1; move(0); shootFireBall();  m_textureID = "mainCharAttack2"; m_TotalFrames = 8; }
 	else
 	{
 		m_textureID = "mainCharIdle";

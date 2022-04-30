@@ -1,17 +1,31 @@
 #include "CFireBall.h"
 #include "../../Core/CGame.h"
-#include "../../Managers/CTextureManager.h"
-#include "../../Managers/CSoundManager.h"
 
-CFireBall::CFireBall():
-m_ColliderBox(0,0, 61, 59)
+
+CFireBall::CFireBall()
 {
-	CTextureManager::Instance(). loadImage("D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/MainChar/Fireballs/energyFireBall.png","FireBall", CGame::Instance().getRenderer());
-	m_textureID = "FireBall";
-	m_width = 61;
-	m_height = 59;
+
 
 }
+
+void CFireBall::load(CLoadParams* params)
+{
+
+	m_position = Vector2D(params->getX(), (params->getY()));
+	m_Velocity = Vector2D(0, 0);
+	m_width = params->getWidth();
+	m_height = params->getHeight();
+	m_textureID = params->getTextureID();
+	m_ObjectID = params->getObjectID();
+
+	if (params->getCollinderBox() != NULL)
+		m_ColliderBox = *params->getCollinderBox();
+
+	m_TotalFrames = params->getTotalFrames();
+	m_currentRow = params->getCurrentRow();
+
+}
+
 void CFireBall::draw()
 {
 	CTextureManager::Instance().draw(m_textureID, m_position.m_x, m_position.m_y, m_width, m_height, CGame::Instance().getRenderer());
@@ -27,6 +41,7 @@ void CFireBall::clean()
 {
 
 }
+
 
 
 

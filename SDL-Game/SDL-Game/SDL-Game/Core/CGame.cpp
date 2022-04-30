@@ -40,6 +40,7 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 		m_ObjectFactory.registerTypeID("CPlayer", new CPlayerCreator());
 		m_ObjectFactory.registerTypeID("CStableObject", new CStableObjectsCreator());
 		m_ObjectFactory.registerTypeID("CEnemy", new CEnemyCreator ());
+		m_ObjectFactory.registerTypeID("CPlayerFireBall", new CEnemyCreator());
 
 		// Parse map data from tile2D exported XML
 		m_MapParser.parseMap("Assets/Map/darkMap.tmx", "MAP");

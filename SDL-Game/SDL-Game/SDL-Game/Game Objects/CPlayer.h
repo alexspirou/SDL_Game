@@ -2,7 +2,7 @@
 #include "CGameObject.h"
 #include "../Factories/CBaseCreator.h"
 #include "../Helper/CTimer.h"
-#include "../Game Objects/Fireballs/CFireBall.h"
+#include "../Game Objects/Fireballs/CPlayerFireBall.h"
 #include "../Collision/ColliderBox.h"
 
 class CPlayer : public CGameObject
@@ -14,7 +14,7 @@ public:
 	virtual void drawFrame();
 	virtual void update(double dt);
 	virtual void clean();
-	CFireBall& getFireball() { return m_Fireball; }
+	auto getFireball() { return m_Fireball[m_FireballIndex].get(); }
 	void setPositionX(int x) { m_position.m_x = x; }
 	bool isFall = false;
 	ColliderBox feetCollider;
@@ -22,13 +22,13 @@ private:
 
 	Vector2D m_Gravity;
 	Vector2D m_Force;
-
+	std::vector<std::string> m_vTexturedIDs;
 	double m_Mass;
 	int m_TimeTillRevive;
 	bool isLookingRight = true;
 
-	CFireBall m_Fireball;
-	
+	std::vector<std::unique_ptr<CPlayerFireBall>> m_Fireball;
+	int m_FireballIndex{ 0 };
 	//Input handlers
 	void handleMouseClickEvents();
 	void handleKeyBoardEvents();

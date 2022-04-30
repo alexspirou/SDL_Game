@@ -12,8 +12,8 @@
 bool CMenuStates::onEnter()
 {
     loadMenuObjects();
-    CGame::Instance().getSoundManager().loadSound("menuChange","D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/menuChange.wav");
-    CGame::Instance().getSoundManager().loadSound("welcomeToGame", "D:/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Assets/Music/welcomeToGame.wav");
+    CGame::Instance().getSoundManager().loadSound("menuChange","Assets/Music/menuChange.wav");
+    CGame::Instance().getSoundManager().loadSound("welcomeToGame", "Assets/Music/welcomeToGame.wav");
 
     return true;
 }
