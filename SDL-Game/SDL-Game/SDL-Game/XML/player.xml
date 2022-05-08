@@ -12,7 +12,7 @@
 
 </TEXTURES>
 <OBJECTS>
-  <object type="CPlayer" objectID = "Player1" x="-100" y="300" width="250"
+  <object type="CPlayer" objectID = "Player1" x="-100" y="250" width="250"
   height="250" colliderBox = "0,0,40,80" textureID="mainCharIdle" numFrames="8" currentRow = "0"
   callbackID="1"/>
 </OBJECTS>

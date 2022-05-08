@@ -1,7 +1,6 @@
 #pragma once
 #include "CGameObject.h"
 #include "../Factories/CBaseCreator.h"
-#include "../Helper/CTimer.h"
 #include "../Game Objects/Fireballs/CPlayerFireBall.h"
 #include "../Collision/ColliderBox.h"
 
@@ -14,9 +13,13 @@ public:
 	virtual void drawFrame();
 	virtual void update(double dt);
 	virtual void clean();
+
 	auto getFireball() { return m_Fireball[m_FireballIndex].get(); }
+
 	void setPositionX(int x) { m_position.m_x = x; }
+
 	bool isFall = false;
+
 	ColliderBox feetCollider;
 private:
 
@@ -25,13 +28,23 @@ private:
 	std::vector<std::string> m_vTexturedIDs;
 	double m_Mass;
 	int m_TimeTillRevive;
+
 	bool isLookingRight = true;
+
+	bool isQHasCoulDown = true; 
+	unsigned int m_QCoulDown;
+	bool isWHasCoulDown = true;
+	unsigned int m_WCoulDown;
 
 	std::vector<std::unique_ptr<CPlayerFireBall>> m_Fireball;
 	int m_FireballIndex{ 0 };
+
+	void updateAbilitiesCouldDowns();
+
 	//Input handlers
 	void handleMouseClickEvents();
 	void handleKeyBoardEvents();
+
 
 	//Player's abilities
 	void move(float velocity);
@@ -40,6 +53,9 @@ private:
 	bool applyGravity();
 	void shootFireBall(); bool isShooting = false;
 	void shootingScreenLimitsReuse();
+	void attack1();
+	void attack2();
+
 };
 
 class CPlayerCreator : public CBaseCreator

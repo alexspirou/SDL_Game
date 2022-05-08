@@ -14,7 +14,9 @@ void CEnemy::update(double dt)
 {
 
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_TotalFrames));
+
 	m_FlipSiderRender = SDL_FLIP_HORIZONTAL;
+
 	CGameObject::update(dt);
 
 }
@@ -41,3 +43,4 @@ void CEnemy::clean()
 {
 
 }
+

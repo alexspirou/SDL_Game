@@ -7,6 +7,7 @@
 #include "CLoadParams.h"
 #include "../Physics/Vector2D.h"
 #include "../Controllers/CMouseEvents.h"
+#include "../Helper/CTimer.h"
 
 class CGameObject : public IObject
 {
@@ -29,6 +30,7 @@ protected:
 	std::string m_textureID;
 	std::string m_ObjectID;
 	ColliderBox m_ColliderBox;
+	CTimer m_Timer;
 
 	double m_SpawnTime;
 	double deltaTime;

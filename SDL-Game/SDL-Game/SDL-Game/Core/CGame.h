@@ -35,7 +35,8 @@ public:
 	
 	//Delete copy constructor to avoid copying singleton
 	CGame(const CGame&) = delete;
-	CGame & operator=(const CGame&) = delete;
+	//CGame & operator=(const CGame&) = delete;
+	CGame & operator=(const CGame&) = default;
 
 	//Singleton construction
 	static CGame& Instance()

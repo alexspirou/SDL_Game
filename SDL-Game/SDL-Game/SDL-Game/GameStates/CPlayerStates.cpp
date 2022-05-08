@@ -108,7 +108,7 @@ bool CPlayerStates::isGameOver()
 
     for (auto& enemy : m_vEnemies)
     {
-        if (isCollision(m_Player->getFireball()->getColliderBox(), enemy->getCollinder()))
+        if (isCollision(m_Player->getCollinder(), enemy->getCollinder()))
         {
             return true;
         }

@@ -24,7 +24,7 @@ int main(int argc, char* args[])
 		NOW = SDL_GetPerformanceCounter();
 		deltaTime = (double)((NOW - LAST) * 10/(double)SDL_GetPerformanceFrequency());
 
-		//SDL_ShowCursor(SDL_DISABLE);
+		SDL_ShowCursor(SDL_DISABLE);
 		CGame::Instance().render();
 		CGame::Instance().update(deltaTime);
 		CGame::Instance().handleEvents();
