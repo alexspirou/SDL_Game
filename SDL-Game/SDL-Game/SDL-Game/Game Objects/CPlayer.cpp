@@ -19,7 +19,7 @@ CPlayer::CPlayer() :
 void CPlayer::drawFrame()
 {
 	Vector2D m_RealPosition{ m_position.m_x + 100 , m_position.m_y + 100 };
-
+	
 	if(m_Fireball[m_FireballIndex]->m_position.m_x > m_RealPosition.m_x ) m_Fireball[m_FireballIndex]->draw();
 	//CTextureManager::Instance().drawColliderBox(CGame::Instance().getRenderer(), feetCollider);
 

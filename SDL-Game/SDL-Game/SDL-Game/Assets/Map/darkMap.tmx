@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.1" orientation="orthogonal" renderorder="right-down" width="240" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="180" columns="15">
-  <image source="C:/Users/alexs/Desktop/Enjl-Dark Halls Tileset/tileset.png" width="240" height="192"/>
+  <image source="C:/Users/alexs/source/repos/SDL_Game/SDL-Game/SDL-Game/SDL-Game/Map/Enjl-Dark Halls Tileset/tileset.png" width="240" height="192"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="240" height="50">
   <data encoding="csv">
