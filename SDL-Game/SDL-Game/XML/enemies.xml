@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<STATES>
+<ENEMY>
+<TEXTURES>
+ <texture filename="Assets/Enemies/enemyMonster.png" ID="enemyMonster"/>
+ <!-- <texture filename="Assets/Enemies/Idle.png" ID="enemyDevilWalk"/> -->
+</TEXTURES>
+<OBJECTS>
+  <object type="CEnemy" objectID = "enemyMonster" x="900" y="480" width="45"
+  height="66"  colliderBox = "0,0,44,61"  textureID="enemyMonster" numFrames="3" currentRow = "0"
+  callbackID="1"/>
+  <!-- <object type="CEnemy" objectID = "enemyDevil" x="250" y="380" width="250"
+  height="250" textureID="enemyDevilWalk" numFrames="8" currentRow = "0"
+  callbackID="1"/> -->
+</OBJECTS>
+</ENEMY>
+
+</STATES>

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<STATES>
+<!--Game Assets -->
+<STABLEOBJECTS>
+<TEXTURES>
+<texture filename="Assets/Background.png" ID="Background"/>
+<texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles"/>
+<texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles1"/>
+<texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles2"/>
+<texture filename="Assets/Enemies/tenctacles.png" ID="tenctacles3"/>
+
+</TEXTURES>
+<OBJECTS>
+  <object type="CStableObject" objectID = "MainBackground" x="0" y="0" width="960"
+  height="640" colliderBox = "0,0,0,0" textureID="Background" numFrames="1" currentRow = "0"
+  spawnTime = "0"
+  callbackID="1"/>
+  <object type="CStableObject" objectID = "tenctacles1" x="140" y="536" width="25"
+  height="90" colliderBox = "0,0,0,0" textureID="tenctacles" numFrames="8" currentRow = "1"
+  spawnTime = "1"
+  callbackID="2"/>
+  <object type="CStableObject" objectID = "tenctacles2" x="310" y="536" width="25"
+  height="90" colliderBox = "0,0,0,0" textureID="tenctacles1" numFrames="8" currentRow = "1"
+  spawnTime = "1"
+  callbackID="2"/>
+  <object type="CStableObject" objectID = "tenctacles3" x="476" y="536" width="25"
+  height="90" colliderBox = "0,0,0,0" textureID="tenctacles2" numFrames="8" currentRow = "1"
+  spawnTime = "1"
+  callbackID="2"/>
+  <object type="CStableObject" objectID = "tenctacles4" x="688" y="536" width="25"
+  height="90" colliderBox = "0,0,0,0" textureID="tenctacles3" numFrames="8" currentRow = "0"
+  spawnTime = "1"
+  callbackID="2"/>
+
+
+</OBJECTS>
+</STABLEOBJECTS>
+
+</STATES>

@@ -1,8 +1,0 @@
-﻿  Scanning sources for module dependencies...
-  CEnemy.cpp
-C:\Users\alexs\source\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Physics\Vector2D.h(10,30): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\alexs\source\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CPlayer.h(19,46): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\alexs\source\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CEnemy.cpp(28,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\alexs\source\repos\SDL_Game\SDL-Game\SDL-Game\SDL-Game\Game Objects\CEnemy.cpp(35,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  SDL-Game.vcxproj -> C:\Users\alexs\source\repos\SDL_Game\SDL-Game\SDL-Game\x64\Debug\SDL-Game.exe
-  0 File(s) copied
