@@ -27,14 +27,14 @@ private:
 	//Changes menu pngs with up/down arrows
 	void MoveMenuPosition();
 
-	void renderMenuDependTheMenuPosition();
-	void updateMenuDependTheMenuPosition(double dt);
+	void RenderMenuSelection();
+	void UpdateMenuSelection(double dt);
 
 	int m_MenuPositionInScreen = 0;
 
 	//Game Objects
 
-	std::vector<std::unique_ptr<CGameObject>> m_vGameObjects;
+	std::vector<std::unique_ptr<CGameObject>> m_MenuObjects;
 	std::unique_ptr<CEnemy> m_PlayerForMenu;
 
 	CFontTextureManager m_FontManager;

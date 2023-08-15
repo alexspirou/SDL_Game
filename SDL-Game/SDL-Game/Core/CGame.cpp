@@ -48,7 +48,7 @@ bool CGame::init(const char* iTitle, int width, int height, bool fullscreen)
 		m_GameMap->GetMapColliderIDAndPosition(0);
 
 		// Start main menu		
-		m_GameStateMachine.reset(new CGameStateMachine);
+		m_GameStateMachine.reset(new CGameStateMachine());
 		m_GameStateMachine->pushState(std::make_unique<CMenuStates>());
 
 		return true;
